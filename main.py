@@ -59,7 +59,7 @@ def validEntry(userInput):
 def tryAgain(userInput):
 	while not validEntry(userInput):
 		print("""
-Invalid command. Enter TALK, FIGHT, STARE, LOOK, or LEAVE.
+Invalid command. Enter HELP for a list of valid commands.
 """)
 		userInput = input("Enter your choice: ")
 	return userInput
@@ -210,7 +210,8 @@ You see a door on the other side of the room. It looks like the only way out."""
 thumbs, you don't immediately throw it across the room. That's a good start.
 
 Once you're confident in your ability to not stab yourself in the face, you
-boldly head outside."""}
+boldly head outside.""",
+		"DREAM": "You have no dreams to dream."}
 	print("""
 ------------------------------
 """)
@@ -243,7 +244,8 @@ You're not sure how they'll fare against the monster mouse you hear outside,
 however.
 
 Finally, you decide there's nothing for it but to set out for the world
-outside."""}
+outside.""",
+		"DREAM": "You have no dreams to dream."}
 	print("""
 ------------------------------
 """)
@@ -300,7 +302,8 @@ Whoever those bones belonged to, you'll avenge them with that new sword of yours
 		"LEAVE":
 """You try to run around the rat so you can avoid a fight. The rat lunges in front
 of you with an ugly shriek, snapping at your throat. You won't be getting out of
-here without using that blade in your hand."""}
+here without using that blade in your hand.""",
+		"DREAM": "You have no dreams to dream."}
 	print("""
 ------------------------------
 """)
@@ -341,7 +344,8 @@ chew through the rat's throat or something...""",
 		"LEAVE":
 """You try to run around the rat so you can avoid a fight. The rat lunges in front
 of you with an ugly shriek, snapping at your throat. You won't be getting out of
-here without some fancy claw-fu fighting."""}
+here without some fancy claw-fu fighting.""",
+		"DREAM": "You have no dreams to dream."}
 	print("""
 ------------------------------
 """)
@@ -393,7 +397,8 @@ your sword, and set out down the high street. Countless questions dance through
 your mind, and the only way you'll find the answers is if you fight your way
 through this terrible nightmare.
 
-The hunt is on."""}
+The hunt is on.""",
+		"DREAM": "You have no dreams to dream."}
 	print("""
 ------------------------------
 """)
