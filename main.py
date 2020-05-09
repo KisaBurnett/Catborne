@@ -449,6 +449,49 @@ The hunt is on.""",
 		print(sceneOptions.get(str.upper(userInput)))
 
 
+# Determines whether player should be prompted again for a command.
+def sceneFiveNext(userInput):
+	goNext = {"TALK": False,
+		"FIGHT": False,
+		"STARE": False,
+		"LOOK": False,
+		"LEAVE": True,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
+	proceed = goNext.get(str.upper(userInput))
+	return proceed
+
+
+# Displays appropriate story text according to player's input. Only executes
+# if the player recieved a sword from the old cat in scene one.
+def sceneFive(userInput, dream, milk, level, hasWpn, weapon):
+	sceneOptions = {"TALK":
+"""Something""",
+		"FIGHT":
+"""Something""",
+		"STARE":
+"""Something""",
+		"LOOK":
+"""Something""",
+		"LEAVE":
+"""Something"""}
+	print("""
+------------------------------
+""")
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
+
+	if str.upper(userInput) == "TALK":
+		level = level + milk
+		milk = 0
+		return level, milk
+
+
 # Defines valid commands for the final prompt of the game.
 def gameEnd(userInput):
 	if str.upper(userInput) == "YES":
@@ -641,6 +684,16 @@ spectral kittens at the base of the lantern's post. They greet you with spooky m
 and you reach down to pet them. Just as your paw makes contact, the world around
 you goes white, and you feel yourself being transported away to somewhere new.
 """)
+	entry = input("Enter your choice: ")
+	entry = tryAgain(entry)
+
+	while nextScene == False:
+		nextScene = sceneFiveNext(entry)
+		milkLevel, collectedMilk = sceneFive(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+		print("")
+		if nextScene == False:
+			entry = input("Enter your choice: ")
+			entry = tryAgain(entry)
 else:
 	nextScene = False
 	print("""----------YOU DIED----------
