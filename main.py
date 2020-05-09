@@ -276,7 +276,7 @@ def sceneThreeNext(userInput):
 		"FIGHT": True,
 		"STARE": False,
 		"LOOK": False,
-		"LEAVE": False,
+		"LEAVE": True,
 		"HELP": False,
 		"CHECK": False,
 		"DREAM": False}
@@ -300,9 +300,11 @@ out like your tail had just been caught beneath a rocking chair.
 
 Luckily, your sword is less disappointing than you. The blade plunges through
 the rat's flesh, cutting deep and sending a fountain of dark blood into the air.
-The rat gurgles and flails, then collapses in a twitching heap on the floor.
+The rat gurgles and flails, then collapses in a twitching heap on the floor. As
+the life leaves its eyes, a small bottle of milk rolls out from under it. You
+pick it up, and know instinctively it will benefit you later.
 
-You watch it bleed to death, not about to turn your back on it until you know
+You watch the rat bleed to death, not about to turn your back on it until you know
 it won't leap back up and attack you. Once the life drains completely from the
 rat's eyes, you triumphantly leave the clinic. Now no one will ever hear about
 that pathetic screeching sound you made a minute ago.""",
@@ -318,9 +320,14 @@ room, and you see no hat.
 
 Whoever those bones belonged to, you'll avenge them with that new sword of yours.""",
 		"LEAVE":
-"""You try to run around the rat so you can avoid a fight. The rat lunges in front
-of you with an ugly shriek, snapping at your throat. You won't be getting out of
-here without using that blade in your hand.""",
+"""After careful consideration, you wonder if you can trick the horrible beast and
+escape unscathed. You take a deep breath, then dart forward. The rat lunges with
+a terrible screech, but with your quick and fancy cat feet, you're able to dodge
+the snap of its wretched teeth. The rat crashes into a nearby cupboard, its head
+smashing through the doors and becoming stuck.
+
+With the beast occupied, you're able to dart out the door, safe and sound.
+However, you can't help but wonder if risk would have brought worthy reward.""",
 		"DREAM": "You have no dreams to dream."}
 	print("""
 ------------------------------
@@ -331,6 +338,10 @@ here without using that blade in your hand.""",
 		commandList(dream)
 	else:
 		print(sceneOptions.get(str.upper(userInput)))
+
+	if str.upper(userInput) == "FIGHT":
+		milk = milk + 1
+		return milk
 
 
 # Displays appropriate story text according to player's input. Executes
@@ -551,7 +562,7 @@ entry = tryAgain(entry)
 if hasWeapon:
 	while nextScene == False:
 		nextScene = sceneTwoNext(entry)
-		sceneTwoTalk(entry)
+		sceneTwoTalk(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
 			entry = input("Enter your choice: ")
@@ -559,7 +570,7 @@ if hasWeapon:
 else:
 	while nextScene == False:
 		nextScene = sceneTwoNext(entry)
-		sceneTwoStare(entry)
+		sceneTwoStare(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
 			entry = input("Enter your choice: ")
@@ -588,7 +599,7 @@ entry = tryAgain(entry)
 if hasWeapon:
 	while nextScene == False:
 		nextScene = sceneThreeNext(entry)
-		sceneThreeTalk(entry)
+		collectedMilk = sceneThreeTalk(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
 			entry = input("Enter your choice: ")
@@ -596,7 +607,7 @@ if hasWeapon:
 else:
 	while nextScene == False:
 		nextScene = sceneThreeNext(entry)
-		sceneThreeStare(entry)
+		sceneThreeStare(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
 			entry = input("Enter your choice: ")
@@ -616,7 +627,7 @@ only just begun.
 
 	while nextScene == False:
 		nextScene = sceneFourNext(entry)
-		sceneFour(entry)
+		sceneFour(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
 			entry = input("Enter your choice: ")
