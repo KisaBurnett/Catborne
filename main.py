@@ -25,14 +25,15 @@ def gameStart(userInput):
 # Only used to start the game.
 def tryAgainStart(userInput):
 	while not gameStart(userInput):
-		print("")
-		print("Invalid command. Please enter BEGIN and press return to start the game.")
-		print("")
+		print("""
+Invalid command. Please enter BEGIN and press return to start the game.
+""")
 		userInput = input("Enter your choice: ")
 	return userInput
 
+
 # Verifies the player's entry is valid.
-def validEntry(userInput, dream):
+def validEntry(userInput):
 	if str.upper(userInput) == "TALK":
 		return True
 	elif str.upper(userInput) == "FIGHT":
@@ -43,20 +44,55 @@ def validEntry(userInput, dream):
 		return True
 	elif str.upper(userInput) == "LEAVE":
 		return True
-	elif (str.upper(userInput) == "DREAM") and (dream == True):
+	elif str.upper(userInput) == "CHECK":
+		return True
+	elif str.upper(userInput) == "HELP":
+		return True
+	elif str.upper(userInput) == "DREAM":
 		return True
 	else:
 		return False
+
 
 # Prompts player to re-enter a command when invalid.
 # Used once the game has started.
 def tryAgain(userInput):
 	while not validEntry(userInput):
-		print("")
-		print("Invalid command. Enter TALK, FIGHT, STARE, LOOK, or LEAVE.")
-		print("")
+		print("""
+Invalid command. Enter TALK, FIGHT, STARE, LOOK, or LEAVE.
+""")
 		userInput = input("Enter your choice: ")
 	return userInput
+
+
+# Display list of valid commands.
+def commandList(dream):
+	if dream:
+		print("""
+Valid commands are:
+TALK
+FIGHT
+STARE
+LOOK
+LEAVE
+CHECK
+DREAM
+""")
+	else:
+		print("""
+Valid commands are:
+TALK
+FIGHT
+STARE
+LOOK
+LEAVE
+CHECK
+""")
+
+
+# Displays player's current milk level and weapon.
+def statusCheck(milk, level, weapon):
+	print("Hello")
 
 
 # Determines whether player should be prompted again for a command.
@@ -65,7 +101,10 @@ def sceneOneNext(userInput):
 		"FIGHT": False,
 		"STARE": True,
 		"LOOK": False,
-		"LEAVE": False}
+		"LEAVE": False,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
 
 	proceed = goNext.get(str.upper(userInput))
 	return proceed
@@ -126,7 +165,8 @@ it and you. It might as well be miles away.""",
 """You try to stand up to leave, but your body is too weak. You collapse back
 down on the bed.
 
-The old cat snickers at you."""}
+The old cat snickers at you.""",
+		"DREAM": "You have no dreams to dream."}
 	print("""
 ------------------------------
 """)
@@ -139,7 +179,10 @@ def sceneTwoNext(userInput):
 		"FIGHT": False,
 		"STARE": False,
 		"LOOK": False,
-		"LEAVE": True}
+		"LEAVE": True,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
 	proceed = goNext.get(str.upper(userInput))
 	return proceed
 
@@ -213,7 +256,10 @@ def sceneThreeNext(userInput):
 		"FIGHT": True,
 		"STARE": False,
 		"LOOK": False,
-		"LEAVE": False}
+		"LEAVE": False,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
 	proceed = goNext.get(str.upper(userInput))
 	return proceed
 
@@ -308,7 +354,10 @@ def sceneFourNext(userInput):
 		"FIGHT": False,
 		"STARE": False,
 		"LOOK": False,
-		"LEAVE": True}
+		"LEAVE": True,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
 	proceed = goNext.get(str.upper(userInput))
 	return proceed
 
@@ -385,8 +434,18 @@ def goodbye(userInput):
 # Initializes variables that track which story progress
 # choices the player makes throughout the game.
 nextScene = False
-hasWeapon = False
+
 hasDream = False
+
+compassOn = False
+
+collectedMilk = 0
+milkLevel = 1
+
+hasWeapon = False
+oldSword = False
+hammer = False
+greatSword = False
 
 # textwrap is used to quickly format long blocks of text.
 import textwrap
@@ -394,9 +453,10 @@ import textwrap
 print("""----------CATBORNE----------
 
 Choose your path carefully through the long night of the hunt.
-""")
-print(textwrap.fill("Choices are made by typing TALK, FIGHT, STARE, LOOK, or LEAVE, and then pressing the return key.", 75))
-print("""
+
+Choices are made by typing TALK, FIGHT, STARE, LOOK, or LEAVE, and then pressing
+the return key.
+
 Type BEGIN and press return to start the nightmare.
 """)
 entry = input("Enter your choice: ")
@@ -406,11 +466,14 @@ print("""
 ------------------------------
 
 'Welcome, Mouser.'
+
+The croaky voice is the first thing to greet you as you slowly regain consciousness.
+You open your eyes and find a grizzled old cat looming over you. He grins at you
+from beneath his battered hat, and you see one of his fangs is missing, and his
+eyes are bandaged with dirty cloth.
+
+Where are you? Who is this cat? Why is he the same size as you?
 """)
-print(textwrap.fill("The croaky voice is the first thing to greet you as you slowly regain consciousness. You open your eyes and find a grizzled old cat looming over you. He grins at you from beneath his battered hat, and you see one of his fangs is missing, and his eyes are bandaged with dirty cloth.", 75))
-print("")
-print(textwrap.fill("Where are you? Who is this cat? Why is he the same size as you?", 75))
-print("")
 
 entry = input("Enter your choice: ")
 entry = tryAgain(entry)
@@ -431,13 +494,16 @@ if str.upper(entry) == "TALK":
 nextScene = False
 
 # Transition to clinic entrance.
-print("")
-print(textwrap.fill("With the old cat now gone, you are completely alone. You stand up slowly and carefully, and discover you can still walk on two legs in your adorable cat body. The distant, squeaky baying of some horrible rodent can be heard from outside. You feel your journey has only just begun.", 75))
-print("")
-print("Which makes sense.")
-print("")
-print("After all, you only just woke up.")
-print("")
+print("""
+With the old cat now gone, you are completely alone. You stand up slowly and
+carefully, and discover you can still walk on two legs in your adorable cat body.
+The distant, squeaky baying of some horrible rodent can be heard from outside.
+You feel your journey has only just begun.
+
+Which makes sense.
+
+After all, you only just woke up.
+""")
 entry = input("Enter your choice: ")
 entry = tryAgain(entry)
 
@@ -460,16 +526,22 @@ else:
 			entry = tryAgain(entry)
 
 nextScene = False
-print(textwrap.fill("You go through the open door to the clinic lobby, and discover it's just as horrible and dark as the room in which you awoke. Supplies and broken furniture are strewn about, and there's a horrible smell that seems to follow you wherever you go.", 75))
-print("")
-print(textwrap.fill("...oh, wait, that's you.", 75))
-print("")
-print(textwrap.fill("Let's hope there's a bath somewhere in Yhowlnam.", 75))
-print("")
-print(textwrap.fill("However, it quickly becomes apparent that hygiene is the least of your worries. Across the lobby, between you and the clinic exit, is a gigantic, mange-ridden rat.", 75))
-print("")
-print(textwrap.fill("You freeze, but it's too late. The hideous thing lifts its head from the bones it was gnawing, and looks directly at you. You'll need to think fast if you want to survive a round with this beast!", 75))
-print("")
+print("""You go through the open door to the clinic lobby, and discover it's just
+as horrible and dark as the room in which you awoke. Supplies and broken furniture
+are strewn about, and there's a horrible smell that seems to follow you wherever
+you go.
+
+...oh, wait, that's you.
+
+Let's hope there's a bath somewhere in Yhowlnam.
+
+However, it quickly becomes apparent that hygiene is the least of your worries.
+Across the lobby, between you and the clinic exit, is a gigantic, mange-ridden rat.
+
+You freeze, but it's too late. The hideous thing lifts its head from the bones it
+was gnawing, and looks directly at you. You'll need to think fast if you want to
+survive a round with this beast!
+""")
 entry = input("Enter your choice: ")
 entry = tryAgain(entry)
 
@@ -493,8 +565,12 @@ else:
 # Ends the game according to whether or not the player was armed in scene three.
 if hasWeapon:
 	nextScene = False
-	print(textwrap.fill("You exit the clinic, and walk out onto a grim cobblestone street. The pale glow from the moon overhead only makes the looming Victorian architecture around you more oppressive. A cold wind cuts through your fur, and the far-off sounds of beasts and dying victims chill you further. Your gruesome hunt in Yhowlnam has only just begun.", 75))
-	print("")
+	print("""You exit the clinic, and walk out onto a grim cobblestone street. The pale glow
+from the moon overhead only makes the looming Victorian architecture around you
+more oppressive. A cold wind cuts through your fur, and the far-off sounds of
+beasts and dying victims chill you further. Your gruesome hunt in Yhowlnam has
+only just begun.
+""")
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
