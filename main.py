@@ -632,6 +632,15 @@ only just begun.
 		if nextScene == False:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
+
+	nextScene = False
+	print("""After walking for a while, you come across a darkened lantern hanging from a
+short staff in the middle of the cobblestone street. Curious, you reach out to light
+it. The glow of the little flame soothes your nerves, and summons a small group of
+spectral kittens at the base of the lantern's post. They greet you with spooky mews,
+and you reach down to pet them. Just as your paw makes contact, the world around
+you goes white, and you feel yourself being transported away to somewhere new.
+""")
 else:
 	nextScene = False
 	print("""----------YOU DIED----------
