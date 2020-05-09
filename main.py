@@ -21,6 +21,7 @@ def gameStart(userInput):
 	else:
 		return False
 
+
 # Prompts player to re-enter a command when invalid.
 # Only used to start the game.
 def tryAgainStart(userInput):
@@ -68,31 +69,33 @@ Invalid command. Enter HELP for a list of valid commands.
 # Display list of valid commands.
 def commandList(dream):
 	if dream:
-		print("""
-Valid commands are:
+		print("""Valid commands are:
 TALK
 FIGHT
 STARE
 LOOK
 LEAVE
 CHECK
-DREAM
-""")
+DREAM""")
 	else:
-		print("""
-Valid commands are:
+		print("""Valid commands are:
 TALK
 FIGHT
 STARE
 LOOK
 LEAVE
-CHECK
-""")
+CHECK""")
 
 
 # Displays player's current milk level and weapon.
-def statusCheck(milk, level, weapon):
-	print("Hello")
+def statusCheck(milk, level, hasWpn, weapon):
+	weaponList = {"1": "old sword", "2": "hammer", "3": "great sword"}
+	print("""You are holding """ + str(milk) + """ bottles of milk.
+You are level """ + str(level) + ".")
+	if hasWpn:
+		print("Your weapon is the " + weaponList.get(weapon) + ".")
+	else:
+		print("""You have no weapon. Idiot.""")
 
 
 # Determines whether player should be prompted again for a command.
@@ -111,7 +114,7 @@ def sceneOneNext(userInput):
 
 
 # Displays appropriate story text according to player's input.
-def sceneOne(userInput):
+def sceneOne(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """'Where am I?' you ask the old cat.
 
@@ -170,7 +173,12 @@ The old cat snickers at you.""",
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 
 # Determines whether player should be prompted again for a command.
@@ -189,7 +197,7 @@ def sceneTwoNext(userInput):
 
 # Displays appropriate story text according to player's input. Only executes
 # if the player received a sword from the old cat in scene one.
-def sceneTwoTalk(userInput):
+def sceneTwoTalk(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You talk to yourself.
 
@@ -215,12 +223,17 @@ boldly head outside.""",
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 
 # Displays appropriate story text according to player's input. Only executes if
 # the player did not receive a sword from the old cat in scene one.
-def sceneTwoStare(userInput):
+def sceneTwoStare(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You talk to yourself.
 
@@ -249,7 +262,12 @@ outside.""",
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 
 # Determines whether player should be prompted again for a command.
@@ -268,7 +286,7 @@ def sceneThreeNext(userInput):
 
 # Displays appropriate story text according to player's input. Only executes
 # if the player recieved a sword from the old cat in scene one.
-def sceneThreeTalk(userInput):
+def sceneThreeTalk(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You tell the rat that you are prepared to negotiate by either talking or
 stabbing your sword into its eyeball until it yields. You'd rather talk, but
@@ -307,12 +325,17 @@ here without using that blade in your hand.""",
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 
 # Displays appropriate story text according to player's input. Executes
 # if player did not receive a sword from the old cat in scene one.
-def sceneThreeStare(userInput):
+def sceneThreeStare(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You tell the rat that you are prepared to negotiate by either talking or
 clawing its eyeballs until it yields. You'd rather talk, but you'll use your
@@ -349,7 +372,12 @@ here without some fancy claw-fu fighting.""",
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 
 # Determines whether player should be prompted again for a command.
@@ -368,7 +396,7 @@ def sceneFourNext(userInput):
 
 # Displays appropriate story text according to player's input. Only executes if
 # player survives the third scene.
-def sceneFour(userInput):
+def sceneFour(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You tell the moon you're very displeased with how the night is progressing
 thus far.
@@ -402,7 +430,12 @@ The hunt is on.""",
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 
 # Defines valid commands for the final prompt of the game.
@@ -442,8 +475,6 @@ nextScene = False
 
 hasDream = False
 
-compassOn = False
-
 collectedMilk = 0
 milkLevel = 1
 
@@ -451,6 +482,7 @@ hasWeapon = False
 oldSword = False
 hammer = False
 greatSword = False
+heldWeapon = ""
 
 # textwrap is used to quickly format long blocks of text.
 import textwrap
@@ -460,7 +492,7 @@ print("""----------CATBORNE----------
 Choose your path carefully through the long night of the hunt.
 
 Choices are made by typing TALK, FIGHT, STARE, LOOK, or LEAVE, and then pressing
-the return key.
+the return key. Enter HELP at any time for a list of available commands.
 
 Type BEGIN and press return to start the nightmare.
 """)
@@ -486,7 +518,8 @@ entry = tryAgain(entry)
 # Loops command prompts until player selects one that progresses the story.
 while nextScene == False:
 	nextScene = sceneOneNext(entry)
-	sceneOne(entry)
+	# milk, level, hasWpn, weapon
+	sceneOne(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 	if nextScene == False:
 		print("")
 		entry = input("Enter your choice: ")
@@ -495,6 +528,8 @@ while nextScene == False:
 # If player chose to talk to the old cat, arm player.
 if str.upper(entry) == "TALK":
 	hasWeapon = True
+	oldSword = True
+	heldWeapon = "1"
 # Reset the nextScene check before proceeding.
 nextScene = False
 
