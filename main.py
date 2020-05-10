@@ -467,8 +467,8 @@ def sceneFiveNext(userInput):
 # if the player recieved a sword from the old cat in scene one.
 def sceneFive(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
-"""You ask the plushie what she does here in this place. She lights up and purrs happily,
-clearly tickled to be talking to you.
+"""You ask the plushie what she does here in this place. She lights up and purrs
+happily, clearly tickled to be talking to you.
 
 "I am here to take care of you, honerable Mouser," the plushie says. "You will
 hunt beasts and mousies, collect milk from their corpses, and I will channel the
@@ -478,11 +478,22 @@ Yikes. You... didn't expect that to be quite so dark.
 
 I'm sure it's cuter than she made it sound just now. Look how sweet she is!""",
 		"FIGHT":
-"""Something""",
+"""You heroically fight the air in front of the plushie. She tilts her head and claps
+for you in an encouraging manner. Your heart swells with pride, because nothing
+is better than sweet, sweet validation.""",
 		"STARE":
-"""Something""",
+"""You stare at the plushie. She stares back at you.
+
+Truly, yours is a love for the ages.""",
 		"LOOK":
-"""Something""",
+"""The garden around you is quiet and peaceful, if not a little strange. The chapel
+up the hill is small, and littered with old books and broken weapons, along with
+some bizarre tools you've never seen before.
+
+Most of the gravestones have had their inscriptions rubbed away by time and are
+now unreadable, but the one with the ghost kitten congregation reads, 'YHOWLNAM'.
+
+""",
 		"LEAVE":
 """Something"""}
 	print("""
