@@ -467,7 +467,16 @@ def sceneFiveNext(userInput):
 # if the player recieved a sword from the old cat in scene one.
 def sceneFive(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
-"""Something""",
+"""You ask the plushie what she does here in this place. She lights up and purrs happily,
+clearly tickled to be talking to you.
+
+"I am here to take care of you, honerable Mouser," the plushie says. "You will
+hunt beasts and mousies, collect milk from their corpses, and I will channel the
+milk into your strength."
+
+Yikes. You... didn't expect that to be quite so dark.
+
+I'm sure it's cuter than she made it sound just now. Look how sweet she is!""",
 		"FIGHT":
 """Something""",
 		"STARE":
@@ -485,11 +494,6 @@ def sceneFive(userInput, dream, milk, level, hasWpn, weapon):
 		commandList(dream)
 	else:
 		print(sceneOptions.get(str.upper(userInput)))
-
-	if str.upper(userInput) == "TALK":
-		level = level + milk
-		milk = 0
-		return level, milk
 
 
 # Defines valid commands for the final prompt of the game.
@@ -682,14 +686,29 @@ short staff in the middle of the cobblestone street. Curious, you reach out to l
 it. The glow of the little flame soothes your nerves, and summons a small group of
 spectral kittens at the base of the lantern's post. They greet you with spooky mews,
 and you reach down to pet them. Just as your paw makes contact, the world around
-you goes white, and you feel yourself being transported away to somewhere new.
+you goes white, and then the white melts away to reveal a quiet, misty garden at
+the base of a hill, atop which rests a worn down old chapel.
+
+You stand up, puzzled for some reason. After all that's happened, you find THIS
+weird? Really?
+
+Old and weathered gravestones line the cobblestone path leading up to the chapel.
+They're mostly unremarkable, aside from one, which has a small group of ghostly
+kittens like the ones you saw by the lantern. A cat in a pretty dress and bonnet
+kneels next to this gravestone, but she stands up on her hind legs when she notices
+you, and clasps her front paws together as she turns to face you.
+
+When you get a good look at the other cat's face, you realize she's actually a plush
+toy, but an incredibly life-like one. She smiles gently at you, and speaks in a soft,
+kindly tone.
+
+"Hello, good Mouser. I am a plushie, here in this Catnap Dream to look after you."
 """)
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
 	while nextScene == False:
 		nextScene = sceneFiveNext(entry)
-		milkLevel, collectedMilk = sceneFive(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
 			entry = input("Enter your choice: ")
