@@ -493,9 +493,15 @@ some bizarre tools you've never seen before.
 Most of the gravestones have had their inscriptions rubbed away by time and are
 now unreadable, but the one with the ghost kitten congregation reads, 'YHOWLNAM'.
 
-""",
+The plushie cleans her face daintily with her paws while you explore your surroundings,
+content. She seems to be happy to be near you.""",
 		"LEAVE":
-"""Something"""}
+"""You return to the headstone labeled YHOWLNAM and start to stoop down next to it,
+but the plushie stops you by placing a paw on your shoulder.
+
+"Good Mouser," she says, "before you go..."
+
+You stand back up to look at her curiously, and she gives a polite bow."""}
 	print("""
 ------------------------------
 """)
@@ -724,6 +730,17 @@ kindly tone.
 		if nextScene == False:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
+
+	if collectedMilk != 0:
+		print("""Something
+""")
+		milkLevel = milkLevel + collectedMilk
+		collectedMilk = 0
+	else:
+		print("""Something else
+""")
+
+	nextScene = False
 else:
 	nextScene = False
 	print("""----------YOU DIED----------
