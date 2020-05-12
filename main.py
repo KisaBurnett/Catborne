@@ -629,12 +629,17 @@ heldWeapon = ""
 # textwrap is used to quickly format long blocks of text.
 import textwrap
 
+# time is used to create pauses between text.
+import time
+
 print("""----------CATBORNE----------
 
 Choose your path carefully through the long night of the hunt.
 
 Choices are made by typing TALK, FIGHT, STARE, LOOK, or LEAVE, and then pressing
 the return key. Enter HELP at any time for a list of available commands.
+
+More commands will become available as you progress through your hunt.
 
 Type BEGIN and press return to start the nightmare.
 """)
@@ -644,24 +649,25 @@ entry = tryAgainStart(entry)
 print("""
 ------------------------------
 
-'Welcome, Mouser.'
-
-The croaky voice is the first thing to greet you as you slowly regain consciousness.
+"Welcome, Mouser."
+""")
+time.sleep(1)
+print("""The croaky voice is the first thing to greet you as you slowly regain consciousness.
 You open your eyes and find a grizzled old cat looming over you. He grins at you
 from beneath his battered hat, and you see one of his fangs is missing, and his
 eyes are bandaged with dirty cloth.
 
 Where are you? Who is this cat? Why is he the same size as you?
 """)
-
+time.sleep(3)
 entry = input("Enter your choice: ")
 entry = tryAgain(entry)
 
 # Loops command prompts until player selects one that progresses the story.
 while nextScene == False:
 	nextScene = sceneOneNext(entry)
-	# milk, level, hasWpn, weapon
 	sceneOne(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+	time.sleep(3)
 	if nextScene == False:
 		print("")
 		entry = input("Enter your choice: ")
@@ -686,6 +692,7 @@ Which makes sense.
 
 After all, you only just woke up.
 """)
+time.sleep(3)
 entry = input("Enter your choice: ")
 entry = tryAgain(entry)
 
@@ -695,6 +702,7 @@ if hasWeapon:
 		nextScene = sceneTwoNext(entry)
 		sceneTwoTalk(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
+		time.sleep(3)
 		if nextScene == False:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
@@ -703,6 +711,7 @@ else:
 		nextScene = sceneTwoNext(entry)
 		sceneTwoStare(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
+		time.sleep(3)
 		if nextScene == False:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
@@ -724,6 +733,7 @@ You freeze, but it's too late. The hideous thing lifts its head from the bones i
 was gnawing, and looks directly at you. You'll need to think fast if you want to
 survive a round with this beast!
 """)
+time.sleep(3)
 entry = input("Enter your choice: ")
 entry = tryAgain(entry)
 
@@ -732,6 +742,7 @@ if hasWeapon:
 		nextScene = sceneThreeNext(entry)
 		collectedMilk = sceneThreeTalk(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
+		time.sleep(3)
 		if nextScene == False:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
@@ -740,6 +751,7 @@ else:
 		nextScene = sceneThreeNext(entry)
 		sceneThreeStare(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
+		time.sleep(3)
 		if nextScene == False:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
@@ -753,6 +765,7 @@ more oppressive. A cold wind cuts through your fur, and the far-off sounds of
 beasts and dying victims chill you further. Your gruesome hunt in Yhowlnam has
 only just begun.
 """)
+	time.sleep(3)
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
@@ -760,6 +773,7 @@ only just begun.
 		nextScene = sceneFourNext(entry)
 		sceneFour(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
+		time.sleep(3)
 		if nextScene == False:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
@@ -788,6 +802,7 @@ kindly tone.
 
 "Hello, good Mouser. I am a plushie, here in this Catnap Dream to look after you."
 """)
+	time.sleep(3)
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
@@ -795,6 +810,7 @@ kindly tone.
 		nextScene = sceneFiveNext(entry)
 		sceneFive(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
+		time.sleep(3)
 		if nextScene == False:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
@@ -832,10 +848,12 @@ back to the waking world.
 You now have a new command available. Use DREAM when not in battle to return and
 level up.
 """)
-
+	time.sleep(3)
 	nextScene = False
 	hasDream = True
-	print("Here is the next scene transition.")
+	print("""Here is the next scene transition.
+""")
+	time.sleep(3)
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
@@ -846,6 +864,7 @@ level up.
 		else:
 			sceneSix(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
+		time.sleep(3)
 		if nextScene == False:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
