@@ -580,6 +580,94 @@ def sceneSix(userInput, dream, milk, level, hasWpn, weapon):
 		print(sceneOptions.get(str.upper(userInput)))
 
 
+def gilbertOpen():
+	print("""
+""")
+
+
+# Determines whether player should be prompted again for a command.
+def gilbertNext(userInput):
+	goNext = {"TALK": False,
+		"FIGHT": False,
+		"STARE": False,
+		"LOOK": False,
+		"LEAVE": True,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
+	proceed = goNext.get(str.upper(userInput))
+	return proceed
+
+
+# Displays appropriate story text according to player's input.
+def gilbertOptions(userInput, dream, milk, level, hasWpn, weapon):
+	sceneOptions = {"TALK":
+"""Something""",
+		"FIGHT":
+"""Something else""",
+		"STARE":
+"""Something else else""",
+		"LOOK":
+"""Look, more something""",
+		"LEAVE":
+"""Leave with something"""}
+	print("""
+------------------------------
+""")
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
+
+
+def gasclawOpen():
+	print("""
+""")
+
+
+# Determines whether player should be prompted again for a command.
+def gasclawNext(userInput):
+	goNext = {"TALK": False,
+		"FIGHT": True,
+		"STARE": False,
+		"LOOK": False,
+		"LEAVE": False,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
+	proceed = goNext.get(str.upper(userInput))
+	return proceed
+
+
+# Boss fight scene.
+def gasclawFight(milk, level, weapon, won):
+	print("")
+	return milk, won
+
+
+# Displays appropriate story text according to player's input.
+def gasclawOptions(userInput, dream, milk, level, hasWpn, weapon):
+	sceneOptions = {"TALK":
+"""Something""",
+		"STARE":
+"""Something else else""",
+		"LOOK":
+"""Look, more something""",
+		"LEAVE":
+"""Leave with something"""}
+	print("""
+------------------------------
+""")
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
+
+
 # Defines valid commands for the final prompt of the game.
 def gameEnd(userInput):
 	if str.upper(userInput) == "YES":
@@ -625,6 +713,8 @@ oldSword = False
 hammer = False
 greatSword = False
 heldWeapon = ""
+
+bossDead = False
 
 # textwrap is used to quickly format long blocks of text.
 import textwrap
