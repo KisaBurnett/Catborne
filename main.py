@@ -129,6 +129,37 @@ and return to the waking world.""")
 	return milk, level
 
 
+# Opening page for the game.
+def titlePage():
+	print("""----------CATBORNE----------
+
+Choose your path carefully through the long night of the hunt.
+
+Choices are made by typing TALK, FIGHT, STARE, LOOK, or LEAVE, and then pressing
+the return key. Enter HELP at any time for a list of available commands.
+
+More commands will become available as you progress through your hunt.
+
+Type BEGIN and press return to start the nightmare.
+""")
+
+
+def opener():
+	print("""
+------------------------------
+
+"Welcome, Mouser."
+""")
+	time.sleep(1)
+	print("""The croaky voice is the first thing to greet you as you slowly regain consciousness.
+You open your eyes and find a grizzled old cat looming over you. He grins at you
+from beneath his battered hat, and you see one of his fangs is missing, and his
+eyes are bandaged with dirty cloth.
+
+Where are you? Who is this cat? Why is he the same size as you?
+""")
+
+
 # Determines whether player should be prompted again for a command.
 def sceneOneNext(userInput):
 	goNext = {"TALK": True,
@@ -543,45 +574,13 @@ You stand back up to look at her curiously, and she gives a polite bow.""",
 		print(sceneOptions.get(str.upper(userInput)))
 
 
-# Determines whether player should be prompted again for a command.
-def sceneSixNext(userInput):
-	goNext = {"TALK": False,
-		"FIGHT": False,
-		"STARE": False,
-		"LOOK": False,
-		"LEAVE": True,
-		"HELP": False,
-		"CHECK": False,
-		"DREAM": False}
-	proceed = goNext.get(str.upper(userInput))
-	return proceed
-
-
-# Displays appropriate story text according to player's input.
-def sceneSix(userInput, dream, milk, level, hasWpn, weapon):
-	sceneOptions = {"TALK":
-"""Something""",
-		"FIGHT":
-"""Something else""",
-		"STARE":
-"""Something else else""",
-		"LOOK":
-"""Look, more something""",
-		"LEAVE":
-"""Leave with something"""}
-	print("""
-------------------------------
-""")
-	if str.upper(userInput) == "CHECK":
-		statusCheck(milk, level, hasWpn, weapon)
-	elif str.upper(userInput) == "HELP":
-		commandList(dream)
-	else:
-		print(sceneOptions.get(str.upper(userInput)))
-
-
+# Transitions between the Catnap Dream and the player decisions back in Yhowlnam.
 def gilbertOpen():
-	print("""
+	print("""You arrive back in Yhowlnam next to the lantern. The baying of horrible mousies
+can be heard in the distance, but there's another sound much closer to you. It's
+a cat, apparently hacking up one horrific hairball in a boarded-up house. The
+window is barred and curtained on the inside, but you can still see the warm glow
+of lamps peeking through.
 """)
 
 
@@ -641,12 +640,6 @@ def gasclawNext(userInput):
 	return proceed
 
 
-# Boss fight scene.
-def gasclawFight(milk, level, weapon, won):
-	print("")
-	return milk, won
-
-
 # Displays appropriate story text according to player's input.
 def gasclawOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
@@ -666,6 +659,12 @@ def gasclawOptions(userInput, dream, milk, level, hasWpn, weapon):
 		commandList(dream)
 	else:
 		print(sceneOptions.get(str.upper(userInput)))
+
+
+# Boss fight scene.
+def gasclawFight(milk, level, weapon, won):
+	print("")
+	return milk, won
 
 
 # Defines valid commands for the final prompt of the game.
@@ -722,33 +721,13 @@ import textwrap
 # time is used to create pauses between text.
 import time
 
-print("""----------CATBORNE----------
-
-Choose your path carefully through the long night of the hunt.
-
-Choices are made by typing TALK, FIGHT, STARE, LOOK, or LEAVE, and then pressing
-the return key. Enter HELP at any time for a list of available commands.
-
-More commands will become available as you progress through your hunt.
-
-Type BEGIN and press return to start the nightmare.
-""")
+# Display title of game and commands.
+titlePage()
 entry = input("Enter your choice: ")
 entry = tryAgainStart(entry)
 
-print("""
-------------------------------
-
-"Welcome, Mouser."
-""")
-time.sleep(1)
-print("""The croaky voice is the first thing to greet you as you slowly regain consciousness.
-You open your eyes and find a grizzled old cat looming over you. He grins at you
-from beneath his battered hat, and you see one of his fangs is missing, and his
-eyes are bandaged with dirty cloth.
-
-Where are you? Who is this cat? Why is he the same size as you?
-""")
+# Opening "cinematic".
+opener()
 time.sleep(3)
 entry = input("Enter your choice: ")
 entry = tryAgain(entry)
@@ -954,18 +933,17 @@ level up.
 	time.sleep(5)
 	nextScene = False
 	hasDream = True
-	print("""Here is the next scene transition.
-""")
+	gilbertOpen()
 	time.sleep(3)
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
 	while nextScene == False:
-		nextScene = sceneSixNext(entry)
+		nextScene = gilbertNext(entry)
 		if str.upper(entry) == "DREAM":
 			collectedMilk, milkLevel = dream(collectedMilk, milkLevel)
 		else:
-			sceneSix(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			gilbertOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
 			time.sleep(3)
