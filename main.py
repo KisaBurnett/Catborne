@@ -667,11 +667,13 @@ entry = tryAgain(entry)
 while nextScene == False:
 	nextScene = sceneOneNext(entry)
 	sceneOne(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
-	time.sleep(3)
+	print("")
 	if nextScene == False:
-		print("")
+		time.sleep(3)
 		entry = input("Enter your choice: ")
 		entry = tryAgain(entry)
+	else:
+		time.sleep(5)
 
 # If player chose to talk to the old cat, arm player.
 if str.upper(entry) == "TALK":
@@ -682,8 +684,7 @@ if str.upper(entry) == "TALK":
 nextScene = False
 
 # Transition to clinic entrance.
-print("""
-With the old cat now gone, you are completely alone. You stand up slowly and
+print("""With the old cat now gone, you are completely alone. You stand up slowly and
 carefully, and discover you can still walk on two legs in your adorable cat body.
 The distant, squeaky baying of some horrible rodent can be heard from outside.
 You feel your journey has only just begun.
@@ -702,19 +703,23 @@ if hasWeapon:
 		nextScene = sceneTwoNext(entry)
 		sceneTwoTalk(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
-		time.sleep(3)
 		if nextScene == False:
+			time.sleep(3)
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
+		else:
+			time.sleep(5)
 else:
 	while nextScene == False:
 		nextScene = sceneTwoNext(entry)
 		sceneTwoStare(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
-		time.sleep(3)
 		if nextScene == False:
+			time.sleep(3)
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
+		else:
+			time.sleep(5)
 
 nextScene = False
 print("""You go through the open door to the clinic lobby, and discover it's just
@@ -742,19 +747,23 @@ if hasWeapon:
 		nextScene = sceneThreeNext(entry)
 		collectedMilk = sceneThreeTalk(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
-		time.sleep(3)
 		if nextScene == False:
+			time.sleep(3)
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
+		else:
+			time.sleep(5)
 else:
 	while nextScene == False:
 		nextScene = sceneThreeNext(entry)
 		sceneThreeStare(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
-		time.sleep(3)
 		if nextScene == False:
+			time.sleep(3)
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
+		else:
+			time.sleep(5)
 
 # Ends the game according to whether or not the player was armed in scene three.
 if hasWeapon:
@@ -773,10 +782,12 @@ only just begun.
 		nextScene = sceneFourNext(entry)
 		sceneFour(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
-		time.sleep(3)
 		if nextScene == False:
+			time.sleep(3)
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
+		else:
+			time.sleep(5)
 
 	nextScene = False
 	print("""After walking for a while, you come across a darkened lantern hanging from a
@@ -810,10 +821,12 @@ kindly tone.
 		nextScene = sceneFiveNext(entry)
 		sceneFive(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
-		time.sleep(3)
 		if nextScene == False:
+			time.sleep(3)
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
+		else:
+			time.sleep(5)
 
 	if collectedMilk != 0:
 		print(""""You have collected milk which can be used to increase your strength,"
@@ -848,7 +861,7 @@ back to the waking world.
 You now have a new command available. Use DREAM when not in battle to return and
 level up.
 """)
-	time.sleep(3)
+	time.sleep(5)
 	nextScene = False
 	hasDream = True
 	print("""Here is the next scene transition.
@@ -864,10 +877,12 @@ level up.
 		else:
 			sceneSix(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
-		time.sleep(3)
 		if nextScene == False:
+			time.sleep(3)
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
+		else:
+			time.sleep(5)
 else:
 	nextScene = False
 	print("""----------YOU DIED----------
