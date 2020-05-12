@@ -98,6 +98,28 @@ You are level """ + str(level) + ".")
 		print("""You have no weapon. Idiot.""")
 
 
+# Levels up player if they have collected milk.
+def dream(milk, level):
+	if milk == 0:
+		print("""You strut into the Catnap Dream, not caring that you're about to waste
+everyone's time. The plushie looks at the empty milk bottles you present her, and
+then looks at you.
+
+"Is this what they call a 'prank', good Mouser?" she asks dubiously. "I cannot
+enhance your strength without milk. Please, go and slay the beast mousies, and
+return with their succulent milk so I may assist you."
+
+You return to the waking world with the sneaking suspicion the plushie will talk
+smack about you with the spectral kittens once you leave.
+
+Let's be real with each other. You deserve it.""")
+	else:
+		print("""Something else""")
+		level = level + milk
+		milk = 0
+	return milk, level
+
+
 # Determines whether player should be prompted again for a command.
 def sceneOneNext(userInput):
 	goNext = {"TALK": True,
@@ -732,7 +754,23 @@ kindly tone.
 			entry = tryAgain(entry)
 
 	if collectedMilk != 0:
-		print("""Something
+		print(""""You have collected milk which can be used to increase your strength,"
+the plushie says. "I will channel them, and your power will grow."
+
+The idea of becoming a walking tank excites you, and you nod eagerly. Unfortunately,
+it immediately becomes clear you underestimated what increasing your strength
+entailed, and the surge of power nearly knocks you onto your fuzzy cat butt. You
+say something to the effect of, "Hnnngwhahuh," and stumble around a little, but
+the plushie simply smiles and releases your paw.
+
+"There," she says. "Return here with milk you collect from fallen beasts, and I
+will continue to embolden you." She bows to you politely. "Farewell, dear Mouser.
+May you find your worth in the milk of the waking world."
+
+You wave dumbly and stagger back over to the Yhowlnam stone to transport back to
+the lantern.
+
+You now have a new command available. Use DREAM to return when not in battle.
 """)
 		milkLevel = milkLevel + collectedMilk
 		collectedMilk = 0
@@ -741,6 +779,7 @@ kindly tone.
 """)
 
 	nextScene = False
+	hasDream = True
 else:
 	nextScene = False
 	print("""----------YOU DIED----------
