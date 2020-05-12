@@ -243,6 +243,20 @@ The old cat snickers at you.""",
 		print(sceneOptions.get(str.upper(userInput)))
 
 
+# Transitions between scene with old cat and player being alone.
+def afterOldCat():
+	print("""With the old cat now gone, you are completely alone. You stand up slowly and
+carefully, and discover you can still walk on two legs in your adorable cat body.
+The distant, squeaky baying of some horrible rodent can be heard from outside.
+You feel your journey has only just begun.
+
+Which makes sense.
+
+After all, you only just woke up.
+""")
+	time.sleep(3)
+
+
 # Determines whether player should be prompted again for a command.
 def sceneTwoNext(userInput):
 	goNext = {"TALK": False,
@@ -330,6 +344,27 @@ outside.""",
 		commandList(dream)
 	else:
 		print(sceneOptions.get(str.upper(userInput)))
+
+
+# Transitions to clinic entrance.
+def clinicEntrance():
+	print("""You go through the open door to the clinic lobby, and discover it's just
+as horrible and dark as the room in which you awoke. Supplies and broken furniture
+are strewn about, and there's a horrible smell that seems to follow you wherever
+you go.
+
+...oh, wait, that's you.
+
+Let's hope there's a bath somewhere in Yhowlnam.
+
+However, it quickly becomes apparent that hygiene is the least of your worries.
+Across the lobby, between you and the clinic exit, is a gigantic, mange-ridden rat.
+
+You freeze, but it's too late. The hideous thing lifts its head from the bones it
+was gnawing, and looks directly at you. You'll need to think fast if you want to
+survive a round with this beast!
+""")
+	time.sleep(3)
 
 
 # Determines whether player should be prompted again for a command.
@@ -742,27 +777,18 @@ while nextScene == False:
 		entry = input("Enter your choice: ")
 		entry = tryAgain(entry)
 	else:
-		time.sleep(5)
+		time.sleep(4)
 
 # If player chose to talk to the old cat, arm player.
 if str.upper(entry) == "TALK":
 	hasWeapon = True
 	oldSword = True
 	heldWeapon = "1"
+
 # Reset the nextScene check before proceeding.
 nextScene = False
-
-# Transition to clinic entrance.
-print("""With the old cat now gone, you are completely alone. You stand up slowly and
-carefully, and discover you can still walk on two legs in your adorable cat body.
-The distant, squeaky baying of some horrible rodent can be heard from outside.
-You feel your journey has only just begun.
-
-Which makes sense.
-
-After all, you only just woke up.
-""")
-time.sleep(3)
+# Alone after old cat leaves.
+afterOldCat()
 entry = input("Enter your choice: ")
 entry = tryAgain(entry)
 
@@ -777,7 +803,7 @@ if hasWeapon:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(5)
+			time.sleep(4)
 else:
 	while nextScene == False:
 		nextScene = sceneTwoNext(entry)
@@ -788,26 +814,11 @@ else:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(5)
+			time.sleep(4)
 
 nextScene = False
-print("""You go through the open door to the clinic lobby, and discover it's just
-as horrible and dark as the room in which you awoke. Supplies and broken furniture
-are strewn about, and there's a horrible smell that seems to follow you wherever
-you go.
-
-...oh, wait, that's you.
-
-Let's hope there's a bath somewhere in Yhowlnam.
-
-However, it quickly becomes apparent that hygiene is the least of your worries.
-Across the lobby, between you and the clinic exit, is a gigantic, mange-ridden rat.
-
-You freeze, but it's too late. The hideous thing lifts its head from the bones it
-was gnawing, and looks directly at you. You'll need to think fast if you want to
-survive a round with this beast!
-""")
-time.sleep(3)
+# Transitions to the clinic entrance.
+clinicEntrance()
 entry = input("Enter your choice: ")
 entry = tryAgain(entry)
 
@@ -821,7 +832,7 @@ if hasWeapon:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(5)
+			time.sleep(4)
 else:
 	while nextScene == False:
 		nextScene = sceneThreeNext(entry)
@@ -832,9 +843,9 @@ else:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(5)
+			time.sleep(4)
 
-# Ends the game according to whether or not the player was armed in scene three.
+# Branches the game according to whether or not the player was armed in scene three.
 if hasWeapon:
 	nextScene = False
 	print("""You exit the clinic, and walk out onto a grim cobblestone street. The pale glow
@@ -856,7 +867,7 @@ only just begun.
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(5)
+			time.sleep(4)
 
 	nextScene = False
 	print("""After walking for a while, you come across a darkened lantern hanging from a
@@ -895,7 +906,7 @@ kindly tone.
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(5)
+			time.sleep(4)
 
 	if collectedMilk != 0:
 		print(""""You have collected milk which can be used to increase your strength,"
@@ -930,7 +941,7 @@ back to the waking world.
 You now have a new command available. Use DREAM when not in battle to return and
 level up.
 """)
-	time.sleep(5)
+	time.sleep(4)
 	nextScene = False
 	hasDream = True
 	gilbertOpen()
@@ -950,14 +961,14 @@ level up.
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(5)
+			time.sleep(4)
 else:
 	nextScene = False
 	print("""----------YOU DIED----------
 """)
 
 # Prompts player for last time before exiting.
-print(textwrap.fill("Play again?", 75))
+print(textwrap.fill("Play again?", 74))
 print("")
 entry = input("Enter YES or NO: ")
 entry = tryAgainEnd(entry)
