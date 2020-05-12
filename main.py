@@ -114,7 +114,16 @@ smack about you with the spectral kittens once you leave.
 
 Let's be real with each other. You deserve it.""")
 	else:
-		print("""Something else""")
+		print("""You enter the Catnap Dream with the flourish of a conquering hero, and the
+plushie claps for you in approval.
+
+"Well done, Mouser," she praises. She takes your paw and purrs. "Now close your
+eyes, and let the milk become your strength."
+
+A surge of power smacks into you and nearly knocks you out. You manage not to lose
+consciousness, and feel stronger, if not rather dizzy. The plushie releases your
+paw and gives you a friendly wave as you stumble back to the Yhowlnam gravestone
+and return to the waking world.""")
 		level = level + milk
 		milk = 0
 	return milk, level
@@ -363,7 +372,7 @@ However, you can't help but wonder if risk would have brought worthy reward.""",
 
 	if str.upper(userInput) == "FIGHT":
 		milk = milk + 1
-		return milk
+	return milk
 
 
 # Displays appropriate story text according to player's input. Executes
@@ -427,8 +436,7 @@ def sceneFourNext(userInput):
 	return proceed
 
 
-# Displays appropriate story text according to player's input. Only executes if
-# player survives the third scene.
+# Displays appropriate story text according to player's input.
 def sceneFour(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You tell the moon you're very displeased with how the night is progressing
@@ -485,8 +493,7 @@ def sceneFiveNext(userInput):
 	return proceed
 
 
-# Displays appropriate story text according to player's input. Only executes
-# if the player recieved a sword from the old cat in scene one.
+# Displays appropriate story text according to player's input.
 def sceneFive(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You ask the plushie what she does here in this place. She lights up and purrs
@@ -523,7 +530,45 @@ but the plushie stops you by placing a paw on your shoulder.
 
 "Good Mouser," she says, "before you go..."
 
-You stand back up to look at her curiously, and she gives a polite bow."""}
+You stand back up to look at her curiously, and she gives a polite bow.""",
+		"DREAM": "You are already dreaming and you can't go deeper."}
+	print("""
+------------------------------
+""")
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
+
+
+# Determines whether player should be prompted again for a command.
+def sceneSixNext(userInput):
+	goNext = {"TALK": False,
+		"FIGHT": False,
+		"STARE": False,
+		"LOOK": False,
+		"LEAVE": True,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
+	proceed = goNext.get(str.upper(userInput))
+	return proceed
+
+
+# Displays appropriate story text according to player's input.
+def sceneSix(userInput, dream, milk, level, hasWpn, weapon):
+	sceneOptions = {"TALK":
+"""Something""",
+		"FIGHT":
+"""Something else""",
+		"STARE":
+"""Something else else""",
+		"LOOK":
+"""Look, more something""",
+		"LEAVE":
+"""Leave with something"""}
 	print("""
 ------------------------------
 """)
@@ -748,6 +793,7 @@ kindly tone.
 
 	while nextScene == False:
 		nextScene = sceneFiveNext(entry)
+		sceneFive(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
 			entry = input("Enter your choice: ")
@@ -768,18 +814,41 @@ will continue to embolden you." She bows to you politely. "Farewell, dear Mouser
 May you find your worth in the milk of the waking world."
 
 You wave dumbly and stagger back over to the Yhowlnam stone to transport back to
-the lantern.
+the waking world.
 
-You now have a new command available. Use DREAM to return when not in battle.
+You now have a new command available. Use DREAM when not in battle to return and
+level up.
 """)
 		milkLevel = milkLevel + collectedMilk
 		collectedMilk = 0
 	else:
-		print("""Something else
+		print(""""When you collect milk, return here, to the Dream," the plushie says. "I will use
+them to embolden your spirit, and increase your strength." She bows to you politely.
+"Farewell, dear Mouser. May you find your worth in the milk of the waking world."
+
+You wave to your new best friend and return to the Yhowlnam stone to transport
+back to the waking world.
+
+You now have a new command available. Use DREAM when not in battle to return and
+level up.
 """)
 
 	nextScene = False
 	hasDream = True
+	print("Here is the next scene transition.")
+	entry = input("Enter your choice: ")
+	entry = tryAgain(entry)
+
+	while nextScene == False:
+		nextScene = sceneSixNext(entry)
+		if str.upper(entry) == "DREAM":
+			collectedMilk, milkLevel = dream(collectedMilk, milkLevel)
+		else:
+			sceneSix(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+		print("")
+		if nextScene == False:
+			entry = input("Enter your choice: ")
+			entry = tryAgain(entry)
 else:
 	nextScene = False
 	print("""----------YOU DIED----------
