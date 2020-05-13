@@ -734,13 +734,39 @@ this constant night, but I wouldn't be much use to you. Forgive me."
 He breaks off into another hacking fit. You decide to leave him alone. As you back
 away from the window, Gilpurrt saying, "Good luck on the hunt, Mouser."""",
 		"FIGHT":
-"""Fight something""",
+"""You creep over to the rat, sword in hand. The beast lifts its head, and you
+freeze in place until it goes back to eating trash. It's not unlike you on a long
+weekend: complacent and stuffing itself with garbage.
+
+You spring forward and slash through the rat with a single blow. It screams and
+falls to the ground, dead. A bottle of milk rolls out from beneath its corpse,
+and you proudly pick it up. You kick the dead rat into the pile of trash and walk
+away. It's only about a minute before you hear shuffling and squeaking. You turn
+to look, and see another rat now rummaging through the refuse.
+
+It seems there's no lack of vermin here.""",
 		"STARE":
-"""Stare at something""",
+"""You stare at the window, you stare at the rat, you stare at the lantern. After
+a moment of staring, the hacking cat behind the window asks, "Not much to do,
+Mouser?"
+
+Embarrassed, you try to look busy by sharpening your weapon.""",
 		"LOOK":
-"""Look, more something""",
+"""The buildings around you are tall and dark, save for the lamplight that can
+be seen just faintly through some barricaded windows and doors. It's impossible
+to tell if there are actually living occupants in all of these residences.
+
+The rat nearby digs busily through the pile of garbage and nibbles on the juiciest
+bits. Gross. You're still positive you would be able to kill it without trouble.
+
+Of course, you were positive you wouldn't wake up as a cat today.""",
 		"LEAVE":
-"""Leave with something"""}
+"""You stretch and shake out your paws to reinvigorate yourself, and then set out
+for the next stage of your hunt. A chill down your spine tells you that things are
+about to become more challenging.
+
+The terrible howl from the dark streets ahead confirms your suspicion. That's not
+good, is it?"""}
 	print("""
 ------------------------------
 """)
