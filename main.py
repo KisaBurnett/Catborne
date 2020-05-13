@@ -714,11 +714,11 @@ def gilbertNext(userInput):
 # Displays appropriate story text according to player's input.
 def gilbertOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
-"""Something""",
+"""Say something""",
 		"FIGHT":
-"""Something else""",
+"""Fight something""",
 		"STARE":
-"""Something else else""",
+"""Stare at something""",
 		"LOOK":
 """Look, more something""",
 		"LEAVE":
@@ -732,6 +732,9 @@ def gilbertOptions(userInput, dream, milk, level, hasWpn, weapon):
 		commandList(dream)
 	else:
 		print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "FIGHT":
+		milk = milk + 1
+	return milk
 
 
 def gasclawOpen():
@@ -855,7 +858,7 @@ while nextScene == False:
 		entry = input("Enter your choice: ")
 		entry = tryAgain(entry)
 	else:
-		time.sleep(4)
+		time.sleep(3)
 
 # If player chose to talk to the old cat, arm player.
 if str.upper(entry) == "TALK":
@@ -881,7 +884,7 @@ if hasWeapon:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(4)
+			time.sleep(3)
 else:
 	while nextScene == False:
 		nextScene = sceneTwoNext(entry)
@@ -892,7 +895,7 @@ else:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(4)
+			time.sleep(3)
 
 nextScene = False
 # Transitions to the clinic entrance.
@@ -910,7 +913,7 @@ if hasWeapon:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(4)
+			time.sleep(3)
 else:
 	while nextScene == False:
 		nextScene = sceneThreeNext(entry)
@@ -921,7 +924,7 @@ else:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(4)
+			time.sleep(3)
 
 # Branches the game according to whether or not the player was armed in scene three.
 if hasWeapon:
@@ -939,7 +942,7 @@ if hasWeapon:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(4)
+			time.sleep(3)
 
 	nextScene = False
 	sceneFiveOpen()
@@ -955,7 +958,7 @@ if hasWeapon:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(4)
+			time.sleep(3)
 
 	if collectedMilk != 0:
 		dreamLeaveLevel()
@@ -963,7 +966,7 @@ if hasWeapon:
 		collectedMilk = 0
 	else:
 		dreamLeaveNoLevel()
-	time.sleep(4)
+	time.sleep(3)
 	nextScene = False
 	hasDream = True
 	gilbertOpen()
@@ -975,15 +978,17 @@ if hasWeapon:
 		nextScene = gilbertNext(entry)
 		if str.upper(entry) == "DREAM":
 			collectedMilk, milkLevel = dream(collectedMilk, milkLevel)
+			print("")
+			gilbertOpen()
 		else:
-			gilbertOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			collectedMilk = gilbertOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
 			time.sleep(3)
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(4)
+			time.sleep(3)
 else:
 	nextScene = False
 	print("""----------YOU DIED----------
