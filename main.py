@@ -99,7 +99,7 @@ You are level """ + str(level) + ".")
 
 
 # Levels up player if they have collected milk.
-def dream(milk, level):
+def dream(milk, level, waitTime):
 	nextLevel = level * 2
 	print("""
 ------------------------------
@@ -132,6 +132,7 @@ and return to the waking world.""")
 		while milk >= nextLevel:
 			level = level + 1
 			milk = milk - nextLevel
+	time.sleep(waitTime)
 	return milk, level
 
 
@@ -796,7 +797,7 @@ good, is it?"""}
 
 
 def gasclawOpen(waitTime):
-	print("""
+	print("""Here is the opening text for Gasclaw.
 """)
 	time.sleep(waitTime)
 
@@ -837,14 +838,20 @@ def gasclawOptions(userInput, dream, milk, level, hasWpn, weapon):
 
 
 # Boss fight scene.
-def gasclawFight(milk, level, won):
-	if level >= 5:
-		print("""Here is the winning text.""")
-		milk = milk + 10
+def gasclawFight(milk, level, won, waitTime):
+	print("""
+------------------------------
+""")
+	if level >= 3:
+		print("""Here is the winning text.
+""")
+		milk = milk + 6
 		won = True
 	else:
-		print("""Here is the losing text.""")
+		print("""Here is the losing text.
+""")
 		milk = 0
+	time.sleep(waitTime)
 	return milk, won
 
 
@@ -1030,18 +1037,19 @@ if hasWeapon:
 		collectedMilk = 0
 	else:
 		dreamLeaveNoLevel(cinematicTime)
-	nextScene = False
 	hasDream = True
-	gilpurrtOpen(entryTime)
-	print("")
-	entry = input("Enter your choice: ")
-	entry = tryAgain(entry)
 
 	while bossDead == False:
+		nextScene = False
+		gilpurrtOpen(entryTime)
+		print("")
+		entry = input("Enter your choice: ")
+		entry = tryAgain(entry)
+
 		while nextScene == False:
 			nextScene = gilpurrtNext(entry)
 			if str.upper(entry) == "DREAM":
-				collectedMilk, milkLevel = dream(collectedMilk, milkLevel)
+				collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
 				print("")
 				gilpurrtOpen(entryTime)
 				print("")
@@ -1065,14 +1073,14 @@ if hasWeapon:
 		while nextScene == False:
 			nextScene = gasclawNext(entry)
 			if str.upper(entry) == "DREAM":
-				collectedMilk, milkLevel = dream(collectedMilk, milkLevel)
+				collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
 				print("")
 				gasclawOpen(entryTime)
 				print("")
 				entry = input("Enter your choice: ")
 				entry = tryAgain(entry)
 			elif str.upper(entry) == "FIGHT":
-				collectedMilk, bossDead = gasclawFight(collectedMilk, milkLevel, bossDead)
+				collectedMilk, bossDead = gasclawFight(collectedMilk, milkLevel, bossDead, cinematicTime)
 			else:
 				collectedMilk = gasclawOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 				print("")
