@@ -133,6 +133,8 @@ and return to the waking world.""")
 def titlePage():
 	print("""----------CATBORNE----------
 
+A purrfectly ridiculous Bloodborne parody by Kisa Burnett.
+
 Choose your path carefully through the long night of the hunt.
 
 Choices are made by typing TALK, FIGHT, STARE, LOOK, or LEAVE, and then pressing
@@ -488,6 +490,17 @@ here without some fancy claw-fu fighting.""",
 		print(sceneOptions.get(str.upper(userInput)))
 
 
+# Transitions to next gameplay branch.
+def sceneFourOpen():
+	print("""You exit the clinic, and walk out onto a grim cobblestone street. The pale glow
+from the moon overhead only makes the looming Victorian architecture around you
+more oppressive. A cold wind cuts through your fur, and the far-off sounds of
+beasts and dying victims chill you further. Your gruesome hunt in Yhowlnam has
+only just begun.
+""")
+	time.sleep(3)
+
+
 # Determines whether player should be prompted again for a command.
 def sceneFourNext(userInput):
 	goNext = {"TALK": False,
@@ -543,6 +556,34 @@ The hunt is on.""",
 		commandList(dream)
 	else:
 		print(sceneOptions.get(str.upper(userInput)))
+
+
+# Transitions to next gameplay branch.
+def sceneFiveOpen():
+	print("""After walking for a while, you come across a darkened lantern hanging from a
+short staff in the middle of the cobblestone street. Curious, you reach out to light
+it. The glow of the little flame soothes your nerves, and summons a small group of
+spectral kittens at the base of the lantern's post. They greet you with spooky mews,
+and you reach down to pet them. Just as your paw makes contact, the world around
+you goes white, and then the white melts away to reveal a quiet, misty garden at
+the base of a hill, atop which rests a worn down old chapel.
+
+You stand up, puzzled for some reason. After all that's happened, you find THIS
+weird? Really?
+
+Old and weathered gravestones line the cobblestone path leading up to the chapel.
+They're mostly unremarkable, aside from one, which has a small group of ghostly
+kittens like the ones you saw by the lantern. A cat in a pretty dress and bonnet
+kneels next to this gravestone, but she stands up on her hind legs when she notices
+you, and clasps her front paws together as she turns to face you.
+
+When you get a good look at the other cat's face, you realize she's actually a plush
+toy, but an incredibly life-like one. She smiles gently at you, and speaks in a soft,
+kindly tone.
+
+"Hello, good Mouser. I am a plushie, here in this Catnap Dream to look after you."
+""")
+	time.sleep(3)
 
 
 # Determines whether player should be prompted again for a command.
@@ -607,6 +648,43 @@ You stand back up to look at her curiously, and she gives a polite bow.""",
 		commandList(dream)
 	else:
 		print(sceneOptions.get(str.upper(userInput)))
+
+
+# Displayed if player has collected milk.
+def dreamLeaveLevel():
+	print(""""You have collected milk which can be used to increase your strength,"
+the plushie says. "I will channel them, and your power will grow."
+
+The idea of becoming a walking tank excites you, and you nod eagerly. Unfortunately,
+it immediately becomes clear you underestimated what increasing your strength
+entailed, and the surge of power nearly knocks you onto your fuzzy cat butt. You
+say something to the effect of, "Hnnngwhahuh," and stumble around a little, but
+the plushie simply smiles and releases your paw.
+
+"There," she says. "Return here with milk you collect from fallen beasts, and I
+will continue to embolden you." She bows to you politely. "Farewell, dear Mouser.
+May you find your worth in the milk of the waking world."
+
+You wave dumbly and stagger back over to the Yhowlnam stone to transport back to
+the waking world.
+
+You now have a new command available. Use DREAM when not in battle to return and
+level up.
+""")
+
+
+# Displayed if player has no milk.
+def dreamLeaveNoLevel():
+	print(""""When you collect milk, return here, to the Dream," the plushie says. "I will use
+them to embolden your spirit, and increase your strength." She bows to you politely.
+"Farewell, dear Mouser. May you find your worth in the milk of the waking world."
+
+You wave to your new best friend and return to the Yhowlnam stone to transport
+back to the waking world.
+
+You now have a new command available. Use DREAM when not in battle to return and
+level up.
+""")
 
 
 # Transitions between the Catnap Dream and the player decisions back in Yhowlnam.
@@ -848,13 +926,7 @@ else:
 # Branches the game according to whether or not the player was armed in scene three.
 if hasWeapon:
 	nextScene = False
-	print("""You exit the clinic, and walk out onto a grim cobblestone street. The pale glow
-from the moon overhead only makes the looming Victorian architecture around you
-more oppressive. A cold wind cuts through your fur, and the far-off sounds of
-beasts and dying victims chill you further. Your gruesome hunt in Yhowlnam has
-only just begun.
-""")
-	time.sleep(3)
+	sceneFourOpen()
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
@@ -870,30 +942,7 @@ only just begun.
 			time.sleep(4)
 
 	nextScene = False
-	print("""After walking for a while, you come across a darkened lantern hanging from a
-short staff in the middle of the cobblestone street. Curious, you reach out to light
-it. The glow of the little flame soothes your nerves, and summons a small group of
-spectral kittens at the base of the lantern's post. They greet you with spooky mews,
-and you reach down to pet them. Just as your paw makes contact, the world around
-you goes white, and then the white melts away to reveal a quiet, misty garden at
-the base of a hill, atop which rests a worn down old chapel.
-
-You stand up, puzzled for some reason. After all that's happened, you find THIS
-weird? Really?
-
-Old and weathered gravestones line the cobblestone path leading up to the chapel.
-They're mostly unremarkable, aside from one, which has a small group of ghostly
-kittens like the ones you saw by the lantern. A cat in a pretty dress and bonnet
-kneels next to this gravestone, but she stands up on her hind legs when she notices
-you, and clasps her front paws together as she turns to face you.
-
-When you get a good look at the other cat's face, you realize she's actually a plush
-toy, but an incredibly life-like one. She smiles gently at you, and speaks in a soft,
-kindly tone.
-
-"Hello, good Mouser. I am a plushie, here in this Catnap Dream to look after you."
-""")
-	time.sleep(3)
+	sceneFiveOpen()
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
@@ -909,38 +958,11 @@ kindly tone.
 			time.sleep(4)
 
 	if collectedMilk != 0:
-		print(""""You have collected milk which can be used to increase your strength,"
-the plushie says. "I will channel them, and your power will grow."
-
-The idea of becoming a walking tank excites you, and you nod eagerly. Unfortunately,
-it immediately becomes clear you underestimated what increasing your strength
-entailed, and the surge of power nearly knocks you onto your fuzzy cat butt. You
-say something to the effect of, "Hnnngwhahuh," and stumble around a little, but
-the plushie simply smiles and releases your paw.
-
-"There," she says. "Return here with milk you collect from fallen beasts, and I
-will continue to embolden you." She bows to you politely. "Farewell, dear Mouser.
-May you find your worth in the milk of the waking world."
-
-You wave dumbly and stagger back over to the Yhowlnam stone to transport back to
-the waking world.
-
-You now have a new command available. Use DREAM when not in battle to return and
-level up.
-""")
+		dreamLeaveLevel()
 		milkLevel = milkLevel + collectedMilk
 		collectedMilk = 0
 	else:
-		print(""""When you collect milk, return here, to the Dream," the plushie says. "I will use
-them to embolden your spirit, and increase your strength." She bows to you politely.
-"Farewell, dear Mouser. May you find your worth in the milk of the waking world."
-
-You wave to your new best friend and return to the Yhowlnam stone to transport
-back to the waking world.
-
-You now have a new command available. Use DREAM when not in battle to return and
-level up.
-""")
+		dreamLeaveNoLevel()
 	time.sleep(4)
 	nextScene = False
 	hasDream = True
@@ -968,7 +990,7 @@ else:
 """)
 
 # Prompts player for last time before exiting.
-print(textwrap.fill("Play again?", 74))
+print("Play again?")
 print("")
 entry = input("Enter YES or NO: ")
 entry = tryAgainEnd(entry)
