@@ -688,17 +688,19 @@ level up.
 
 
 # Transitions between the Catnap Dream and the player decisions back in Yhowlnam.
-def gilbertOpen():
+def gilpurrtOpen():
 	print("""You arrive back in Yhowlnam next to the lantern. The baying of horrible mousies
 can be heard in the distance, but there's another sound much closer to you. It's
 a cat, apparently hacking up one horrific hairball in a boarded-up house. The
 window is barred and curtained on the inside, but you can still see the warm glow
 of lamps peeking through.
-""")
+
+A large, diseased-looking rat rummages around in garbage nearby. It hasn't noticed
+you, and looks fairly weak. You could likely take it down easily in a fight.""")
 
 
 # Determines whether player should be prompted again for a command.
-def gilbertNext(userInput):
+def gilpurrtNext(userInput):
 	goNext = {"TALK": False,
 		"FIGHT": False,
 		"STARE": False,
@@ -712,9 +714,25 @@ def gilbertNext(userInput):
 
 
 # Displays appropriate story text according to player's input.
-def gilbertOptions(userInput, dream, milk, level, hasWpn, weapon):
+def gilpurrtOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
-"""Say something""",
+"""You approach the window cautiously and ask if the cat within is all right. A
+weary voice replies, "Oh, hello. There isn't much hope for me, I'm afraid. But
+there's nothing to be done about that. Don't pity me."
+
+You decide not to tell him that you weren't about to.
+
+"You're a mouser, aren't you?" the unseen cat asks. "I can smell it a mile away.
+Your kind always smells of milk and blood. Like you've never bathed a day in your
+nine lives."
+
+You stare into space and wonder if there's anyone in Yhowlnam who isn't an asshole.
+
+"My name is Gilpurrt," the cat continues. "I would join you in your quest to end
+this constant night, but I wouldn't be much use to you. Forgive me."
+
+He breaks off into another hacking fit. You decide to leave him alone. As you back
+away from the window, Gilpurrt saying, "Good luck on the hunt, Mouser."""",
 		"FIGHT":
 """Fight something""",
 		"STARE":
@@ -831,9 +849,6 @@ heldWeapon = ""
 
 bossDead = False
 
-# textwrap is used to quickly format long blocks of text.
-import textwrap
-
 # time is used to create pauses between text.
 import time
 
@@ -858,7 +873,7 @@ while nextScene == False:
 		entry = input("Enter your choice: ")
 		entry = tryAgain(entry)
 	else:
-		time.sleep(3)
+		time.sleep(2)
 
 # If player chose to talk to the old cat, arm player.
 if str.upper(entry) == "TALK":
@@ -884,7 +899,7 @@ if hasWeapon:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(3)
+			time.sleep(2)
 else:
 	while nextScene == False:
 		nextScene = sceneTwoNext(entry)
@@ -895,7 +910,7 @@ else:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(3)
+			time.sleep(2)
 
 nextScene = False
 # Transitions to the clinic entrance.
@@ -913,7 +928,7 @@ if hasWeapon:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(3)
+			time.sleep(2)
 else:
 	while nextScene == False:
 		nextScene = sceneThreeNext(entry)
@@ -924,7 +939,7 @@ else:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(3)
+			time.sleep(2)
 
 # Branches the game according to whether or not the player was armed in scene three.
 if hasWeapon:
@@ -942,7 +957,7 @@ if hasWeapon:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(3)
+			time.sleep(2)
 
 	nextScene = False
 	sceneFiveOpen()
@@ -958,7 +973,7 @@ if hasWeapon:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(3)
+			time.sleep(2)
 
 	if collectedMilk != 0:
 		dreamLeaveLevel()
@@ -969,26 +984,27 @@ if hasWeapon:
 	time.sleep(3)
 	nextScene = False
 	hasDream = True
-	gilbertOpen()
+	gilpurrtOpen()
+	print("")
 	time.sleep(3)
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
 	while nextScene == False:
-		nextScene = gilbertNext(entry)
+		nextScene = gilpurrtNext(entry)
 		if str.upper(entry) == "DREAM":
 			collectedMilk, milkLevel = dream(collectedMilk, milkLevel)
 			print("")
-			gilbertOpen()
+			gilpurrtOpen()
 		else:
-			collectedMilk = gilbertOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			collectedMilk = gilpurrtOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
 			time.sleep(3)
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(3)
+			time.sleep(2)
 else:
 	nextScene = False
 	print("""----------YOU DIED----------
