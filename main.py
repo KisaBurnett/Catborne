@@ -13,6 +13,9 @@
 # Text is formatted for play in a window with a max line length of
 # approximately 75 characters.
 
+# Apologies for all of this being in one file. repl has been giving me issues
+# with importing into main.
+
 
 # Checks for a valid entry to start the game.
 def gameStart(userInput):
@@ -1009,7 +1012,7 @@ def milkBeastFight(milk, level, won, waitTime):
 #######################--AMELIA--##########################
 
 
-# Enters the Cathedral.
+# Enters the Church area.
 def churchOpen(waitTime):
 	print("""Something""")
 	time.sleep(waitTime)
