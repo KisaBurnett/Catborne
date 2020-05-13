@@ -739,6 +739,9 @@ Time to make all the mousies pay for your prior humiliation.
 	time.sleep(waitTime)
 
 
+##########################--GASCLAW--###############################
+
+
 # Transitions between the Catnap Dream and the player decisions back in Yhowlnam.
 def gilpurrtOpen(waitTime):
 	print("""You arrive next to a lantern with the friendly ghost kittens huddled around it.
@@ -834,6 +837,7 @@ good, is it?"""}
 	return milk
 
 
+# Transitions to the Gasclaw boss arena.
 def gasclawOpen(waitTime):
 	print("""Here is the opening text for Gasclaw.
 """)
@@ -891,6 +895,520 @@ def gasclawFight(milk, level, won, waitTime):
 		milk = 0
 	time.sleep(waitTime)
 	return milk, won
+
+
+####################--MILK-STARVED BEAST--#########################
+
+
+# Enters the Cathedral.
+def cathedralOpen(waitTime):
+	print("""Something""")
+	time.sleep(waitTime)
+
+
+# Determines whether player should be prompted again for a command.
+def cathedralNext(userInput):
+	goNext = {"TALK": False,
+		"FIGHT": False,
+		"STARE": False,
+		"LOOK": False,
+		"LEAVE": True,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
+	proceed = goNext.get(str.upper(userInput))
+	return proceed
+
+
+# Displays appropriate story text according to player's input.
+def cathedralOptions(userInput, dream, milk, level, hasWpn, weapon):
+	sceneOptions = {"TALK":
+"""Talk something""",
+		"FIGHT":
+"""Fight something""",
+		"STARE":
+"""Stare something""",
+		"LOOK":
+"""Look at something""",
+		"LEAVE":
+"""Leave with something"""}
+	print("""
+------------------------------
+""")
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "FIGHT":
+		milk = milk + 2
+	return milk
+
+
+# Transitions to the Milk-Starved Beast boss arena.
+def milkBeastOpen(waitTime):
+	print("""Here is the opening text for the Milk-Starved Beast.
+""")
+	time.sleep(waitTime)
+
+
+# Determines whether player should be prompted again for a command.
+def milkBeastNext(userInput):
+	goNext = {"TALK": False,
+		"FIGHT": True,
+		"STARE": False,
+		"LOOK": False,
+		"LEAVE": False,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
+	proceed = goNext.get(str.upper(userInput))
+	return proceed
+
+
+# Displays appropriate story text according to player's input.
+def milkBeastOptions(userInput, dream, milk, level, hasWpn, weapon):
+	sceneOptions = {"TALK":
+"""Talk to something""",
+		"STARE":
+"""Stare at something""",
+		"LOOK":
+"""Look, more something""",
+		"LEAVE":
+"""Leave with something"""}
+	print("""
+------------------------------
+""")
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
+
+
+# Boss fight scene.
+def milkBeastFight(milk, level, won, waitTime):
+	print("""
+------------------------------
+""")
+	if level >= 7:
+		print("""Here is the winning text.
+""")
+		milk = milk + 14
+		won = True
+	else:
+		print("""Here is the losing text.
+""")
+		milk = 0
+	time.sleep(waitTime)
+	return milk, won
+
+
+#######################--AMELIA--##########################
+
+
+# Enters the Cathedral after killing the Milk-Starved Beast.
+def cathedralReturn(waitTime):
+	print("""Something""")
+	time.sleep(waitTime)
+
+
+# Transitions to the Amelia boss arena.
+def ameliaOpen(waitTime):
+	print("""Here is the opening text for Amelia.
+""")
+	time.sleep(waitTime)
+
+
+# Determines whether player should be prompted again for a command.
+def ameliaNext(userInput):
+	goNext = {"TALK": False,
+		"FIGHT": True,
+		"STARE": False,
+		"LOOK": False,
+		"LEAVE": False,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
+	proceed = goNext.get(str.upper(userInput))
+	return proceed
+
+
+# Displays appropriate story text according to player's input.
+def ameliaOptions(userInput, dream, milk, level, hasWpn, weapon):
+	sceneOptions = {"TALK":
+"""Talk to something""",
+		"STARE":
+"""Stare at something""",
+		"LOOK":
+"""Look, more something""",
+		"LEAVE":
+"""Leave with something"""}
+	print("""
+------------------------------
+""")
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
+
+
+# Boss fight scene.
+def ameliaFight(milk, level, won, waitTime):
+	print("""
+------------------------------
+""")
+	if level >= 10:
+		print("""Here is the winning text.
+""")
+		milk = milk + 20
+		won = True
+	else:
+		print("""Here is the losing text.
+""")
+		milk = 0
+	time.sleep(waitTime)
+	return milk, won
+
+
+#######################--NOM--##########################
+
+
+# Enters Pyrrgenwerth.
+def pyrrgenwerthOpen(waitTime):
+	print("""Something""")
+	time.sleep(waitTime)
+
+
+# Determines whether player should be prompted again for a command.
+def pyrrgenwerthNext(userInput):
+	goNext = {"TALK": False,
+		"FIGHT": False,
+		"STARE": False,
+		"LOOK": False,
+		"LEAVE": True,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
+	proceed = goNext.get(str.upper(userInput))
+	return proceed
+
+
+# Displays appropriate story text according to player's input.
+def pyrrgenwerthOptions(userInput, dream, milk, level, hasWpn, weapon):
+	sceneOptions = {"TALK":
+"""Talk something""",
+		"FIGHT":
+"""Fight something""",
+		"STARE":
+"""Stare something""",
+		"LOOK":
+"""Look at something""",
+		"LEAVE":
+"""Leave with something"""}
+	print("""
+------------------------------
+""")
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "FIGHT":
+		milk = milk + 4
+	return milk
+
+
+# Transitions to the Nom the Vacuous Flea boss arena.
+def nomOpen(waitTime):
+	print("""Here is the opening text for Nom the Vacuous Flea.
+""")
+	time.sleep(waitTime)
+
+
+# Determines whether player should be prompted again for a command.
+def nomNext(userInput):
+	goNext = {"TALK": False,
+		"FIGHT": True,
+		"STARE": False,
+		"LOOK": False,
+		"LEAVE": False,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
+	proceed = goNext.get(str.upper(userInput))
+	return proceed
+
+
+# Displays appropriate story text according to player's input.
+def nomOptions(userInput, dream, milk, level, hasWpn, weapon):
+	sceneOptions = {"TALK":
+"""Talk to something""",
+		"STARE":
+"""Stare at something""",
+		"LOOK":
+"""Look, more something""",
+		"LEAVE":
+"""Leave with something"""}
+	print("""
+------------------------------
+""")
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
+
+
+# Boss fight scene.
+def nomFight(milk, level, won, waitTime):
+	print("""
+------------------------------
+""")
+	if level >= 12:
+		print("""Here is the winning text.
+""")
+		milk = milk + 24
+		won = True
+	else:
+		print("""Here is the losing text.
+""")
+		milk = 0
+	time.sleep(waitTime)
+	return milk, won
+
+
+##################--PURRGO'S WET NURSE--####################
+
+
+# Enters Purrgo's Loft.
+def loftOpen(waitTime):
+	print("""Something""")
+	time.sleep(waitTime)
+
+
+# Determines whether player should be prompted again for a command.
+def loftNext(userInput):
+	goNext = {"TALK": False,
+		"FIGHT": False,
+		"STARE": False,
+		"LOOK": False,
+		"LEAVE": True,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
+	proceed = goNext.get(str.upper(userInput))
+	return proceed
+
+
+# Displays appropriate story text according to player's input.
+def loftOptions(userInput, dream, milk, level, hasWpn, weapon):
+	sceneOptions = {"TALK":
+"""Talk something""",
+		"FIGHT":
+"""Fight something""",
+		"STARE":
+"""Stare something""",
+		"LOOK":
+"""Look at something""",
+		"LEAVE":
+"""Leave with something"""}
+	print("""
+------------------------------
+""")
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "FIGHT":
+		milk = milk + 7
+	return milk
+
+
+# Transitions to the Purrgo's Wet Nurse boss arena.
+def nurseOpen(waitTime):
+	print("""Here is the opening text for Purrgo's Wet Nurse.
+""")
+	time.sleep(waitTime)
+
+
+# Determines whether player should be prompted again for a command.
+def nurseNext(userInput):
+	goNext = {"TALK": False,
+		"FIGHT": True,
+		"STARE": False,
+		"LOOK": False,
+		"LEAVE": False,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
+	proceed = goNext.get(str.upper(userInput))
+	return proceed
+
+
+# Displays appropriate story text according to player's input.
+def nurseOptions(userInput, dream, milk, level, hasWpn, weapon):
+	sceneOptions = {"TALK":
+"""Talk to something""",
+		"STARE":
+"""Stare at something""",
+		"LOOK":
+"""Look, more something""",
+		"LEAVE":
+"""Leave with something"""}
+	print("""
+------------------------------
+""")
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
+
+
+# Boss fight scene.
+def nurseFight(milk, level, won, waitTime):
+	print("""
+------------------------------
+""")
+	if level >= 15:
+		print("""Here is the winning text.
+""")
+		milk = milk + 30
+		won = True
+	else:
+		print("""Here is the losing text.
+""")
+		milk = 0
+	time.sleep(waitTime)
+	return milk, won
+
+
+################--MOON PRESENCE--###############
+
+
+# Returns to the Catnap Dream.
+def dreamReturnOpen(waitTime):
+	print("""Something""")
+	time.sleep(waitTime)
+
+
+# Determines whether player should be prompted again for a command.
+def dreamReturnNext(userInput):
+	goNext = {"TALK": False,
+		"FIGHT": False,
+		"STARE": False,
+		"LOOK": False,
+		"LEAVE": True,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
+	proceed = goNext.get(str.upper(userInput))
+	return proceed
+
+
+# Displays appropriate story text according to player's input.
+def dreamReturnOptions(userInput, dream, milk, level, hasWpn, weapon):
+	sceneOptions = {"TALK":
+"""Talk something""",
+		"FIGHT":
+"""Fight something""",
+		"STARE":
+"""Stare something""",
+		"LOOK":
+"""Look at something"""}
+	print("""
+------------------------------
+""")
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
+	return milk
+
+
+# Transitions to the Purrgo's Wet Nurse boss arena.
+def moonOpen(waitTime):
+	print("""Here is the opening text for Moon Presence.
+""")
+	time.sleep(waitTime)
+
+
+# Determines whether player should be prompted again for a command.
+def moonNext(userInput):
+	goNext = {"TALK": False,
+		"FIGHT": True,
+		"STARE": False,
+		"LOOK": False,
+		"LEAVE": False,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
+	proceed = goNext.get(str.upper(userInput))
+	return proceed
+
+
+# Displays appropriate story text according to player's input.
+def moonOptions(userInput, dream, milk, level, hasWpn, weapon):
+	sceneOptions = {"TALK":
+"""Talk to something""",
+		"STARE":
+"""Stare at something""",
+		"LOOK":
+"""Look, more something""",
+		"LEAVE":
+"""Leave with something"""}
+	print("""
+------------------------------
+""")
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
+
+
+# Boss fight scene.
+def moonFight(milk, level, won, waitTime):
+	print("""
+------------------------------
+""")
+	if level >= 17:
+		print("""Here is the winning text.
+""")
+		won = True
+	else:
+		print("""Here is the losing text.
+""")
+		milk = 0
+	time.sleep(waitTime)
+	return milk, won
+
+
+#################--ENDINGS--###################
+
+
+def endNoCord(waitTime):
+	print("""Here is the ending with no umbilical cord.""")
+	time.sleep(waitTime)
+
+
+
+def endCord(waitTime):
+	print("""Here is the ending with the umbilical cord.""")
+	time.sleep(waitTime)
 
 
 # Defines valid commands for the final prompt of the game.
