@@ -1009,10 +1009,50 @@ def milkBeastFight(milk, level, won, waitTime):
 #######################--AMELIA--##########################
 
 
-# Enters the Cathedral after killing the Milk-Starved Beast.
-def cathedralReturn(waitTime):
+# Enters the Cathedral.
+def churchOpen(waitTime):
 	print("""Something""")
 	time.sleep(waitTime)
+
+
+# Determines whether player should be prompted again for a command.
+def churchNext(userInput):
+	goNext = {"TALK": False,
+		"FIGHT": False,
+		"STARE": False,
+		"LOOK": False,
+		"LEAVE": True,
+		"HELP": False,
+		"CHECK": False,
+		"DREAM": False}
+	proceed = goNext.get(str.upper(userInput))
+	return proceed
+
+
+# Displays appropriate story text according to player's input.
+def churchOptions(userInput, dream, milk, level, hasWpn, weapon):
+	sceneOptions = {"TALK":
+"""Talk something""",
+		"FIGHT":
+"""Fight something""",
+		"STARE":
+"""Stare something""",
+		"LOOK":
+"""Look at something""",
+		"LEAVE":
+"""Leave with something"""}
+	print("""
+------------------------------
+""")
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "FIGHT":
+		milk = milk + 2
+	return milk
 
 
 # Transitions to the Amelia boss arena.
@@ -1124,9 +1164,9 @@ def pyrrgenwerthOptions(userInput, dream, milk, level, hasWpn, weapon):
 	return milk
 
 
-# Transitions to the Nom the Vacuous Flea boss arena.
+# Transitions to the Nom the Gluttonous Flea boss arena.
 def nomOpen(waitTime):
-	print("""Here is the opening text for Nom the Vacuous Flea.
+	print("""Here is the opening text for Nom the Gluttonous Flea.
 """)
 	time.sleep(waitTime)
 
@@ -1317,7 +1357,7 @@ def dreamReturnNext(userInput):
 
 
 # Displays appropriate story text according to player's input.
-def dreamReturnOptions(userInput, dream, milk, level, hasWpn, weapon):
+def dreamReturnOptions(userInput, dream, milk, level, hasWpn, weapon, cord):
 	sceneOptions = {"TALK":
 """Talk something""",
 		"FIGHT":
@@ -1325,7 +1365,7 @@ def dreamReturnOptions(userInput, dream, milk, level, hasWpn, weapon):
 		"STARE":
 """Stare something""",
 		"LOOK":
-"""Look at something"""}
+"""Look at something and find the umbilical cord."""}
 	print("""
 ------------------------------
 """)
@@ -1335,7 +1375,11 @@ def dreamReturnOptions(userInput, dream, milk, level, hasWpn, weapon):
 		commandList(dream)
 	else:
 		print(sceneOptions.get(str.upper(userInput)))
-	return milk
+	if str.upper(userInput) == "LOOK":
+		cord = True
+	if str.upper(userInput) == "FIGHT":
+		milk = milk + 10
+	return milk, cord
 
 
 # Transitions to the Purrgo's Wet Nurse boss arena.
@@ -1463,6 +1507,7 @@ entryTime = 1
 cinematicTime = 4
 
 died = False
+umbilicalCord = False
 
 # time is used to create pauses between text.
 import time
@@ -1642,6 +1687,7 @@ else:
 		died = False
 
 # Bring branches back to the main storyline.
+# Loops area until Gasclaw has been beaten by the player.
 while bossDead == False:
 	nextScene = False
 	gilpurrtOpen(entryTime)
@@ -1693,6 +1739,291 @@ while bossDead == False:
 				entry = tryAgain(entry)
 			else:
 				time.sleep(cinematicTime)
+
+# Resets the check to see if the boss is dead for the next area.
+bossDead = False
+
+# Loops area until Milk-Starved Beast has been beaten by the player.
+while bossDead == False:
+	nextScene = False
+	cathedralOpen(entryTime)
+	print("")
+	entry = input("Enter your choice: ")
+	entry = tryAgain(entry)
+
+	while nextScene == False:
+		nextScene = cathedralNext(entry)
+		if str.upper(entry) == "DREAM":
+			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
+			print("")
+			cathedralOpen(entryTime)
+			print("")
+			entry = input("Enter your choice: ")
+			entry = tryAgain(entry)
+		else:
+			collectedMilk = cathedralOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			print("")
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
+
+	nextScene = False
+	milkBeastOpen(entryTime)
+	entry = input("Enter your choice: ")
+	entry = tryAgain(entry)
+
+	while nextScene == False:
+		nextScene = milkBeastNext(entry)
+		if str.upper(entry) == "DREAM":
+			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
+			print("")
+			milkBeastOpen(entryTime)
+			print("")
+			entry = input("Enter your choice: ")
+			entry = tryAgain(entry)
+		elif str.upper(entry) == "FIGHT":
+			collectedMilk, bossDead = milkBeastFight(collectedMilk, milkLevel, bossDead, cinematicTime)
+		else:
+			collectedMilk = milkBeastOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			print("")
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
+
+# Resets the check to see if the boss is dead for the next area.
+bossDead = False
+
+# Loops area until Amelia has been beaten by the player.
+while bossDead == False:
+	nextScene = False
+	churchOpen(entryTime)
+	print("")
+	entry = input("Enter your choice: ")
+	entry = tryAgain(entry)
+
+	while nextScene == False:
+		nextScene = churchNext(entry)
+		if str.upper(entry) == "DREAM":
+			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
+			print("")
+			churchOpen(entryTime)
+			print("")
+			entry = input("Enter your choice: ")
+			entry = tryAgain(entry)
+		else:
+			collectedMilk = churchOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			print("")
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
+
+	nextScene = False
+	ameliaOpen(entryTime)
+	entry = input("Enter your choice: ")
+	entry = tryAgain(entry)
+
+	while nextScene == False:
+		nextScene = ameliaNext(entry)
+		if str.upper(entry) == "DREAM":
+			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
+			print("")
+			ameliaOpen(entryTime)
+			print("")
+			entry = input("Enter your choice: ")
+			entry = tryAgain(entry)
+		elif str.upper(entry) == "FIGHT":
+			collectedMilk, bossDead = ameliaFight(collectedMilk, milkLevel, bossDead, cinematicTime)
+		else:
+			collectedMilk = ameliaOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			print("")
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
+
+# Resets the check to see if the boss is dead for the next area.
+bossDead = False
+
+# Loops area until Nom the Gluttonous Flea has been beaten by the player.
+while bossDead == False:
+	nextScene = False
+	pyrrgenwerthOpen(entryTime)
+	print("")
+	entry = input("Enter your choice: ")
+	entry = tryAgain(entry)
+
+	while nextScene == False:
+		nextScene = pyrrgenwerthNext(entry)
+		if str.upper(entry) == "DREAM":
+			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
+			print("")
+			pyrrgenwerthOpen(entryTime)
+			print("")
+			entry = input("Enter your choice: ")
+			entry = tryAgain(entry)
+		else:
+			collectedMilk = pyrrgenwerthOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			print("")
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
+
+	nextScene = False
+	nomOpen(entryTime)
+	entry = input("Enter your choice: ")
+	entry = tryAgain(entry)
+
+	while nextScene == False:
+		nextScene = nomNext(entry)
+		if str.upper(entry) == "DREAM":
+			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
+			print("")
+			nomOpen(entryTime)
+			print("")
+			entry = input("Enter your choice: ")
+			entry = tryAgain(entry)
+		elif str.upper(entry) == "FIGHT":
+			collectedMilk, bossDead = nomFight(collectedMilk, milkLevel, bossDead, cinematicTime)
+		else:
+			collectedMilk = nomOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			print("")
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
+
+# Resets the check to see if the boss is dead for the next area.
+bossDead = False
+
+# Loops area until Purrgo's Wet Nurse has been beaten by the player.
+while bossDead == False:
+	nextScene = False
+	loftOpen(entryTime)
+	print("")
+	entry = input("Enter your choice: ")
+	entry = tryAgain(entry)
+
+	while nextScene == False:
+		nextScene = loftNext(entry)
+		if str.upper(entry) == "DREAM":
+			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
+			print("")
+			loftOpen(entryTime)
+			print("")
+			entry = input("Enter your choice: ")
+			entry = tryAgain(entry)
+		else:
+			collectedMilk = loftOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			print("")
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
+
+	nextScene = False
+	nurseOpen(entryTime)
+	entry = input("Enter your choice: ")
+	entry = tryAgain(entry)
+
+	while nextScene == False:
+		nextScene = nurseNext(entry)
+		if str.upper(entry) == "DREAM":
+			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
+			print("")
+			nurseOpen(entryTime)
+			print("")
+			entry = input("Enter your choice: ")
+			entry = tryAgain(entry)
+		elif str.upper(entry) == "FIGHT":
+			collectedMilk, bossDead = nurseFight(collectedMilk, milkLevel, bossDead, cinematicTime)
+		else:
+			collectedMilk = nurseOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			print("")
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
+
+# Resets the check to see if the boss is dead for the next area.
+bossDead = False
+
+# Loops area until Moon Presence has been beaten by the player.
+while bossDead == False:
+	nextScene = False
+	dreamReturnOpen(entryTime)
+	print("")
+	entry = input("Enter your choice: ")
+	entry = tryAgain(entry)
+
+	while nextScene == False:
+		nextScene = dreamReturnNext(entry)
+		if str.upper(entry) == "DREAM":
+			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
+			print("")
+			dreamReturnOpen(entryTime)
+			print("")
+			entry = input("Enter your choice: ")
+			entry = tryAgain(entry)
+		else:
+			collectedMilk, umbilicalCord = dreamReturnOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon, umbilicalCord)
+			print("")
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
+
+	nextScene = False
+	moonOpen(entryTime)
+	entry = input("Enter your choice: ")
+	entry = tryAgain(entry)
+
+	while nextScene == False:
+		nextScene = moonNext(entry)
+		if str.upper(entry) == "DREAM":
+			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
+			print("")
+			moonOpen(entryTime)
+			print("")
+			entry = input("Enter your choice: ")
+			entry = tryAgain(entry)
+		elif str.upper(entry) == "FIGHT":
+			collectedMilk, bossDead = moonFight(collectedMilk, milkLevel, bossDead, cinematicTime)
+		else:
+			collectedMilk = moonOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			print("")
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
+
+if umbilicalCord:
+	endCord(entryTime)
+else:
+	endNoCord(entryTime)
 
 # Prompts player for last time before exiting.
 print("Play again?")
