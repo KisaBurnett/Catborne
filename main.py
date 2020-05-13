@@ -567,15 +567,21 @@ The hunt is on.""",
 		print(sceneOptions.get(str.upper(userInput)))
 
 
+def dreamTransition(waitTime):
+	print("""After walking for a while, you come across a darkened lantern hanging from a
+short staff in the middle of the cobblestone street. Curious, you reach out to
+light it. The glow of the little flame soothes your nerves, and summons a small
+group of spectral kittens at the base of the lantern's post. They greet you with
+spooky mews, and you reach down to pet them. Just as your paw makes contact...
+""")
+	time.sleep(waitTime)
+
+
 # Transitions to next gameplay branch.
 def sceneFiveOpen(waitTime):
-	print("""After walking for a while, you come across a darkened lantern hanging from a
-short staff in the middle of the cobblestone street. Curious, you reach out to light
-it. The glow of the little flame soothes your nerves, and summons a small group of
-spectral kittens at the base of the lantern's post. They greet you with spooky mews,
-and you reach down to pet them. Just as your paw makes contact, the world around
-you goes white, and then the white melts away to reveal a quiet, misty garden at
-the base of a hill, atop which rests a worn down old chapel.
+	print("""The world around you goes white, and then the white melts away to
+reveal a quiet, misty garden at the base of a hill, atop which rests a worn down
+old chapel.
 
 You stand up, puzzled for some reason. After all that's happened, you find THIS
 weird? Really?
@@ -1014,86 +1020,87 @@ if hasWeapon:
 			entry = tryAgain(entry)
 		else:
 			time.sleep(cinematicTime)
-
-	nextScene = False
-	sceneFiveOpen(entryTime)
-	entry = input("Enter your choice: ")
-	entry = tryAgain(entry)
-
-	while nextScene == False:
-		nextScene = sceneFiveNext(entry)
-		sceneFive(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
-		print("")
-		if nextScene == False:
-			time.sleep(entryTime)
-			entry = input("Enter your choice: ")
-			entry = tryAgain(entry)
-		else:
-			time.sleep(cinematicTime)
-
-	if collectedMilk != 0:
-		dreamLeaveLevel(cinematicTime)
-		milkLevel = milkLevel + collectedMilk
-		collectedMilk = 0
-	else:
-		dreamLeaveNoLevel(cinematicTime)
-	hasDream = True
-
-	while bossDead == False:
-		nextScene = False
-		gilpurrtOpen(entryTime)
-		print("")
-		entry = input("Enter your choice: ")
-		entry = tryAgain(entry)
-
-		while nextScene == False:
-			nextScene = gilpurrtNext(entry)
-			if str.upper(entry) == "DREAM":
-				collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
-				print("")
-				gilpurrtOpen(entryTime)
-				print("")
-				entry = input("Enter your choice: ")
-				entry = tryAgain(entry)
-			else:
-				collectedMilk = gilpurrtOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
-				print("")
-				if nextScene == False:
-					time.sleep(entryTime)
-					entry = input("Enter your choice: ")
-					entry = tryAgain(entry)
-				else:
-					time.sleep(cinematicTime)
-
-		nextScene = False
-		gasclawOpen(entryTime)
-		entry = input("Enter your choice: ")
-		entry = tryAgain(entry)
-
-		while nextScene == False:
-			nextScene = gasclawNext(entry)
-			if str.upper(entry) == "DREAM":
-				collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
-				print("")
-				gasclawOpen(entryTime)
-				print("")
-				entry = input("Enter your choice: ")
-				entry = tryAgain(entry)
-			elif str.upper(entry) == "FIGHT":
-				collectedMilk, bossDead = gasclawFight(collectedMilk, milkLevel, bossDead, cinematicTime)
-			else:
-				collectedMilk = gasclawOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
-				print("")
-				if nextScene == False:
-					time.sleep(entryTime)
-					entry = input("Enter your choice: ")
-					entry = tryAgain(entry)
-				else:
-					time.sleep(cinematicTime)
+			dreamTransition(entryTime)
 else:
 	nextScene = False
 	print("""----------YOU DIED----------
 """)
+
+nextScene = False
+sceneFiveOpen(entryTime)
+entry = input("Enter your choice: ")
+entry = tryAgain(entry)
+
+while nextScene == False:
+	nextScene = sceneFiveNext(entry)
+	sceneFive(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+	print("")
+	if nextScene == False:
+		time.sleep(entryTime)
+		entry = input("Enter your choice: ")
+		entry = tryAgain(entry)
+	else:
+		time.sleep(cinematicTime)
+
+if collectedMilk != 0:
+	dreamLeaveLevel(cinematicTime)
+	milkLevel = milkLevel + collectedMilk
+	collectedMilk = 0
+else:
+	dreamLeaveNoLevel(cinematicTime)
+hasDream = True
+
+while bossDead == False:
+	nextScene = False
+	gilpurrtOpen(entryTime)
+	print("")
+	entry = input("Enter your choice: ")
+	entry = tryAgain(entry)
+
+	while nextScene == False:
+		nextScene = gilpurrtNext(entry)
+		if str.upper(entry) == "DREAM":
+			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
+			print("")
+			gilpurrtOpen(entryTime)
+			print("")
+			entry = input("Enter your choice: ")
+			entry = tryAgain(entry)
+		else:
+			collectedMilk = gilpurrtOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			print("")
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
+
+	nextScene = False
+	gasclawOpen(entryTime)
+	entry = input("Enter your choice: ")
+	entry = tryAgain(entry)
+
+	while nextScene == False:
+		nextScene = gasclawNext(entry)
+		if str.upper(entry) == "DREAM":
+			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
+			print("")
+			gasclawOpen(entryTime)
+			print("")
+			entry = input("Enter your choice: ")
+			entry = tryAgain(entry)
+		elif str.upper(entry) == "FIGHT":
+			collectedMilk, bossDead = gasclawFight(collectedMilk, milkLevel, bossDead, cinematicTime)
+		else:
+			collectedMilk = gasclawOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			print("")
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
 
 # Prompts player for last time before exiting.
 print("Play again?")
