@@ -378,6 +378,30 @@ survive a round with this beast!
 	time.sleep(waitTime)
 
 
+# Executes when player is returned to the clinic after dying in the first fight.
+def clinicReturn(longTime, shortTime):
+	time.sleep(longTime)
+	print("""
+You are magically returned to the clinic lobby, ready to regain your feline dignity
+and teach that horrible rat a lesson. Supplies and broken furniture are strewn
+about, and there's a horrible smell that seems to follow you wherever you go.
+
+...oh, wait, that's STILL you.
+
+Lord, that really is horrible.
+
+However, it quickly becomes apparent that hygiene remains the least of your worries.
+Across the lobby, between you and the clinic exit, is your arch-nemesis, the rat.
+
+Look how smug it is.
+
+You freeze, but it's too late. The hideous thing lifts its head from the bones it
+was gnawing, and looks directly at you. You'll need to think fast if you want to
+survive a round with this beast!
+""")
+	time.sleep(shortTime)
+
+
 # Determines whether player should be prompted again for a command.
 def sceneThreeNext(userInput):
 	goNext = {"TALK": False,
@@ -436,7 +460,7 @@ smashing through the doors and becoming stuck.
 
 With the beast occupied, you're able to dart out the door, safe and sound.
 However, you can't help but wonder if risk would have brought worthy reward.""",
-		"DREAM": "You have no dreams to dream."}
+		"DREAM": "You cannot dream in battle."}
 	print("""
 ------------------------------
 """)
@@ -448,7 +472,7 @@ However, you can't help but wonder if risk would have brought worthy reward.""",
 		print(sceneOptions.get(str.upper(userInput)))
 
 	if str.upper(userInput) == "FIGHT":
-		milk = milk + 1
+		milk = milk + 2
 	return milk
 
 
@@ -579,16 +603,15 @@ spooky mews, and you reach down to pet them. Just as your paw makes contact...
 
 # Transitions to next gameplay branch.
 def sceneFiveOpen(waitTime):
-	print("""The world around you goes white, and then the white melts away to
-reveal a quiet, misty garden at the base of a hill, atop which rests a worn down
-old chapel.
+	print("""The world around you goes white, and then the white melts away to reveal a quiet,
+misty garden at the base of a hill, atop which rests a worn down old chapel.
 
 You stand up, puzzled for some reason. After all that's happened, you find THIS
 weird? Really?
 
 Old and weathered gravestones line the cobblestone path leading up to the chapel.
 They're mostly unremarkable, aside from one, which has a small group of ghostly
-kittens like the ones you saw by the lantern. A cat in a pretty dress and bonnet
+kittens huddled around it, mewing contentedly. A cat in a pretty dress and bonnet
 kneels next to this gravestone, but she stands up on her hind legs when she notices
 you, and clasps her front paws together as she turns to face you.
 
@@ -691,7 +714,7 @@ level up.
 
 
 # Displayed if player has no milk.
-def dreamLeaveNoLevel(waitTime):
+def dreamLeaveNoLevel(waitTime, hasWpn, hasSwrd, weapon):
 	print(""""When you collect milk, return here, to the Dream," the plushie says. "I will use
 them to embolden your spirit, and increase your strength. Remember I can only
 strengthen you if you collect an amount of milk equal to twice your current
@@ -704,16 +727,25 @@ back to the waking world.
 You now have a new command available. Use DREAM when not in battle to return and
 level up.
 """)
+	if hasWpn == False:
+		print("""Just before you leave, you find an old sword lying next to a gravestone. You pick
+it up and decide the age-old mantra of "Finders Keepers" definitely applies here.
+Time to make all the mousies pay for your prior humiliation.
+""")
+		weapon = "1"
+		hasSwrd = True
+		hasWpn = True
+	return hasWpn, hasSwrd, weapon
 	time.sleep(waitTime)
 
 
 # Transitions between the Catnap Dream and the player decisions back in Yhowlnam.
 def gilpurrtOpen(waitTime):
-	print("""You arrive back in Yhowlnam next to the lantern. The baying of horrible mousies
-can be heard in the distance, but there's another sound much closer to you. It's
-a cat, apparently hacking up one horrific hairball in a boarded-up house. The
-window is barred and curtained on the inside, but you can still see the warm glow
-of lamps peeking through.
+	print("""You arrive next to a lantern with the friendly ghost kittens huddled around it.
+The baying of horrible mousies can be heard in the distance, but there's another
+sound much closer to you. It's a cat, apparently hacking up one horrific hairball
+in a boarded-up house. The window is barred and curtained on the inside, but you
+can still see the warm glow of lamps peeking through.
 
 A large, diseased-looking rat rummages around in garbage nearby. It hasn't noticed
 you, and looks fairly weak. You could likely take it down easily in a fight.""")
@@ -912,6 +944,8 @@ bossDead = False
 entryTime = 1
 cinematicTime = 4
 
+died = False
+
 # time is used to create pauses between text.
 import time
 
@@ -1001,6 +1035,7 @@ else:
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
+			died = True
 			time.sleep(cinematicTime)
 
 # Branches the game according to whether or not the player was armed in scene three.
@@ -1046,10 +1081,49 @@ if collectedMilk != 0:
 	dreamLeaveLevel(cinematicTime)
 	milkLevel = milkLevel + collectedMilk
 	collectedMilk = 0
+	hasDream = True
 else:
-	dreamLeaveNoLevel(cinematicTime)
-hasDream = True
+	hasWeapon, oldSword, heldWeapon = dreamLeaveNoLevel(cinematicTime, hasWeapon, oldSword, heldWeapon)
+	hasDream = True
 
+	# If player died in the first fight, return them to the clinic so they can
+	# kill the mouse there.
+	if died == True:
+		nextScene = False
+		clinicReturn(cinematicTime, entryTime)
+
+		entry = input("Enter your choice: ")
+		entry = tryAgain(entry)
+
+		while nextScene == False:
+			nextScene = sceneThreeNext(entry)
+			collectedMilk = sceneThreeTalk(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			print("")
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
+
+		nextScene = False
+		sceneFourOpen(entryTime)
+		entry = input("Enter your choice: ")
+		entry = tryAgain(entry)
+
+		while nextScene == False:
+			nextScene = sceneFourNext(entry)
+			sceneFour(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			print("")
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
+		died = False
+
+# Bring branches back to the main storyline.
 while bossDead == False:
 	nextScene = False
 	gilpurrtOpen(entryTime)
