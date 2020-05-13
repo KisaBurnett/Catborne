@@ -100,14 +100,15 @@ You are level """ + str(level) + ".")
 
 # Levels up player if they have collected milk.
 def dream(milk, level):
-	if milk == 0:
+	if milk != level * 2:
 		print("""You strut into the Catnap Dream, not caring that you're about to waste
 everyone's time. The plushie looks at the empty milk bottles you present her, and
 then looks at you.
 
 "Is this what they call a 'prank', good Mouser?" she asks dubiously. "I cannot
-enhance your strength without milk. Please, go and slay the beast mousies, and
-return with their succulent milk so I may assist you."
+enhance your strength without sufficient milk. Your collected milk must equal twice
+your current strength for me to embolden you. Please, go and slay the beast mousies,
+and return with their succulent milk so I may assist you."
 
 You return to the waking world with the sneaking suspicion the plushie will talk
 smack about you with the spectral kittens once you leave.
@@ -130,7 +131,7 @@ and return to the waking world.""")
 
 
 # Opening page for the game.
-def titlePage():
+def titlePage(waitTime):
 	print("""----------CATBORNE----------
 
 A purrfectly ridiculous Bloodborne parody by Kisa Burnett.
@@ -144,9 +145,10 @@ More commands will become available as you progress through your hunt.
 
 Type BEGIN and press return to start the nightmare.
 """)
+	time.sleep(waitTime)
 
 
-def opener():
+def opener(waitTime):
 	print("""
 ------------------------------
 
@@ -160,6 +162,7 @@ eyes are bandaged with dirty cloth.
 
 Where are you? Who is this cat? Why is he the same size as you?
 """)
+	time.sleep(waitTime)
 
 
 # Determines whether player should be prompted again for a command.
@@ -246,7 +249,7 @@ The old cat snickers at you.""",
 
 
 # Transitions between scene with old cat and player being alone.
-def afterOldCat():
+def afterOldCat(waitTime):
 	print("""With the old cat now gone, you are completely alone. You stand up slowly and
 carefully, and discover you can still walk on two legs in your adorable cat body.
 The distant, squeaky baying of some horrible rodent can be heard from outside.
@@ -256,7 +259,7 @@ Which makes sense.
 
 After all, you only just woke up.
 """)
-	time.sleep(3)
+	time.sleep(waitTime)
 
 
 # Determines whether player should be prompted again for a command.
@@ -349,7 +352,7 @@ outside.""",
 
 
 # Transitions to clinic entrance.
-def clinicEntrance():
+def clinicEntrance(waitTime):
 	print("""You go through the open door to the clinic lobby, and discover it's just
 as horrible and dark as the room in which you awoke. Supplies and broken furniture
 are strewn about, and there's a horrible smell that seems to follow you wherever
@@ -366,7 +369,7 @@ You freeze, but it's too late. The hideous thing lifts its head from the bones i
 was gnawing, and looks directly at you. You'll need to think fast if you want to
 survive a round with this beast!
 """)
-	time.sleep(3)
+	time.sleep(waitTime)
 
 
 # Determines whether player should be prompted again for a command.
@@ -491,14 +494,14 @@ here without some fancy claw-fu fighting.""",
 
 
 # Transitions to next gameplay branch.
-def sceneFourOpen():
+def sceneFourOpen(waitTime):
 	print("""You exit the clinic, and walk out onto a grim cobblestone street. The pale glow
 from the moon overhead only makes the looming Victorian architecture around you
 more oppressive. A cold wind cuts through your fur, and the far-off sounds of
 beasts and dying victims chill you further. Your gruesome hunt in Yhowlnam has
 only just begun.
 """)
-	time.sleep(3)
+	time.sleep(waitTime)
 
 
 # Determines whether player should be prompted again for a command.
@@ -559,7 +562,7 @@ The hunt is on.""",
 
 
 # Transitions to next gameplay branch.
-def sceneFiveOpen():
+def sceneFiveOpen(waitTime):
 	print("""After walking for a while, you come across a darkened lantern hanging from a
 short staff in the middle of the cobblestone street. Curious, you reach out to light
 it. The glow of the little flame soothes your nerves, and summons a small group of
@@ -583,7 +586,7 @@ kindly tone.
 
 "Hello, good Mouser. I am a plushie, here in this Catnap Dream to look after you."
 """)
-	time.sleep(3)
+	time.sleep(waitTime)
 
 
 # Determines whether player should be prompted again for a command.
@@ -651,7 +654,7 @@ You stand back up to look at her curiously, and she gives a polite bow.""",
 
 
 # Displayed if player has collected milk.
-def dreamLeaveLevel():
+def dreamLeaveLevel(waitTime):
 	print(""""You have collected milk which can be used to increase your strength,"
 the plushie says. "I will channel them, and your power will grow."
 
@@ -662,8 +665,9 @@ say something to the effect of, "Hnnngwhahuh," and stumble around a little, but
 the plushie simply smiles and releases your paw.
 
 "There," she says. "Return here with milk you collect from fallen beasts, and I
-will continue to embolden you." She bows to you politely. "Farewell, dear Mouser.
-May you find your worth in the milk of the waking world."
+will continue to embolden you. Remember I can only strengthen you if you collect
+an amount of milk equal to twice your current strength." She bows to you politely.
+"Farewell, dear Mouser. May you find your worth in the milk of the waking world."
 
 You wave dumbly and stagger back over to the Yhowlnam stone to transport back to
 the waking world.
@@ -671,13 +675,16 @@ the waking world.
 You now have a new command available. Use DREAM when not in battle to return and
 level up.
 """)
+	time.sleep(waitTime)
 
 
 # Displayed if player has no milk.
-def dreamLeaveNoLevel():
+def dreamLeaveNoLevel(waitTime):
 	print(""""When you collect milk, return here, to the Dream," the plushie says. "I will use
-them to embolden your spirit, and increase your strength." She bows to you politely.
-"Farewell, dear Mouser. May you find your worth in the milk of the waking world."
+them to embolden your spirit, and increase your strength. Remember I can only
+strengthen you if you collect an amount of milk equal to twice your current
+strength." She bows to you politely. "Farewell, dear Mouser. May you find your
+worth in the milk of the waking world."
 
 You wave to your new best friend and return to the Yhowlnam stone to transport
 back to the waking world.
@@ -685,10 +692,11 @@ back to the waking world.
 You now have a new command available. Use DREAM when not in battle to return and
 level up.
 """)
+	time.sleep(waitTime)
 
 
 # Transitions between the Catnap Dream and the player decisions back in Yhowlnam.
-def gilpurrtOpen():
+def gilpurrtOpen(waitTime):
 	print("""You arrive back in Yhowlnam next to the lantern. The baying of horrible mousies
 can be heard in the distance, but there's another sound much closer to you. It's
 a cat, apparently hacking up one horrific hairball in a boarded-up house. The
@@ -697,6 +705,7 @@ of lamps peeking through.
 
 A large, diseased-looking rat rummages around in garbage nearby. It hasn't noticed
 you, and looks fairly weak. You could likely take it down easily in a fight.""")
+	time.sleep(waitTime)
 
 
 # Determines whether player should be prompted again for a command.
@@ -781,9 +790,10 @@ good, is it?"""}
 	return milk
 
 
-def gasclawOpen():
+def gasclawOpen(waitTime):
 	print("""
 """)
+	time.sleep(waitTime)
 
 
 # Determines whether player should be prompted again for a command.
@@ -803,9 +813,9 @@ def gasclawNext(userInput):
 # Displays appropriate story text according to player's input.
 def gasclawOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
-"""Something""",
+"""Talk to something""",
 		"STARE":
-"""Something else else""",
+"""Stare at something""",
 		"LOOK":
 """Look, more something""",
 		"LEAVE":
@@ -822,8 +832,14 @@ def gasclawOptions(userInput, dream, milk, level, hasWpn, weapon):
 
 
 # Boss fight scene.
-def gasclawFight(milk, level, weapon, won):
-	print("")
+def gasclawFight(milk, level, won):
+	if level >= 5:
+		print("""Here is the winning text.""")
+		milk = milk + 10
+		won = True
+	else:
+		print("""Here is the losing text.""")
+		milk = 0
 	return milk, won
 
 
@@ -875,17 +891,19 @@ heldWeapon = ""
 
 bossDead = False
 
+entryTime = 1
+cinematicTime = 3
+
 # time is used to create pauses between text.
 import time
 
 # Display title of game and commands.
-titlePage()
+titlePage(entryTime)
 entry = input("Enter your choice: ")
 entry = tryAgainStart(entry)
 
 # Opening "cinematic".
-opener()
-time.sleep(3)
+opener(entryTime)
 entry = input("Enter your choice: ")
 entry = tryAgain(entry)
 
@@ -895,11 +913,11 @@ while nextScene == False:
 	sceneOne(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 	print("")
 	if nextScene == False:
-		time.sleep(3)
+		time.sleep(entryTime)
 		entry = input("Enter your choice: ")
 		entry = tryAgain(entry)
 	else:
-		time.sleep(2)
+		time.sleep(cinematicTime)
 
 # If player chose to talk to the old cat, arm player.
 if str.upper(entry) == "TALK":
@@ -910,7 +928,7 @@ if str.upper(entry) == "TALK":
 # Reset the nextScene check before proceeding.
 nextScene = False
 # Alone after old cat leaves.
-afterOldCat()
+afterOldCat(entryTime)
 entry = input("Enter your choice: ")
 entry = tryAgain(entry)
 
@@ -921,26 +939,26 @@ if hasWeapon:
 		sceneTwoTalk(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
-			time.sleep(3)
+			time.sleep(entryTime)
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(2)
+			time.sleep(cinematicTime)
 else:
 	while nextScene == False:
 		nextScene = sceneTwoNext(entry)
 		sceneTwoStare(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
-			time.sleep(3)
+			time.sleep(entryTime)
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(2)
+			time.sleep(cinematicTime)
 
 nextScene = False
 # Transitions to the clinic entrance.
-clinicEntrance()
+clinicEntrance(entryTime)
 entry = input("Enter your choice: ")
 entry = tryAgain(entry)
 
@@ -950,27 +968,27 @@ if hasWeapon:
 		collectedMilk = sceneThreeTalk(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
-			time.sleep(3)
+			time.sleep(entryTime)
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(2)
+			time.sleep(cinematicTime)
 else:
 	while nextScene == False:
 		nextScene = sceneThreeNext(entry)
 		sceneThreeStare(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
-			time.sleep(3)
+			time.sleep(entryTime)
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(2)
+			time.sleep(cinematicTime)
 
 # Branches the game according to whether or not the player was armed in scene three.
 if hasWeapon:
 	nextScene = False
-	sceneFourOpen()
+	sceneFourOpen(entryTime)
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
@@ -979,14 +997,14 @@ if hasWeapon:
 		sceneFour(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
-			time.sleep(3)
+			time.sleep(entryTime)
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(2)
+			time.sleep(cinematicTime)
 
 	nextScene = False
-	sceneFiveOpen()
+	sceneFiveOpen(entryTime)
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
@@ -995,42 +1013,64 @@ if hasWeapon:
 		sceneFive(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 		print("")
 		if nextScene == False:
-			time.sleep(3)
+			time.sleep(entryTime)
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			time.sleep(2)
+			time.sleep(cinematicTime)
 
 	if collectedMilk != 0:
-		dreamLeaveLevel()
+		dreamLeaveLevel(cinematicTime)
 		milkLevel = milkLevel + collectedMilk
 		collectedMilk = 0
 	else:
-		dreamLeaveNoLevel()
-	time.sleep(3)
+		dreamLeaveNoLevel(cinematicTime)
 	nextScene = False
 	hasDream = True
-	gilpurrtOpen()
+	gilpurrtOpen(entryTime)
 	print("")
-	time.sleep(3)
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
-	while nextScene == False:
-		nextScene = gilpurrtNext(entry)
-		if str.upper(entry) == "DREAM":
-			collectedMilk, milkLevel = dream(collectedMilk, milkLevel)
-			print("")
-			gilpurrtOpen()
-		else:
-			collectedMilk = gilpurrtOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
-		print("")
-		if nextScene == False:
-			time.sleep(3)
-			entry = input("Enter your choice: ")
-			entry = tryAgain(entry)
-		else:
-			time.sleep(2)
+	while bossDead == False:
+		while nextScene == False:
+			nextScene = gilpurrtNext(entry)
+			if str.upper(entry) == "DREAM":
+				collectedMilk, milkLevel = dream(collectedMilk, milkLevel)
+				print("")
+				gilpurrtOpen(entryTime)
+			else:
+				collectedMilk = gilpurrtOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+				print("")
+				if nextScene == False:
+					time.sleep(entryTime)
+					entry = input("Enter your choice: ")
+					entry = tryAgain(entry)
+				else:
+					time.sleep(cinematicTime)
+
+		nextScene = False
+		gasclawOpen(entryTime)
+		entry = input("Enter your choice: ")
+		entry = tryAgain(entry)
+
+		while nextScene == False:
+			nextScene = gasclawNext(entry)
+			if str.upper(entry) == "DREAM":
+				collectedMilk, milkLevel = dream(collectedMilk, milkLevel)
+				print("")
+				gasclawOpen(entryTime)
+			elif str.upper(entry) == "FIGHT"
+				collectedMilk, bossDead = gasclawFight(collectedMilk, milkLevel, bossDead)
+			else:
+				collectedMilk = gasclawOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+				print("")
+				if nextScene == False:
+					time.sleep(entryTime)
+					entry = input("Enter your choice: ")
+					entry = tryAgain(entry)
+				else:
+					time.sleep(cinematicTime)
 else:
 	nextScene = False
 	print("""----------YOU DIED----------
