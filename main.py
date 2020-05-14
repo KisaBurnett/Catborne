@@ -943,12 +943,21 @@ slam your sword through Father Gasclaw's chest, piercing his heart. He gurgles
 and falls to the ground, dead. Eight bottles of milk roll out from beneath his
 corpse, but you don't pick them up until you poke his body with your sword and
 confirm he is, indeed, the deadest he can be.
-
-Pride and relief wash over you and you take a moment to triumphantly pump your
+""")
+		time.sleep(waitTime)
+		print("""Pride and relief wash over you and you take a moment to triumphantly pump your
 paws in the air. It's fine, you earned this little celebration.
 
 Once you've appropriately savored your victory, you strike out for the next area
 with a new pep in your step. Wait until you show the plushie how busy you've been.
+
+On your way out, you notice an abandoned war hammer propped up against a gravestone.
+You pick it up, and realize it's able to transform between being a sword and being
+a hammer. It's heavy, but it's also awesome, and that's what really counts in a
+weapon.
+
+You discard your old sword, and swing your new hammer up onto your shoulder. Man,
+if only you could take a selfie right now.
 """)
 		milk = milk + 8
 		won = True
@@ -987,7 +996,17 @@ and consume the milk that rolls out from under you. What a jerk.
 
 # Enters the Cathedral.
 def cathedralOpen(waitTime):
-	print("""Something""")
+	print("""You emerge in a dreary little cathedral that has definitely seen better days. The
+sound of shuffling rats can be heard outside the building, but none of them come
+near the doors. Maybe the strong scent of incense is driving them away.
+
+A hairless cat wrapped in a cloak is huddled in a corner, fussing over his strange
+collection of jars. Interesting. At least he doesn't look ready to attack you if
+you speak to him.
+
+In the center of the room is a familiar lantern with your ghost kitten friends.
+They mew and wave in cheerful greeting, and you can't help but smile. Who would
+have thought ghosts could be such cute little rascals?""")
 	time.sleep(waitTime)
 
 
@@ -1079,10 +1098,10 @@ def milkBeastFight(milk, level, won, waitTime):
 	print("""
 ------------------------------
 """)
-	if level >= 7:
+	if level >= 6:
 		print("""Here is the winning text.
 """)
-		milk = milk + 14
+		milk = milk + 12
 		won = True
 	else:
 		print("""Here is the losing text.
@@ -1189,10 +1208,10 @@ def nomFight(milk, level, won, waitTime):
 	print("""
 ------------------------------
 """)
-	if level >= 12:
+	if level >= 8:
 		print("""Here is the winning text.
 """)
-		milk = milk + 24
+		milk = milk + 16
 		won = True
 	else:
 		print("""Here is the losing text.
@@ -1299,10 +1318,10 @@ def nurseFight(milk, level, won, waitTime):
 	print("""
 ------------------------------
 """)
-	if level >= 15:
+	if level >= 10:
 		print("""Here is the winning text.
 """)
-		milk = milk + 30
+		milk = milk + 20
 		won = True
 	else:
 		print("""Here is the losing text.
@@ -1409,7 +1428,7 @@ def moonFight(milk, level, won, waitTime):
 	print("""
 ------------------------------
 """)
-	if level >= 17:
+	if level >= 12:
 		print("""Here is the winning text.
 """)
 		won = True
@@ -1713,6 +1732,11 @@ while bossDead == False:
 			else:
 				time.sleep(cinematicTime)
 
+# Changes weapon type held by player after Gasclaw defeat.
+oldSword = False
+hammer = True
+heldWeapon = "2"
+
 # Resets the check to see if the boss is dead for the next area.
 bossDead = False
 
@@ -1813,6 +1837,11 @@ while bossDead == False:
 
 # Resets the check to see if the boss is dead for the next area.
 bossDead = False
+
+# Changes the weapon to the great sword after Nom defeat.
+hammer = False
+greatSword = True
+heldWeapon = "3"
 
 # Loops area until Purrgo's Wet Nurse has been beaten by the player.
 while bossDead == False:
