@@ -841,7 +841,7 @@ good, is it?"""}
 
 
 # Transitions to the Gasclaw boss arena.
-def gasclawOpen(waitTime):
+def gasclawOpen(longTime, shortTime):
 	print("""You pass through a few dark alleys and emerge in a graveyard shaded from the
 moonlight by gnarled oak trees. A cold wind blows through the branches and makes
 them creak and sway. But more chilling than the air is the tall figure of a cat,
@@ -851,10 +851,21 @@ and coat are splattered with old and new blood.
 "Rats all over the shop," the cat mutters darkly. "And not enough milk to spare."
 
 Once his prey stops twitching, the cat lifts his head and turns to snarl at you.
-
-
+Somehow, you magically know this cat's name is...
 """)
-	time.sleep(waitTime)
+	time.sleep(longTime)
+	print("""Father Gasclaw.""")
+	time.sleep(longTime)
+	print("""
+Or perhaps you're finally going insane. Who knows?
+
+Just as you decide to see yourself out, Gasclaw charges toward you, swinging his
+ax for your neck. You jump out of the way and grip your sword tightly. Oh, God.
+You didn't sign up for this.
+
+But you're in it now.
+""")
+	time.sleep(shortTime)
 
 
 # Determines whether player should be prompted again for a command.
@@ -1661,7 +1672,7 @@ while nextScene == False:
 
 if collectedMilk != 0:
 	dreamLeaveLevel(cinematicTime)
-	milkLevel = milkLevel + collectedMilk
+	milkLevel = milkLevel + 1
 	collectedMilk = 0
 	hasDream = True
 else:
@@ -1734,7 +1745,7 @@ while bossDead == False:
 				time.sleep(cinematicTime)
 
 	nextScene = False
-	gasclawOpen(entryTime)
+	gasclawOpen(cinematicTime, entryTime)
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
