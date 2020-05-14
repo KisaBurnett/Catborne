@@ -863,7 +863,7 @@ Just as you decide to see yourself out, Gasclaw charges toward you, swinging his
 ax for your neck. You jump out of the way and grip your sword tightly. Oh, God.
 You didn't sign up for this.
 
-But you're in it now.
+But you're in it now. Time to show your stuff.
 """)
 	time.sleep(shortTime)
 
@@ -885,9 +885,15 @@ def gasclawNext(userInput):
 # Displays appropriate story text according to player's input.
 def gasclawOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
-"""Talk to something""",
+"""You whimper out an attempt to ask if you can talk things out.
+
+Father Gasclaw responds by aiming an ax blow at your head. You dodge, and the ax
+slams into a gravestone and shatters it.
+
+He's clearly not the chatty type.""",
 		"STARE":
-"""Stare at something""",
+"""Stare? You want to stare at something with a crazed ax murderer trying to kill you?
+Pick something smarter than that, you lunatic.""",
 		"LOOK":
 """Look, more something""",
 		"LEAVE":
@@ -909,7 +915,7 @@ def gasclawFight(milk, level, won, waitTime):
 	print("""
 ------------------------------
 """)
-	if level >= 3:
+	if level > 3:
 		print("""Here is the winning text.
 """)
 		milk = milk + 6
