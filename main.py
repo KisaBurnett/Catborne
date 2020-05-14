@@ -924,16 +924,60 @@ This is bad.""",
 def gasclawFight(milk, level, won, waitTime):
 	print("""
 ------------------------------
+You spend some time running around the graveyard and whimpering as you frantically
+dodge attack after attack. Finally, you sum up the courage to start dealing blows
+of your own. You start feeling pretty good about yourself, and then Gasclaw shoots
+you with a blunderbus. Then he snaps out the handle of his ax to lengthen his
+attacks and becomes faster and more brutal. Neither of these things are enjoyable.
+But you continue to survive by the skin of your sharp kitty teeth.
 """)
+	time.sleep(waitTime)
 	if level > 3:
-		print("""Here is the winning text.
+		print("""Just as you think you're wearing him down, Father Gasclaw transforms into a hulking,
+hideous version of himself, and casts aside his weapons in favor of attacking you
+with his bare claws. His roars, thankfully, drown out the sound of your panicked
+screaming.
+
+You continue to persevere, and after what feels like an eternity, you manage to
+slam your sword through Father Gasclaw's chest, piercing his heart. He gurgles
+and falls to the ground, dead. Eight bottles of milk roll out from beneath his
+corpse, but you don't pick them up until you poke his body with your sword and
+confirm he is, indeed, the deadest he can be.
+
+Pride and relief wash over you and you take a moment to triumphantly pump your
+paws in the air. It's fine, you earned this little celebration.
+
+Once you've appropriately savored your victory, you strike out for the next area
+with a new pep in your step. Wait until you show the plushie how busy you've been.
 """)
-		milk = milk + 6
+		milk = milk + 8
 		won = True
-	else:
-		print("""Here is the losing text.
+	elif level == 1:
+		print("""Sadly, this success story doesn't last for long. You fight valiantly for a few
+minutes more, only to succumb to the unending brutality Father Gasclaw tirelessly
+rains down upon you.
+
+You crash to the ground, and as your vision fades, you see Father Gasclaw pick up
+and consume the milk that rolls out from under you. What a jerk.
+
+----------YOU DIED----------
 """)
 		milk = 0
+		won = False
+	else:
+		print("""Just as you think you're wearing him down, Father Gasclaw transforms into a hulking,
+hideous version of himself, and casts aside his weapons in favor of attacking you
+with his bare claws. His roars, thankfully, drown out the sound of your panicked
+screaming. You fight valiantly for a few minutes more, only to succumb to the
+unending brutality Father Gasclaw tirelessly rains down upon you.
+
+You crash to the ground, and as your vision fades, you see Father Gasclaw pick up
+and consume the milk that rolls out from under you. What a jerk.
+
+----------YOU DIED----------
+""")
+		milk = 0
+		won = False
 	time.sleep(waitTime)
 	return milk, won
 
@@ -1039,116 +1083,6 @@ def milkBeastFight(milk, level, won, waitTime):
 		print("""Here is the winning text.
 """)
 		milk = milk + 14
-		won = True
-	else:
-		print("""Here is the losing text.
-""")
-		milk = 0
-	time.sleep(waitTime)
-	return milk, won
-
-
-#######################--AMELIA--##########################
-
-
-# Enters the Church area.
-def churchOpen(waitTime):
-	print("""Something""")
-	time.sleep(waitTime)
-
-
-# Determines whether player should be prompted again for a command.
-def churchNext(userInput):
-	goNext = {"TALK": False,
-		"FIGHT": False,
-		"STARE": False,
-		"LOOK": False,
-		"LEAVE": True,
-		"HELP": False,
-		"CHECK": False,
-		"DREAM": False}
-	proceed = goNext.get(str.upper(userInput))
-	return proceed
-
-
-# Displays appropriate story text according to player's input.
-def churchOptions(userInput, dream, milk, level, hasWpn, weapon):
-	sceneOptions = {"TALK":
-"""Talk something""",
-		"FIGHT":
-"""Fight something""",
-		"STARE":
-"""Stare something""",
-		"LOOK":
-"""Look at something""",
-		"LEAVE":
-"""Leave with something"""}
-	print("""
-------------------------------
-""")
-	if str.upper(userInput) == "CHECK":
-		statusCheck(milk, level, hasWpn, weapon)
-	elif str.upper(userInput) == "HELP":
-		commandList(dream)
-	else:
-		print(sceneOptions.get(str.upper(userInput)))
-	if str.upper(userInput) == "FIGHT":
-		milk = milk + 2
-	return milk
-
-
-# Transitions to the Amelia boss arena.
-def ameliaOpen(waitTime):
-	print("""Here is the opening text for Amelia.
-""")
-	time.sleep(waitTime)
-
-
-# Determines whether player should be prompted again for a command.
-def ameliaNext(userInput):
-	goNext = {"TALK": False,
-		"FIGHT": True,
-		"STARE": False,
-		"LOOK": False,
-		"LEAVE": False,
-		"HELP": False,
-		"CHECK": False,
-		"DREAM": False}
-	proceed = goNext.get(str.upper(userInput))
-	return proceed
-
-
-# Displays appropriate story text according to player's input.
-def ameliaOptions(userInput, dream, milk, level, hasWpn, weapon):
-	sceneOptions = {"TALK":
-"""Talk to something""",
-		"STARE":
-"""Stare at something""",
-		"LOOK":
-"""Look, more something""",
-		"LEAVE":
-"""Leave with something""",
-		"DREAM": "The plushie can't save you here, coward."}
-	print("""
-------------------------------
-""")
-	if str.upper(userInput) == "CHECK":
-		statusCheck(milk, level, hasWpn, weapon)
-	elif str.upper(userInput) == "HELP":
-		commandList(dream)
-	else:
-		print(sceneOptions.get(str.upper(userInput)))
-
-
-# Boss fight scene.
-def ameliaFight(milk, level, won, waitTime):
-	print("""
-------------------------------
-""")
-	if level >= 10:
-		print("""Here is the winning text.
-""")
-		milk = milk + 20
 		won = True
 	else:
 		print("""Here is the losing text.
@@ -1820,55 +1754,6 @@ while bossDead == False:
 			collectedMilk, bossDead = milkBeastFight(collectedMilk, milkLevel, bossDead, cinematicTime)
 		else:
 			collectedMilk = milkBeastOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
-			print("")
-			if nextScene == False:
-				time.sleep(entryTime)
-				entry = input("Enter your choice: ")
-				entry = tryAgain(entry)
-			else:
-				time.sleep(cinematicTime)
-
-# Resets the check to see if the boss is dead for the next area.
-bossDead = False
-
-# Loops area until Amelia has been beaten by the player.
-while bossDead == False:
-	nextScene = False
-	churchOpen(entryTime)
-	print("")
-	entry = input("Enter your choice: ")
-	entry = tryAgain(entry)
-
-	while nextScene == False:
-		nextScene = churchNext(entry)
-		if str.upper(entry) == "DREAM":
-			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
-			print("")
-			churchOpen(entryTime)
-			print("")
-			entry = input("Enter your choice: ")
-			entry = tryAgain(entry)
-		else:
-			collectedMilk = churchOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
-			print("")
-			if nextScene == False:
-				time.sleep(entryTime)
-				entry = input("Enter your choice: ")
-				entry = tryAgain(entry)
-			else:
-				time.sleep(cinematicTime)
-
-	nextScene = False
-	ameliaOpen(entryTime)
-	entry = input("Enter your choice: ")
-	entry = tryAgain(entry)
-
-	while nextScene == False:
-		nextScene = ameliaNext(entry)
-		if str.upper(entry) == "FIGHT":
-			collectedMilk, bossDead = ameliaFight(collectedMilk, milkLevel, bossDead, cinematicTime)
-		else:
-			collectedMilk = ameliaOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 			print("")
 			if nextScene == False:
 				time.sleep(entryTime)
