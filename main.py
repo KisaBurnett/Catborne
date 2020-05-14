@@ -842,7 +842,17 @@ good, is it?"""}
 
 # Transitions to the Gasclaw boss arena.
 def gasclawOpen(waitTime):
-	print("""Here is the opening text for Gasclaw.
+	print("""You pass through a few dark alleys and emerge in a graveyard shaded from the
+moonlight by gnarled oak trees. A cold wind blows through the branches and makes
+them creak and sway. But more chilling than the air is the tall figure of a cat,
+hacking at a grotesque fallen beast with a bloodied ax. His wide-brimmed hat, scarf,
+and coat are splattered with old and new blood.
+
+"Rats all over the shop," the cat mutters darkly. "And not enough milk to spare."
+
+Once his prey stops twitching, the cat lifts his head and turns to snarl at you.
+
+
 """)
 	time.sleep(waitTime)
 
@@ -870,7 +880,8 @@ def gasclawOptions(userInput, dream, milk, level, hasWpn, weapon):
 		"LOOK":
 """Look, more something""",
 		"LEAVE":
-"""Leave with something"""}
+"""Leave with something""",
+		"DREAM": "The plushie can't save you here, coward."}
 	print("""
 ------------------------------
 """)
@@ -979,7 +990,8 @@ def milkBeastOptions(userInput, dream, milk, level, hasWpn, weapon):
 		"LOOK":
 """Look, more something""",
 		"LEAVE":
-"""Leave with something"""}
+"""Leave with something""",
+		"DREAM": "The plushie can't save you here, coward."}
 	print("""
 ------------------------------
 """)
@@ -1088,7 +1100,8 @@ def ameliaOptions(userInput, dream, milk, level, hasWpn, weapon):
 		"LOOK":
 """Look, more something""",
 		"LEAVE":
-"""Leave with something"""}
+"""Leave with something""",
+		"DREAM": "The plushie can't save you here, coward."}
 	print("""
 ------------------------------
 """)
@@ -1197,7 +1210,8 @@ def nomOptions(userInput, dream, milk, level, hasWpn, weapon):
 		"LOOK":
 """Look, more something""",
 		"LEAVE":
-"""Leave with something"""}
+"""Leave with something""",
+		"DREAM": "The plushie can't save you here, coward."}
 	print("""
 ------------------------------
 """)
@@ -1306,7 +1320,8 @@ def nurseOptions(userInput, dream, milk, level, hasWpn, weapon):
 		"LOOK":
 """Look, more something""",
 		"LEAVE":
-"""Leave with something"""}
+"""Leave with something""",
+		"DREAM": "The plushie can't save you here, coward."}
 	print("""
 ------------------------------
 """)
@@ -1415,7 +1430,8 @@ def moonOptions(userInput, dream, milk, level, hasWpn, weapon):
 		"LOOK":
 """Look, more something""",
 		"LEAVE":
-"""Leave with something"""}
+"""Leave with something""",
+		"DREAM": "The plushie can't save you here, coward."}
 	print("""
 ------------------------------
 """)
@@ -1724,14 +1740,7 @@ while bossDead == False:
 
 	while nextScene == False:
 		nextScene = gasclawNext(entry)
-		if str.upper(entry) == "DREAM":
-			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
-			print("")
-			gasclawOpen(entryTime)
-			print("")
-			entry = input("Enter your choice: ")
-			entry = tryAgain(entry)
-		elif str.upper(entry) == "FIGHT":
+		if str.upper(entry) == "FIGHT":
 			collectedMilk, bossDead = gasclawFight(collectedMilk, milkLevel, bossDead, cinematicTime)
 		else:
 			collectedMilk = gasclawOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
@@ -1780,14 +1789,7 @@ while bossDead == False:
 
 	while nextScene == False:
 		nextScene = milkBeastNext(entry)
-		if str.upper(entry) == "DREAM":
-			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
-			print("")
-			milkBeastOpen(entryTime)
-			print("")
-			entry = input("Enter your choice: ")
-			entry = tryAgain(entry)
-		elif str.upper(entry) == "FIGHT":
+		if str.upper(entry) == "FIGHT":
 			collectedMilk, bossDead = milkBeastFight(collectedMilk, milkLevel, bossDead, cinematicTime)
 		else:
 			collectedMilk = milkBeastOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
@@ -1836,14 +1838,7 @@ while bossDead == False:
 
 	while nextScene == False:
 		nextScene = ameliaNext(entry)
-		if str.upper(entry) == "DREAM":
-			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
-			print("")
-			ameliaOpen(entryTime)
-			print("")
-			entry = input("Enter your choice: ")
-			entry = tryAgain(entry)
-		elif str.upper(entry) == "FIGHT":
+		if str.upper(entry) == "FIGHT":
 			collectedMilk, bossDead = ameliaFight(collectedMilk, milkLevel, bossDead, cinematicTime)
 		else:
 			collectedMilk = ameliaOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
@@ -1892,14 +1887,7 @@ while bossDead == False:
 
 	while nextScene == False:
 		nextScene = nomNext(entry)
-		if str.upper(entry) == "DREAM":
-			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
-			print("")
-			nomOpen(entryTime)
-			print("")
-			entry = input("Enter your choice: ")
-			entry = tryAgain(entry)
-		elif str.upper(entry) == "FIGHT":
+		if str.upper(entry) == "FIGHT":
 			collectedMilk, bossDead = nomFight(collectedMilk, milkLevel, bossDead, cinematicTime)
 		else:
 			collectedMilk = nomOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
@@ -1948,14 +1936,7 @@ while bossDead == False:
 
 	while nextScene == False:
 		nextScene = nurseNext(entry)
-		if str.upper(entry) == "DREAM":
-			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
-			print("")
-			nurseOpen(entryTime)
-			print("")
-			entry = input("Enter your choice: ")
-			entry = tryAgain(entry)
-		elif str.upper(entry) == "FIGHT":
+		if str.upper(entry) == "FIGHT":
 			collectedMilk, bossDead = nurseFight(collectedMilk, milkLevel, bossDead, cinematicTime)
 		else:
 			collectedMilk = nurseOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
@@ -2004,14 +1985,7 @@ while bossDead == False:
 
 	while nextScene == False:
 		nextScene = moonNext(entry)
-		if str.upper(entry) == "DREAM":
-			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
-			print("")
-			moonOpen(entryTime)
-			print("")
-			entry = input("Enter your choice: ")
-			entry = tryAgain(entry)
-		elif str.upper(entry) == "FIGHT":
+		if str.upper(entry) == "FIGHT":
 			collectedMilk, bossDead = moonFight(collectedMilk, milkLevel, bossDead, cinematicTime)
 		else:
 			collectedMilk = moonOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
