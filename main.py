@@ -895,9 +895,19 @@ He's clearly not the chatty type.""",
 """Stare? You want to stare at something with a crazed ax murderer trying to kill you?
 Pick something smarter than that, you lunatic.""",
 		"LOOK":
-"""Look, more something""",
+"""All of your attention is on the blood-thirsty Father Gasclaw doing his best to
+turn you into minced meat. You long for ugly, squeaky mouse beasts. At least they
+couldn't--oh, dear God, he was able to jump halfway across the graveyard to try
+and slam his ax into your face just now. How did he do that?
+
+Do something, hurry!""",
 		"LEAVE":
-"""Leave with something""",
+"""You attempt to make a run for it, but Father Gasclaw streaks around you at a
+shocking pace and blocks your path. He then attempts to hit you with his ax as
+punishment, and the blade comes so close to you that it snips off some of your
+whiskers.
+
+This is bad.""",
 		"DREAM": "The plushie can't save you here, coward."}
 	print("""
 ------------------------------
