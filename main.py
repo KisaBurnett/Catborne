@@ -1514,8 +1514,7 @@ Who cares, it's a nice last fantasy for you to entertain.
 
 # Returns to the Catnap Dream.
 def dreamReturnOpen(waitTime):
-	print("""
-You open your eyes back in the Catnap Dream to find the plushie and ghost kittens
+	print("""You open your eyes back in the Catnap Dream to find the plushie and ghost kittens
 awaiting as usual. Everything is as it should be.
 
 Except for the fact the chapel at the top of the hill is on fire.
@@ -1566,7 +1565,15 @@ a patch of dead grass behind a headstone. You pick it up to inspect it, then put
 it in your pocket for later. One never knows when mysterious things may come in
 handy later.""",
 		"LEAVE":
-"""Leave with something"""}
+"""You walk over to the Yhowlnam headstone to return to the city, but find yourself
+unable to transport the way you have in the past. Is it broken? You approach the
+plushie and ask her about it, and she smiles at you.
+
+"Beloved Mouser," she says, "you may return. But only to the beginning. First, we
+must end."
+
+You panic a little. Are you about to fight this plushie as the final boss? Please,
+not her! Your only friend! Besides the kittens, of course; they're also cool with you."""}
 	print("""
 ------------------------------
 """)
@@ -1585,13 +1592,61 @@ handy later.""",
 
 
 def endNoCord(waitTime):
-	print("""Here is the ending with no umbilical cord.""")
+	print(""" "You have fought well, good Mouser," the plushie says sweetly as she takes your paws.
+"Please. Rest now. And then awaken to begin this night again."
+
+The plushie sits you down on the grass, and tenderly holds you as you drift off
+to sleep. You wonder if you'll have a grand epiphany about what everything meant,
+and finally understand why you came here, and why you fought such foul creatures.
+""")
+	time.sleep(waitTime)
+	print("""You don't. And you won't. You simply slip away, just as you will one day in the
+real world. No respawn. No explanation of what it all meant.
+""")
+	time.sleep(waitTime)
+	print("""It only means what you decide it does.
+""")
+	time.sleep(waitTime)
+	print("""Even if it means nothing at all.
+""")
+	time.sleep(waitTime)
+	print("""Goodnight, Mouser.
+""")
 	time.sleep(waitTime)
 
 
 
 def endCord(waitTime):
-	print("""Here is the ending with the umbilical cord.""")
+	print(""" "You have fought well, good Mouser," the plushie says sweetly. "Please. Bring out
+the umbilical cord you discovered behind the grave."
+
+Oh, dear God, that's what that was?! And you touched it with your bare paws?!
+
+You quickly dig the cord out of your pocket and toss it to the plushie while making
+as little contact with it as possible. She catches it deftly, and holds it to her
+heart.
+
+"This is a very special thing," the plushie says. "It will make everything right
+again." She bows to you gratefully. "Rest now, sweet Mouser."
+
+Slightly disturbed, you settle down next to the kittens and curl up to go to sleep.
+You wonder if you'll have a grand epiphany about what everything meant, and finally
+understand why you came here, and why you fought such foul creatures.
+""")
+	time.sleep(waitTime)
+	print("""You do. But it comes as a flood of maddening Eldritch knowledge. Madness consumes
+you, and you slip away in the terrifying grip of wisdom you never wanted. Too
+insane to make sense of what you've gained.
+""")
+	time.sleep(waitTime)
+	print("""Just as you likely never will in the real world.""")
+	time.sleep(waitTime)
+	print("""You will simply cease to be, with no respawn, and no chance to put the terrible 
+truth to any tangible use.
+""")
+	time.sleep(waitTime)
+	print("""Goodnight, Mouser.
+""")
 	time.sleep(waitTime)
 
 
