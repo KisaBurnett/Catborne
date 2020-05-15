@@ -1345,7 +1345,36 @@ You realize a bit late that "curiosity killed the cat" is a saying for a reason.
 
 # Transitions to the Purrgo's Wet Nurse boss arena.
 def nurseOpen(longTime, shortTime):
-	print("""Here is the opening text for Purrgo's Wet Nurse.
+	print("""The melancholy cries of the thus-unseen kitten lead you to an open-air loft at
+the top of a tower. Moonlight floods the chamber unhindered, and as you look around,
+you realize...
+
+This is definitely a boss arena.
+
+Instinct tells you to run, but a baby carriage at the other end of the room catches
+your eye. You find yourself inexplicably drawn to it, but before you get close
+enough to peer inside...
+""")
+ 	time.sleep(longTime)
+	print("""...a nine-foot-tall winged figure in black robes drops down
+between you and the buggy. There's no face within the hood, but cat ears poke up
+through holes at the top of the fabric, and a skeletal cat tail extends from the
+back of the figure's robes.
+
+You aren't surprised this time when the figure's name appears in your head.
+""")
+	time.sleep(longTime)
+	print("""Purrgo's Wet Nurse""")
+	time.sleep(longTime)
+	print("""
+The thought of this monstrosity nursing anything is too harrowing for your frail
+mind to handle, so you pretend you never saw that.
+
+You lift your greatsword to show you're not to be trifled with.
+
+The figure responds by whipping out six arms gripping six jagged blades.
+
+...oh.
 """)
 	time.sleep(shortTime)
 
@@ -1374,7 +1403,7 @@ def nurseOptions(userInput, dream, milk, level, hasWpn, weapon):
 """Look, more something""",
 		"LEAVE":
 """Leave with something""",
-		"DREAM": "The plushie can't save you here, coward."}
+		"DREAM": "The plushie can't save you here, coward. You're in this for the long haul."}
 	print("""
 ------------------------------
 """)
@@ -1411,7 +1440,7 @@ Here is the intro to the fight.
 	return milk, won
 
 
-################--DREAM RETURN--###############
+################--DREAM RETURN--####################
 
 
 # Returns to the Catnap Dream.
