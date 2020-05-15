@@ -1228,6 +1228,14 @@ Deflated, but alive, you pick up the bottles of milk and slink out of the church
 to proceed to the next area. Maybe if you come across another church, you should
 stop in to the confessional for a quick absolution.
 """)
+		time.sleep(waitTime)
+		print("""On your way out, you find an ornately carved greatsword that's as long as you are
+tall. It looks like a holy relic from an age gone past. You discard your hammer,
+and scoop up the new weapon, expecting it to be somewhat lighter.
+
+It isn't. But it is more balanced and prettier to look at. So you decide it's
+worth the exchange after all.
+""")
 	else:
 		milk = lossPunish
 		won = False
@@ -1259,7 +1267,11 @@ Looking up, you see the moon has grown to an unsettling size overhead. That expl
 why the streets are so bright now.
 
 Something ominous lies ahead. But at least you find another lantern with the friendly
-ghost kitty committee waiting to greet you. They're always a welcome sight.""")
+ghost kitty committee waiting to greet you. They're always a welcome sight. You
+can also hear the sound of rats scurrying around nearby, which means a steady
+supply of prey. Is your night finally looking up?
+
+Spoiler: No.""")
 	time.sleep(waitTime)
 
 
@@ -1287,9 +1299,19 @@ appearance.
 
 Since petting kittens can lower blood pressure, you spend a while doting on your
 little friends. They help you momentarily forget you still don't know how you got
-here, or what your ultimate goal is.""",
+here, or what your ultimate goal is.
+
+Be honest, though; isn't that how you live your life every other day?""",
 		"FIGHT":
-"""Fight something""",
+"""You follow the sound and scent of the hideous giant mousies lurking nearby. It's
+milkbath time, baby. So eager for the rewards are you that you don't even care
+that your prey-to-be is a whole family of rats.
+
+You put your new greatsword to work by eliminating every member of the rat colony
+with no remorse. You're already a well-established butcher, so why care at this point?
+
+Seven bottles of milk serve as your reward. And you hear another group of rats
+on its way. Truly, this is the land of milk and honey. But without the honey.""",
 		"STARE":
 """Stare something""",
 		"LOOK":
