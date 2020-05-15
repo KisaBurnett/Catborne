@@ -922,8 +922,11 @@ This is bad.""",
 
 # Boss fight scene.
 def gasclawFight(milk, level, won, waitTime):
+	bossReward = 8
+	lossPunish = 0
 	print("""
 ------------------------------
+
 You spend some time running around the graveyard and whimpering as you frantically
 dodge attack after attack. Finally, you sum up the courage to start dealing blows
 of your own. You start feeling pretty good about yourself, and then Gasclaw shoots
@@ -933,6 +936,8 @@ But you continue to survive by the skin of your sharp kitty teeth.
 """)
 	time.sleep(waitTime)
 	if level > 3:
+		milk = milk + bossReward
+		won = True
 		print("""Just as you think you're wearing him down, Father Gasclaw transforms into a hulking,
 hideous version of himself, and casts aside his weapons in favor of attacking you
 with his bare claws. His roars, thankfully, drown out the sound of your panicked
@@ -959,9 +964,9 @@ weapon.
 You discard your old sword, and swing your new hammer up onto your shoulder. Man,
 if only you could take a selfie right now.
 """)
-		milk = milk + 8
-		won = True
 	elif level == 1:
+		milk = lossPunish
+		won = False
 		print("""Sadly, this success story doesn't last for long. You fight valiantly for a few
 minutes more, only to succumb to the unending brutality Father Gasclaw tirelessly
 rains down upon you.
@@ -971,9 +976,9 @@ and consume the milk that rolls out from under you. What a jerk.
 
 ----------YOU DIED----------
 """)
-		milk = 0
-		won = False
 	else:
+		milk = lossPunish
+		won = False
 		print("""Just as you think you're wearing him down, Father Gasclaw transforms into a hulking,
 hideous version of himself, and casts aside his weapons in favor of attacking you
 with his bare claws. His roars, thankfully, drown out the sound of your panicked
@@ -985,8 +990,6 @@ and consume the milk that rolls out from under you. What a jerk.
 
 ----------YOU DIED----------
 """)
-		milk = 0
-		won = False
 	time.sleep(waitTime)
 	return milk, won
 
@@ -1172,18 +1175,23 @@ Seriously, stop trying to get out of these fights."""}
 
 # Boss fight scene.
 def milkBeastFight(milk, level, won, waitTime):
+	bossReward = 12
+	lossPunish = 0
 	print("""
 ------------------------------
+
+Here is the intro to the fight.
 """)
 	if level >= 6:
+		milk = bossReward
+		won = True
 		print("""Here is the winning text.
 """)
-		milk = milk + 12
-		won = True
 	else:
+		milk = lossPunish
+		won = False
 		print("""Here is the losing text.
 """)
-		milk = 0
 	time.sleep(waitTime)
 	return milk, won
 
@@ -1282,18 +1290,23 @@ def nurseOptions(userInput, dream, milk, level, hasWpn, weapon):
 
 # Boss fight scene.
 def nurseFight(milk, level, won, waitTime):
+	bossReward = 20
+	lossPunish = 0
 	print("""
 ------------------------------
+
+Here is the intro to the fight.
 """)
 	if level >= 10:
+		milk = bossReward
+		won = True
 		print("""Here is the winning text.
 """)
-		milk = milk + 20
-		won = True
 	else:
+		milk = lossPunish
+		won = False
 		print("""Here is the losing text.
 """)
-		milk = 0
 	time.sleep(waitTime)
 	return milk, won
 
