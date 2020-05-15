@@ -1252,7 +1252,14 @@ At least you die knowing you fed a hungry cat.
 
 # Enters Purrgo's Loft.
 def loftOpen(waitTime):
-	print("""Something""")
+	print("""The traversal to the next area in Yhowlnam is decidedly more bizarre than your
+prior treks. You notice the buildings around you taking on an almost surrealist
+appearance, with strange angles, stairways to nowhere, and even upside-down windows.
+Looking up, you see the moon has grown to an unsettling size overhead. That explains
+why the streets are so bright now.
+
+Something ominous lies ahead. But at least you find another lantern with the friendly
+ghost kitty committee waiting to greet you. They're always a welcome sight.""")
 	time.sleep(waitTime)
 
 
