@@ -1169,7 +1169,7 @@ Now would be a very good time to fight back.""",
 
 Try using that new hammer of yours or something, at least.""",
 		"DREAM":
-"""The plushie can't save you here either, coward.
+"""The plushie can't save you here, coward.
 
 Seriously, stop trying to get out of these fights."""}
 	print("""
@@ -1190,17 +1190,41 @@ def milkBeastFight(milk, level, won, waitTime):
 	print("""
 ------------------------------
 
-Here is the intro to the fight.
+Determined to start acting like the hero you're destined to be, you charge out to
+meet the Milk-Starved Beast with the devastating force of your hammer.
+
+Unfortunately, this monster is a hell of a lot faster than your hammer swings.
+You do a number on the poor, defenseless floor, but only manage to graze the beast
+every so often. You'll need to be tactical here.
 """)
 	if level >= 6:
 		milk = bossReward
 		won = True
-		print("""Here is the winning text.
+		print("""You snap the hammer apart to use the sword, hanging the head of the hammer on your
+back to keep it out of the way. It's a sacrifice of strength, but it grants you
+more dexterity, and the ability to actually hit the stupid monster.
+
+As you learn the attack patterns of the beast, you realize that some of its strikes
+give you small windows of potential hammer time. You pounce on these with the vigor
+of a born hunter, and gradually beat the Milk-Starved Beast to a pulp.
+""")
+		time.sleep(waitTime)
+		print("""The creature finally falls with a harrowing death rattle, and twelve bottles of
+milk roll out from beneath its broken body. It suddenly occurs to you that you just
+brutalized a starving cat to death with a hammer.
+
+Good job, hero.
+
+Deflated, but alive, you pick up the bottles of milk and slink out of the church
+to proceed to the next area. Maybe if you come across another church, you should
+stop in to the confessional for a quick absolution.
 """)
 	else:
 		milk = lossPunish
 		won = False
 		print("""Here is the losing text.
+
+----------YOU DIED----------
 """)
 	time.sleep(waitTime)
 	return milk, won
@@ -1316,6 +1340,8 @@ Here is the intro to the fight.
 		milk = lossPunish
 		won = False
 		print("""Here is the losing text.
+
+----------YOU DIED----------
 """)
 	time.sleep(waitTime)
 	return milk, won
