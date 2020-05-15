@@ -1372,7 +1372,7 @@ mind to handle, so you pretend you never saw that.
 
 You lift your greatsword to show you're not to be trifled with.
 
-The figure responds by whipping out six arms gripping six jagged blades.
+The Nurse responds by whipping out six arms gripping six jagged blades.
 
 ...oh.
 """)
@@ -1396,7 +1396,16 @@ def nurseNext(userInput):
 # Displays appropriate story text according to player's input.
 def nurseOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
-"""Talk to something""",
+"""You attempt to strike up a conversation with the Nurse about the baby for whom
+she's providing. Maybe complimenting her baby will endear you to her.
+
+It doesn't. And we should have a serious discussion about your assumption that you
+can simply flatter your way out of a confrontation with a female. It's this narrator's
+opinion that you deserve all the flesh wounds you suffer when she charges you with
+a whirlwind of blade slashes.
+
+Just kidding. You probably tried this with the other major foes you faced, which
+means it isn't that you're sexist; you just don't learn.""",
 		"STARE":
 """Stare at something""",
 		"LOOK":
