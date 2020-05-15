@@ -1356,10 +1356,10 @@ your eye. You find yourself inexplicably drawn to it, but before you get close
 enough to peer inside...
 """)
 	time.sleep(longTime)
-	print("""...a nine-foot-tall winged figure in black robes drops down
-between you and the buggy. There's no face within the hood, but cat ears poke up
-through holes at the top of the fabric, and a skeletal cat tail extends from the
-back of the figure's robes.
+	print("""
+...a nine-foot-tall winged figure in black robes drops down between you and the
+buggy. There's no face within the hood, but cat ears poke up through holes at the
+top of the fabric, and a skeletal cat tail extends from the back of the figure's robes.
 
 You aren't surprised this time when the figure's name appears in your head.
 """)
@@ -1435,7 +1435,7 @@ way out of this nursery of horrors.""",
 
 # Boss fight scene.
 def nurseFight(milk, level, won, waitTime):
-	bossReward = 20
+	bossReward = 18
 	lossPunish = 0
 	print("""
 ------------------------------
@@ -1460,7 +1460,7 @@ You have to actively resist the urge to throw your greatsword on the ground so y
 can stomp off to the sidelines to sulk. Why is everything so awful all the time?
 """)
 	time.sleep(waitTime)
-	if level >= 10:
+	if level >= 9:
 		milk = bossReward
 		won = True
 		print("""Little do those Nurses realize you've been training for this all night.
@@ -1813,7 +1813,7 @@ if hasWeapon:
 			entry = tryAgain(entry)
 		else:
 			time.sleep(cinematicTime)
-			dreamTransition(entryTime)
+			dreamTransition(cinematicTime)
 else:
 	nextScene = False
 	print("""----------YOU DIED----------
@@ -2066,9 +2066,9 @@ while nextScene == False:
 			time.sleep(cinematicTime)
 
 if umbilicalCord:
-	endCord(entryTime)
+	endCord(cinematicTime)
 else:
-	endNoCord(entryTime)
+	endNoCord(cinematicTime)
 
 # Prompts player for last time before exiting.
 print("Play again?")
