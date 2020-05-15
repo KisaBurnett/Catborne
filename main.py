@@ -360,7 +360,10 @@ outside.""",
 		print(sceneOptions.get(str.upper(userInput)))
 
 
-# Transitions to clinic entrance.
+####################--CLINIC LOBBY--###########################
+
+
+# Transitions to clinic entrance first time.
 def clinicEntrance(waitTime):
 	print("""You go through the open door to the clinic lobby, and discover it's just
 as horrible and dark as the room in which you awoke. Supplies and broken furniture
@@ -526,6 +529,9 @@ here without some fancy claw-fu fighting.""",
 		print(sceneOptions.get(str.upper(userInput)))
 
 
+######################--EXIT CLINIC--###########################
+
+
 # Transitions to next gameplay branch.
 def sceneFourOpen(waitTime):
 	print("""You exit the clinic, and walk out onto a grim cobblestone street. The pale glow
@@ -592,6 +598,9 @@ The hunt is on.""",
 		commandList(dream)
 	else:
 		print(sceneOptions.get(str.upper(userInput)))
+
+
+###################--FIRST DREAM VISIT--########################
 
 
 def dreamTransition(waitTime):
