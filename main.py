@@ -436,7 +436,7 @@ out like your tail had just been caught beneath a rocking chair.
 Luckily, your sword is less disappointing than you. The blade plunges through
 the rat's flesh, cutting deep and sending a fountain of dark blood into the air.
 The rat gurgles and flails, then collapses in a twitching heap on the floor. As
-the life leaves its eyes, a small bottle of milk rolls out from under it. You
+the life leaves its eyes, two small bottles of milk rolls out from under it. You
 pick it up, and know instinctively it will benefit you later.
 
 You watch the rat bleed to death, not about to turn your back on it until you know
@@ -1222,7 +1222,15 @@ stop in to the confessional for a quick absolution.
 	else:
 		milk = lossPunish
 		won = False
-		print("""Here is the losing text.
+		print("""You snap the hammer apart to use the sword, hanging the head of the hammer on your
+back to keep it out of the way. While you fumble with your fancy trick weapon,
+the Milk-Starved Beast seizes the opportunity to zip in and eviscerate you.
+
+You crumple to the ground, and the Milk-Starved Beast shrieks and continues to
+slash and maul you as you die. The last thing you see is the monster gleefully
+slurping up all the milk you drop.
+
+At least you die knowing you fed a hungry cat.
 
 ----------YOU DIED----------
 """)
