@@ -1655,6 +1655,11 @@ while bossDead == False:
 # Resets the check to see if the boss is dead for the next area.
 bossDead = False
 
+# Changes the weapon to the great sword after Milk-Starved Beast defeat.
+hammer = False
+greatSword = True
+heldWeapon = "3"
+
 # Loops area until Purrgo's Wet Nurse has been beaten by the player.
 while bossDead == False:
 	nextScene = False
@@ -1703,12 +1708,6 @@ while bossDead == False:
 
 # Resets the check to see if the boss is dead for the next area.
 bossDead = False
-
-# Changes the weapon to the great sword after Nurse defeat.
-hammer = False
-greatSword = True
-heldWeapon = "3"
-
 nextScene = False
 
 # Return to the Catnap Dream for the final sequence.
