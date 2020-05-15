@@ -1317,7 +1317,12 @@ on its way. Truly, this is the land of milk and honey. But without the honey."""
 but then dissolve into adorable kitty giggles. If only you could put them in your
 pockets, you would keep them forever.""",
 		"LOOK":
-"""Look at something""",
+"""The strange architecture around you makes you uneasy, and there's an undeniable
+sense of impending doom in the air. Perhaps it's the giant moon in the sky, or the
+odd geometry, or the... distant sound of a kitten crying?
+
+What is that? You hadn't heard that before. It isn't the ghost kittens, it's something
+in the distance, and has an eerie tone to it.""",
 		"LEAVE":
 """Leave with something"""}
 	print("""
