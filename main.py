@@ -1069,9 +1069,19 @@ Which is good, because you need all the redemption you can get, you murderer. Fa
 Gasclaw was clergy. God probably isn't crazy about milk-guzzling drifters cutting
 down priests.""",
 		"LOOK":
-"""Look at something""",
+"""The chapel is as grim and oppressive as the rest of Yhowlnam, but the light from
+the lantern in the center of the room and the candles positioned along the walls
+is somehow reassuring. The dweller mutters to himself as he obsessively cleans his
+jars with his cloak. Your kitten friends yawn and purr sleepily around the lantern.
+
+It's surprisingly peaceful here, even though you can still hear the rats milling
+about outside. You're tempted to curl up and take a nap. Apparently, cats really
+can sleep anywhere.""",
 		"LEAVE":
-"""Leave with something"""}
+"""Despite the overwhelming temptation to settle in for a nice catnap with the ghost
+kittens, you know this hunt will never end if you don't get out there and continue
+the bloodbath. You give a parting wave to the kittens, and to the dweller, and set
+out down the path outside the chapel."""}
 	print("""
 ------------------------------
 """)
@@ -1087,10 +1097,15 @@ down priests.""",
 
 
 # Transitions to the Milk-Starved Beast boss arena.
-def milkBeastOpen(waitTime):
-	print("""Here is the opening text for the Milk-Starved Beast.
+def milkBeastOpen(longTime, shortTime):
+	print("""The road you follow takes you to a more derelict section of Yhowlnam, scarred by
+burn marks from what must have been a widespread fire. You wind up at yet another
+church. They seem popular in Yhowlnam. This one is far less reassuring than the
+chapel maintained by the dweller, however.
+
+
 """)
-	time.sleep(waitTime)
+	time.sleep(shortTime)
 
 
 # Determines whether player should be prompted again for a command.
@@ -1197,10 +1212,10 @@ def loftOptions(userInput, dream, milk, level, hasWpn, weapon):
 
 
 # Transitions to the Purrgo's Wet Nurse boss arena.
-def nurseOpen(waitTime):
+def nurseOpen(longTime, shortTime):
 	print("""Here is the opening text for Purrgo's Wet Nurse.
 """)
-	time.sleep(waitTime)
+	time.sleep(shortTime)
 
 
 # Determines whether player should be prompted again for a command.
@@ -1634,7 +1649,7 @@ while bossDead == False:
 				time.sleep(cinematicTime)
 
 	nextScene = False
-	milkBeastOpen(entryTime)
+	milkBeastOpen(cinematicTime, entryTime)
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
@@ -1688,7 +1703,7 @@ while bossDead == False:
 				time.sleep(cinematicTime)
 
 	nextScene = False
-	nurseOpen(entryTime)
+	nurseOpen(cinematicTime, entryTime)
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
