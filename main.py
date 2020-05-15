@@ -1103,7 +1103,30 @@ burn marks from what must have been a widespread fire. You wind up at yet anothe
 church. They seem popular in Yhowlnam. This one is far less reassuring than the
 chapel maintained by the dweller, however.
 
+An altar lies on the opposite side of the cavernous sanctuary, and your sharp cat
+eyes can see a strange shape huddled down in front of it. You could mistake it for
+a large corpse at first, but as you draw nearer, it stirs and begins crawling your
+way. For a few seconds, you're able to pretend it's friendly.
+""")
+	time.sleep(longTime)
+	print("""But then it rears up onto its hind legs and gives a scream that is most definitely
+not friendly. It's a giant, cat, clearly starved beyond what a normal animal could
+survive. You initially think the billowing material over its head is a red cloak,
+but as the beast continues to get closer, you realize it's actually the skin from
+its back, peeled from the meat and tossed over its head like a veil.
 
+Once again, you find you magically know this creature's name.
+""")
+	time.sleep(longTime)
+	print("The Milk-Starved Beast.")
+	time.sleep(longTime)
+	print("""
+You briefly wonder why that keeps happening, and then try to nope out of the church,
+like any sane person would. Sadly, the way is now blocked. And the Milk-Starved
+Beast turns out to be surprisingly fast when it sweeps in to strike at you with
+its horrible claws.
+
+Good luck in there, kid.
 """)
 	time.sleep(shortTime)
 
@@ -1132,7 +1155,10 @@ def milkBeastOptions(userInput, dream, milk, level, hasWpn, weapon):
 """Look, more something""",
 		"LEAVE":
 """Leave with something""",
-		"DREAM": "The plushie can't save you here, coward."}
+		"DREAM":
+"""The plushie can't save you here either, coward.
+
+Seriously, stop trying to get out of these fights."""}
 	print("""
 ------------------------------
 """)
