@@ -1514,7 +1514,15 @@ Who cares, it's a nice last fantasy for you to entertain.
 
 # Returns to the Catnap Dream.
 def dreamReturnOpen(waitTime):
-	print("""Something""")
+	print("""
+You open your eyes back in the Catnap Dream to find the plushie and ghost kittens
+awaiting as usual. Everything is as it should be.
+
+Except for the fact the chapel at the top of the hill is on fire.
+
+...wait, what?
+
+Why the hell doesn't the plushie look concerned by this?""")
 	time.sleep(waitTime)
 
 
@@ -1535,13 +1543,28 @@ def dreamReturnNext(userInput):
 # Displays appropriate story text according to player's input.
 def dreamReturnOptions(userInput, dream, milk, level, hasWpn, weapon, cord):
 	sceneOptions = {"TALK":
-"""Talk something""",
+"""You approach the plushie and ask her what happened. She tilts her head.
+
+"You have slain the Nightmare, good Mouser," she replies. "This Night will end.
+And the Hunt will begin again. You have done well."
+
+That... explains nothing, but you're not surprised at this point.""",
 		"FIGHT":
-"""Fight something""",
+"""You feel no urge to fight anything. In fact, you contemplate having a nice nap
+next to the spectral kittens at the lantern.""",
 		"STARE":
-"""Stare something""",
+"""You stare at the plushie, and she stares back at you in return.
+
+Ah, how you have missed this. No one stares like your beloved plushie.""",
 		"LOOK":
-"""Look at something and find the umbilical cord.""",
+"""You look around the garden for any sign of who or what could have started the
+fire up on the hill. It's unthinkable the plushie could have done such a thing.
+She is best girl, after all.
+
+You never discover the cause of the fire, but you do discover a strange cord in
+a patch of dead grass behind a headstone. You pick it up to inspect it, then put
+it in your pocket for later. One never knows when mysterious things may come in
+handy later.""",
 		"LEAVE":
 """Leave with something"""}
 	print("""
