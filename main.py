@@ -1152,13 +1152,22 @@ def milkBeastNext(userInput):
 # Displays appropriate story text according to player's input.
 def milkBeastOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
-"""Talk to something""",
+"""You open your mouth to speak, and are almost immediately slapped across the church.
+
+For a starving beast, that thing certainly is strong.""",
 		"STARE":
-"""Stare at something""",
+"""That's quite possibly the worst thing you could do right now.""",
 		"LOOK":
-"""Look, more something""",
+"""You barely have time to look at anything before the Milk-Starved beast is charging
+in like a rabid hell beast. It screams and swings its claws at you with enough
+force to blow the tails of your coat back as you dodge away. It smashes its paws
+into the stone floor in frustration, and the rock cracks beneath it.
+
+Now would be a very good time to fight back.""",
 		"LEAVE":
-"""Leave with something""",
+"""You already tried that and it didn't work!
+
+Try using that new hammer of yours or something, at least.""",
 		"DREAM":
 """The plushie can't save you here either, coward.
 
