@@ -693,8 +693,8 @@ You stand back up to look at her curiously, and she gives a polite bow.""",
 
 # Displayed if player has collected milk.
 def dreamLeaveLevel(waitTime):
-	print(""""You have collected milk which can be used to increase your strength,"
-the plushie says. "I will channel them, and your power will grow."
+	print(""""You have collected milk which can be used to increase your strength," the plushie 
+says. "I will channel them, and your power will grow."
 
 The idea of becoming a walking tank excites you, and you nod eagerly. Unfortunately,
 it immediately becomes clear you underestimated what increasing your strength
