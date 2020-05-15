@@ -1053,12 +1053,21 @@ nibbling on dead grass, scratching at rocks, and generally being a nuisance.
 Your very heavy hammer makes very short work of all three. It also makes one hell
 of a satisfying mess. You survey the devastation like the mentally ill protagonist
 you are, and notice three more rats creeping out from a nearby sewer duct. You
-warn them that you'll be back with your hammer if they make noise.
+scoop up the milk dropped by the smashed rat corpses, and warn the newcomers that
+you'll be back with your hammer if they make noise.
 
 They give you the terrifyingly brainless stare only a rabid rodent can manage.
-It seems you can't intimidate the diseased. For now, you return to the chapel.""",
+It seems you can't intimidate the diseased.
+
+For now, you return to the chapel.""",
 		"STARE":
-"""Stare something""",
+"""You stare at the wee spectral kittens in their ghoulish cuddle puddle by the lamp.
+They squeak at you and bow their heads while pressing their paws together in prayer.
+You don't know what their prayers are, but you know they're praying for you.
+
+Which is good, because you need all the redemption you can get, you murderer. Father
+Gasclaw was clergy. God probably isn't crazy about milk-guzzling drifters cutting
+down priests.""",
 		"LOOK":
 """Look at something""",
 		"LEAVE":
