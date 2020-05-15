@@ -1313,7 +1313,9 @@ with no remorse. You're already a well-established butcher, so why care at this 
 Seven bottles of milk serve as your reward. And you hear another group of rats
 on its way. Truly, this is the land of milk and honey. But without the honey.""",
 		"STARE":
-"""Stare something""",
+"""You engage in a staring contest with the kittens. They match you for a while,
+but then dissolve into adorable kitty giggles. If only you could put them in your
+pockets, you would keep them forever.""",
 		"LOOK":
 """Look at something""",
 		"LEAVE":
