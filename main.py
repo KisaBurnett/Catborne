@@ -192,16 +192,16 @@ def sceneOneNext(userInput):
 # Displays appropriate story text according to player's input.
 def sceneOne(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
-"""'Where am I?' you ask the old cat.
+""" "Where am I? you ask the old cat.
 
 He chuckles in a raspy, unsettling tone.
 
-'All the Mousers ask the same thing when they wake,' he remarks. 'Not an
-original one to be found in the lot o' ye. Yer in Yhowlnam, Mouser.'
+"All the Mousers ask the same thing when they wake," he remarks. "Not an
+original one to be found in the lot o' ye. Yer in Yhowlnam, Mouser."
 
-He tosses a rusty and bloodied sword onto the floor by your bed. 'Best ye
-learn to use this,' he sneers as he backs out of the room. 'And watch yer
-back. The mousies are squeakin' loud this night.'
+He tosses a rusty and bloodied sword onto the floor by your bed. "Best ye
+learn to use this," he sneers as he backs out of the room. "And watch yer
+back. The mousies are squeakin' loud this night."
 
 Once the old cat is gone, you slowly sit up and reach to pick up the sword.
 It's then you realize your hand is a paw. A frantic inspection of yourself
@@ -219,8 +219,8 @@ You don't stand a chance against him like this.""",
 """You stare at the old cat in cold, inscrutable silence. He snorts at you
 and shakes his head.
 
-'Suit yerself,' he scoffs, starting out of the room. 'See if ye can make it
-through the jaws of the mousies on yer own.'
+"Suit yerself," he scoffs, starting out of the room. "See if ye can make it
+through the jaws of the mousies on yer own."
 
 Once the old cat is gone, you take hold of the bed's edge to pull yourself up.
 It's then you realize your hand is a paw. A frantic inspection of yourself
@@ -1046,7 +1046,17 @@ to how safe you are out there. Do take care, won't you?"
 He giggles nervously, and you give him an odd look as you slowly back away. Best
 to just leave this guy alone, you think.""",
 		"FIGHT":
-"""Fight something""",
+"""You walk outside in search of the rats you can hear getting up to no good. It
+doesn't take you long to find them. There are three milling outside the chapel,
+nibbling on dead grass, scratching at rocks, and generally being a nuisance.
+
+Your very heavy hammer makes very short work of all three. It also makes one hell
+of a satisfying mess. You survey the devastation like the mentally ill protagonist
+you are, and notice three more rats creeping out from a nearby sewer duct. You
+warn them that you'll be back with your hammer if they make noise.
+
+They give you the terrifyingly brainless stare only a rabid rodent can manage.
+It seems you can't intimidate the diseased. For now, you return to the chapel.""",
 		"STARE":
 """Stare something""",
 		"LOOK":
@@ -1063,7 +1073,7 @@ to just leave this guy alone, you think.""",
 	else:
 		print(sceneOptions.get(str.upper(userInput)))
 	if str.upper(userInput) == "FIGHT":
-		milk = milk + 2
+		milk = milk + 3
 	return milk
 
 
