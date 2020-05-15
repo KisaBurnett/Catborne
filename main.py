@@ -1404,12 +1404,19 @@ can simply flatter your way out of a confrontation with a female. It's this narr
 opinion that you deserve all the flesh wounds you suffer when she charges you with
 a whirlwind of blade slashes.
 
-Just kidding. You probably tried this with the other major foes you faced, which
-means it isn't that you're sexist; you just don't learn.""",
+Just kidding. Lighten up. You probably tried this with the other major foes you
+faced, which means it isn't that you're sexist; you just don't learn.""",
 		"STARE":
-"""Stare at something""",
+"""You're given no time to stare by the Nurse, who has begun using her wings to
+swoop across the room in a single motion, shaving off your fur and bits of clothes
+with every near-miss.""",
 		"LOOK":
-"""Look, more something""",
+"""The kitten you presume is in the baby carriage continues to cry as you dart to
+and fro out of the Nurse's reach. The chamber is otherwise unremarkable, and you
+have the passing thought that it looks as though it's been cleared out for some
+sort of ritual.
+
+Why you think that, you aren't certain.""",
 		"LEAVE":
 """Leave with something""",
 		"DREAM": "The plushie can't save you here, coward. You're in this for the long haul."}
