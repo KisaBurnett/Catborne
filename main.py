@@ -1280,7 +1280,14 @@ def loftNext(userInput):
 # Displays appropriate story text according to player's input.
 def loftOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
-"""Talk something""",
+"""You kneel down by the lantern to hold a soft conversation with the phantom kittens.
+They mew and purr, always happy to see you. You softly pat their tiny heads, and
+you're surprised to discover that you can feel their fur, despite their ghostly
+appearance.
+
+Since petting kittens can lower blood pressure, you spend a while doting on your
+little friends. They help you momentarily forget you still don't know how you got
+here, or what your ultimate goal is.""",
 		"FIGHT":
 """Fight something""",
 		"STARE":
