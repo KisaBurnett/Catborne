@@ -693,7 +693,7 @@ You stand back up to look at her curiously, and she gives a polite bow.""",
 
 # Displayed if player has collected milk.
 def dreamLeaveLevel(waitTime):
-	print(""""You have collected milk which can be used to increase your strength," the plushie 
+	print(""""You have collected milk which can be used to increase your strength," the plushie
 says. "I will channel them, and your power will grow."
 
 The idea of becoming a walking tank excites you, and you nod eagerly. Unfortunately,
@@ -955,8 +955,9 @@ paws in the air. It's fine, you earned this little celebration.
 
 Once you've appropriately savored your victory, you strike out for the next area
 with a new pep in your step. Wait until you show the plushie how busy you've been.
-
-On your way out, you notice an abandoned war hammer propped up against a gravestone.
+""")
+		time.sleep(waitTime)
+		print("""On your way out, you notice an abandoned war hammer propped up against a gravestone.
 You pick it up, and realize it's able to transform between being a sword and being
 a hammer. It's heavy, but it's also awesome, and that's what really counts in a
 weapon.
