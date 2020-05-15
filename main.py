@@ -994,9 +994,9 @@ and consume the milk that rolls out from under you. What a jerk.
 ####################--MILK-STARVED BEAST--#########################
 
 
-# Enters the Cathedral.
-def cathedralOpen(waitTime):
-	print("""You emerge in a dreary little cathedral that has definitely seen better days. The
+# Enters the chapel.
+def chapelOpen(waitTime):
+	print("""You emerge in a dreary little chapel that has definitely seen better days. The
 sound of shuffling rats can be heard outside the building, but none of them come
 near the doors. Maybe the strong scent of incense is driving them away.
 
@@ -1011,7 +1011,7 @@ have thought ghosts could be such cute little rascals?""")
 
 
 # Determines whether player should be prompted again for a command.
-def cathedralNext(userInput):
+def chapelNext(userInput):
 	goNext = {"TALK": False,
 		"FIGHT": False,
 		"STARE": False,
@@ -1025,9 +1025,26 @@ def cathedralNext(userInput):
 
 
 # Displays appropriate story text according to player's input.
-def cathedralOptions(userInput, dream, milk, level, hasWpn, weapon):
+def chapelOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
-"""Talk something""",
+"""You approach the hooded dweller of the chapel, and he lifts his head with a
+surprised sound when he notices you. He blinks his large, reflective eyes, then
+says, "Oh, you must be... a mouser! Sorry about that. The incense must have masked
+your scent."
+
+At least you've got one thing going for you.
+
+"Everyone's all locked up inside," the dweller explains, fidgeting with his jars.
+"Waiting for all this to end. It always does!" His voice became upbeat there for
+a moment, but it drops down to a grimmer tone when he adds, "But... it won't end
+nicely. Not this time... Yhowlnam's done for."
+
+You ask why that is. The dweller quickly shakes his head. "You're safe in here,
+Mouser," he says instead. "The incense wards off the beasts. But I can't say as
+to how safe you are out there. Do take care, won't you?"
+
+He giggles nervously, and you give him an odd look as you slowly back away. Best
+to just leave this guy alone, you think.""",
 		"FIGHT":
 """Fight something""",
 		"STARE":
@@ -1743,22 +1760,22 @@ bossDead = False
 # Loops area until Milk-Starved Beast has been beaten by the player.
 while bossDead == False:
 	nextScene = False
-	cathedralOpen(entryTime)
+	chapelOpen(entryTime)
 	print("")
 	entry = input("Enter your choice: ")
 	entry = tryAgain(entry)
 
 	while nextScene == False:
-		nextScene = cathedralNext(entry)
+		nextScene = chapelNext(entry)
 		if str.upper(entry) == "DREAM":
 			collectedMilk, milkLevel = dream(collectedMilk, milkLevel, cinematicTime)
 			print("")
-			cathedralOpen(entryTime)
+			chapelOpen(entryTime)
 			print("")
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
 		else:
-			collectedMilk = cathedralOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			collectedMilk = chapelOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 			print("")
 			if nextScene == False:
 				time.sleep(entryTime)

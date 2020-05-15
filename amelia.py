@@ -1,14 +1,14 @@
 #######################--AMELIA--##########################
 
 
-# Enters the Church area.
-def churchOpen(waitTime):
+# Enters the cathedral area.
+def cathedralOpen(waitTime):
 	print("""Something""")
 	time.sleep(waitTime)
 
 
 # Determines whether player should be prompted again for a command.
-def churchNext(userInput):
+def cathedralNext(userInput):
 	goNext = {"TALK": False,
 		"FIGHT": False,
 		"STARE": False,
@@ -22,7 +22,7 @@ def churchNext(userInput):
 
 
 # Displays appropriate story text according to player's input.
-def churchOptions(userInput, dream, milk, level, hasWpn, weapon):
+def cathedralOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """Talk something""",
 		"FIGHT":
