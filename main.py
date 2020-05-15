@@ -1418,7 +1418,9 @@ sort of ritual.
 
 Why you think that, you aren't certain.""",
 		"LEAVE":
-"""Leave with something""",
+"""You run for the exit, but the Nurse intercepts you and knocks you back into the
+center of the room. She's not done with you yet. You'll need to fight to earn your
+way out of this nursery of horrors.""",
 		"DREAM": "The plushie can't save you here, coward. You're in this for the long haul."}
 	print("""
 ------------------------------
@@ -1438,17 +1440,68 @@ def nurseFight(milk, level, won, waitTime):
 	print("""
 ------------------------------
 
-Here is the intro to the fight.
+It takes some time for you to become accustomed to the sheer weight of your
+greatsword, but the Nurse provides plenty of incentive for you to learn quickly.
+She swoops and twirls with the grace of a deadly ballerina as she attacks you
+with unrelenting ferocity.
+
+It takes everything you have to keep up with the Nurse, but you gradually develop
+your ability to read her moves and discover openings in her sextupled attacks.
+She strikes, you dodge and zip in beneath her arms to slash at her. Over and over,
+you repeat this dance, weakening the Nurse with every blow.
+
+You feel good about your progress. Everything is going well! All of your hard work
+in this hellscape has paid off!
 """)
+	time.sleep(waitTime)
+	print("""And then the Nurse summons a clone of herself to join in the onslaught.
+
+You have to actively resist the urge to throw your greatsword on the ground so you
+can stomp off to the sidelines to sulk. Why is everything so awful all the time?
+""")
+	time.sleep(waitTime)
 	if level >= 10:
 		milk = bossReward
 		won = True
-		print("""Here is the winning text.
+		print("""Little do those Nurses realize you've been training for this all night.
+
+So what if there's two? Child's play! You'll kill them AND raise that crying kitten
+on your own! You don't care! You're the Mouser! You'll turn this into a Feline
+Single Parent Simulator and not bat an eyelash!
+
+It takes a second for you to realize you actually said all of that aloud.
+
+Oh, well, it probably sounded cooler to others than it did in your own ears, don't
+worry.
+""")
+		time.sleep(waitTime)
+		print("""Your persistence ultimately pays off, and you handily defeat both Nurses. You give
+a triumphant howl at the moon as they both fall, lifting your greatsword over your
+head. Finally! You are truly the chosen one!
+
+The cries of the kitten ebb away into soft, contented purring, reassuring you of
+your righteousness in this gruesome situation.
+
+With your enemies slain, you walk over to the baby carriage, only to find it empty.
+Was the kitten ever really there?
+
+You turn to leave, but the moonlight around you intensifies until the world around
+you goes completely white. You feel yourself being transported back to the familiar
+comfort of the Catnap Dream.
 """)
 	else:
 		milk = lossPunish
 		won = False
-		print("""Here is the losing text.
+		print("""Your frustration with the situation quickly takes its toll.
+
+The two nurses are simply too much for you to handle in your current state. You
+give it your all for a while, but are soon reduced to shredded cat meat by the
+twelve cold blades of the Nurses. The first Nurse scoops up your dropped milk as
+you die, and you bitterly hope she gets poisoned by it.
+
+Can nightmarish creatures get food poisoning?
+
+Who cares, it's a nice last fantasy for you to entertain.
 
 ----------YOU DIED----------
 """)
