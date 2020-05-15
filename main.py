@@ -1355,7 +1355,7 @@ Instinct tells you to run, but a baby carriage at the other end of the room catc
 your eye. You find yourself inexplicably drawn to it, but before you get close
 enough to peer inside...
 """)
- 	time.sleep(longTime)
+	time.sleep(longTime)
 	print("""...a nine-foot-tall winged figure in black robes drops down
 between you and the buggy. There's no face within the hood, but cat ears poke up
 through holes at the top of the fabric, and a skeletal cat tail extends from the
@@ -1641,7 +1641,7 @@ insane to make sense of what you've gained.
 	time.sleep(waitTime)
 	print("""Just as you likely never will in the real world.""")
 	time.sleep(waitTime)
-	print("""You will simply cease to be, with no respawn, and no chance to put the terrible 
+	print("""You will simply cease to be, with no respawn, and no chance to put the terrible
 truth to any tangible use.
 """)
 	time.sleep(waitTime)
