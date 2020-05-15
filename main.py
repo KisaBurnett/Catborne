@@ -1324,7 +1324,11 @@ odd geometry, or the... distant sound of a kitten crying?
 What is that? You hadn't heard that before. It isn't the ghost kittens, it's something
 in the distance, and has an eerie tone to it.""",
 		"LEAVE":
-"""Leave with something"""}
+"""Once you've had your breather, you pick up your greatsword, pluck up your courage,
+and continue your walk through the moonlit streets. The distant sound of a crying
+kitten catches your ear, and you follow it out of curiosity.
+
+You realize a bit late that "curiosity killed the cat" is a saying for a reason."""}
 	print("""
 ------------------------------
 """)
