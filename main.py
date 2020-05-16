@@ -72,43 +72,33 @@ Invalid command. Enter HELP for a list of valid commands.
 # Display list of valid commands.
 def commandList(dream):
 	if dream:
-		print("""
-Valid commands are:
+		print("""Valid commands are:
 TALK
 FIGHT
 STARE
 LOOK
 LEAVE
 CHECK
-DREAM
-""")
+DREAM""")
 	else:
-		print("""
-Valid commands are:
+		print("""Valid commands are:
 TALK
 FIGHT
 STARE
 LOOK
 LEAVE
-CHECK
-""")
+CHECK""")
 
 
 # Displays player's current milk level and weapon.
 def statusCheck(milk, level, hasWpn, weapon):
 	weaponList = {"1": "old sword", "2": "hammer", "3": "great sword"}
-	print("""
-You are holding """ + str(milk) + """ bottles of milk.
+	print("""You are holding """ + str(milk) + """ bottles of milk.
 You are level """ + str(level) + ".")
 	if hasWpn:
-		print("Your weapon is the " + weaponList.get(weapon) + """.
-""")
+		print("Your weapon is the " + weaponList.get(weapon) + ".")
 	else:
-		print("""You have no weapon. Idiot.
-""")
-
-
-
+		print("""You have no weapon. Idiot.""")
 
 
 # Levels up player if they have collected milk.
@@ -145,6 +135,7 @@ and return to the waking world.""")
 		while milk >= nextLevel:
 			level = level + 1
 			milk = milk - nextLevel
+			nextLevel = level * 2
 	time.sleep(waitTime)
 	return milk, level
 
@@ -200,7 +191,7 @@ def sceneOneNext(userInput):
 
 
 # Displays appropriate story text according to player's input.
-def sceneOne(userInput):
+def sceneOne(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """ "Where am I? you ask the old cat.
 
@@ -259,7 +250,12 @@ The old cat snickers at you.""",
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 
 # Transitions between scene with old cat and player being alone.
@@ -292,7 +288,7 @@ def sceneTwoNext(userInput):
 
 # Displays appropriate story text according to player's input. Only executes
 # if the player received a sword from the old cat in scene one.
-def sceneTwoTalk(userInput):
+def sceneTwoTalk(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You talk to yourself.
 
@@ -318,12 +314,17 @@ boldly head outside.""",
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 
 # Displays appropriate story text according to player's input. Only executes if
 # the player did not receive a sword from the old cat in scene one.
-def sceneTwoStare(userInput):
+def sceneTwoStare(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You talk to yourself.
 
@@ -352,7 +353,12 @@ outside.""",
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 
 ####################--CLINIC LOBBY--###########################
@@ -419,7 +425,7 @@ def sceneThreeTalkNext(userInput):
 
 # Displays appropriate story text according to player's input. Only executes
 # if the player recieved a sword from the old cat in scene one.
-def sceneThreeTalk(userInput, milk):
+def sceneThreeTalk(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You tell the rat that you are prepared to negotiate by either talking or
 stabbing your sword into its eyeball until it yields. You'd rather talk, but
@@ -465,7 +471,12 @@ However, you can't help but wonder if risk would have brought worthy reward.""",
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 	if str.upper(userInput) == "FIGHT":
 		milk = milk + 2
@@ -488,7 +499,7 @@ def sceneThreeStareNext(userInput):
 
 # Displays appropriate story text according to player's input. Executes
 # if player did not receive a sword from the old cat in scene one.
-def sceneThreeStare(userInput):
+def sceneThreeStare(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You tell the rat that you are prepared to negotiate by either talking or
 clawing its eyeballs until it yields. You'd rather talk, but you'll use your
@@ -525,7 +536,12 @@ here without some fancy claw-fu fighting.""",
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 
 ######################--EXIT CLINIC--###########################
@@ -557,7 +573,7 @@ def sceneFourNext(userInput):
 
 
 # Displays appropriate story text according to player's input.
-def sceneFour(userInput):
+def sceneFour(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You tell the moon you're very displeased with how the night is progressing
 thus far.
@@ -591,7 +607,12 @@ The hunt is on.""",
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 
 ###################--FIRST DREAM VISIT--########################
@@ -645,7 +666,7 @@ def sceneFiveNext(userInput):
 
 
 # Displays appropriate story text according to player's input.
-def sceneFive(userInput):
+def sceneFive(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You ask the plushie what she does here in this place. She lights up and purrs
 happily, clearly tickled to be talking to you.
@@ -686,7 +707,12 @@ You stand back up to look at her curiously, and she gives a polite bow.""",
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 
 # Displayed if player has collected milk.
@@ -771,7 +797,7 @@ def gilpurrtNext(userInput):
 
 
 # Displays appropriate story text according to player's input.
-def gilpurrtOptions(userInput, milk):
+def gilpurrtOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You approach the window cautiously and ask if the cat within is all right. A
 weary voice replies, "Oh, hello. There isn't much hope for me, I'm afraid. But
@@ -827,8 +853,12 @@ good, is it?"""}
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
-
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 	if str.upper(userInput) == "FIGHT":
 		milk = milk + 1
 	return milk
@@ -877,7 +907,7 @@ def gasclawNext(userInput):
 
 
 # Displays appropriate story text according to player's input.
-def gasclawOptions(userInput):
+def gasclawOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You whimper out an attempt to ask if you can talk things out.
 
@@ -906,13 +936,17 @@ This is bad.""",
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 
 # Boss fight scene.
 def gasclawFight(milk, level, won, waitTime):
 	bossReward = 8
-	currentMilk = milk
 	print("""
 ------------------------------
 
@@ -925,7 +959,7 @@ But you continue to survive by the skin of your sharp kitty teeth.
 """)
 	time.sleep(waitTime)
 	if level > 3:
-		currentMilk = currentMilk + bossReward
+		milk = milk + bossReward
 		won = True
 		print("""Just as you think you're wearing him down, Father Gasclaw transforms into a hulking,
 hideous version of himself, and casts aside his weapons in favor of attacking you
@@ -955,7 +989,7 @@ You discard your old sword, and swing your new hammer up onto your shoulder. Man
 if only you could take a selfie right now.
 """)
 	elif level == 1:
-		currentMilk = 0
+		milk = 0
 		won = False
 		print("""Sadly, this success story doesn't last for long. You fight valiantly for a few
 minutes more, only to succumb to the unending brutality Father Gasclaw tirelessly
@@ -967,7 +1001,7 @@ and consume the milk that rolls out from under you. What a jerk.
 ----------YOU DIED----------
 """)
 	else:
-		currentMilk = 0
+		milk = 0
 		won = False
 		print("""Just as you think you're wearing him down, Father Gasclaw transforms into a hulking,
 hideous version of himself, and casts aside his weapons in favor of attacking you
@@ -981,7 +1015,7 @@ and consume the milk that rolls out from under you. What a jerk.
 ----------YOU DIED----------
 """)
 	time.sleep(waitTime)
-	return currentMilk, won
+	return milk, won
 
 
 ####################--MILK-STARVED BEAST--#########################
@@ -1018,7 +1052,7 @@ def chapelNext(userInput):
 
 
 # Displays appropriate story text according to player's input.
-def chapelOptions(userInput, milk):
+def chapelOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You approach the hooded dweller of the chapel, and he lifts his head with a
 surprised sound when he notices you. He blinks his large, reflective eyes, then
@@ -1078,8 +1112,12 @@ out down the path outside the chapel."""}
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
-
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 	if str.upper(userInput) == "FIGHT":
 		milk = milk + 3
 	return milk
@@ -1135,7 +1173,7 @@ def milkBeastNext(userInput):
 
 
 # Displays appropriate story text according to player's input.
-def milkBeastOptions(userInput):
+def milkBeastOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You open your mouth to speak, and are almost immediately slapped across the church.
 
@@ -1160,13 +1198,17 @@ Seriously, stop trying to get out of these fights."""}
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 
 # Boss fight scene.
 def milkBeastFight(milk, level, won, waitTime):
 	bossReward = 12
-	currentMilk = milk
 	print("""
 ------------------------------
 
@@ -1178,7 +1220,7 @@ You do a number on the poor, defenseless floor, but only manage to graze the bea
 every so often. You'll need to be tactical here.
 """)
 	if level >= 6:
-		currentMilk = currentMilk + bossReward
+		milk = milk + bossReward
 		won = True
 		print("""You snap the hammer apart to use the sword, hanging the head of the hammer on your
 back to keep it out of the way. It's a sacrifice of strength, but it grants you
@@ -1208,7 +1250,7 @@ It isn't. But it is more balanced and prettier to look at. So you decide it's
 worth the exchange after all.
 """)
 	else:
-		currentMilk = 0
+		milk = 0
 		won = False
 		print("""You snap the hammer apart to use the sword, hanging the head of the hammer on your
 back to keep it out of the way. While you fumble with your fancy trick weapon,
@@ -1223,7 +1265,7 @@ At least you die knowing you fed a hungry cat.
 ----------YOU DIED----------
 """)
 	time.sleep(waitTime)
-	return currentMilk, won
+	return milk, won
 
 
 ##################--PURRGO'S WET NURSE--####################
@@ -1261,7 +1303,7 @@ def loftNext(userInput):
 
 
 # Displays appropriate story text according to player's input.
-def loftOptions(userInput, milk):
+def loftOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You kneel down by the lantern to hold a soft conversation with the phantom kittens.
 They mew and purr, always happy to see you. You softly pat their tiny heads, and
@@ -1281,8 +1323,8 @@ that your prey-to-be is a whole family of rats.
 You put your new greatsword to work by eliminating every member of the rat colony
 with no remorse. You're already a well-established butcher, so why care at this point?
 
-Six bottles of milk serve as your reward. And you hear another group of rats on its
-way. Truly, this is the land of milk and honey. But without the honey.""",
+Seven bottles of milk serve as your reward. And you hear another group of rats
+on its way. Truly, this is the land of milk and honey. But without the honey.""",
 		"STARE":
 """You engage in a staring contest with the kittens. They match you for a while,
 but then dissolve into adorable kitty giggles. If only you could put them in your
@@ -1303,10 +1345,14 @@ You realize a bit late that "curiosity killed the cat" is a saying for a reason.
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
-
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 	if str.upper(userInput) == "FIGHT":
-		milk = milk + 6
+		milk = milk + 7
 	return milk
 
 
@@ -1320,10 +1366,10 @@ This is definitely a boss arena.
 
 Instinct tells you to run, but a baby carriage at the other end of the room catches
 your eye. You find yourself inexplicably drawn to it, but before you get close
-enough to peer inside...""")
+enough to peer inside...
+""")
 	time.sleep(longTime)
-	print("""
-...a nine-foot-tall winged figure in black robes drops down between you and the
+	print("""...a nine-foot-tall winged figure in black robes drops down between you and the
 buggy. There's no face within the hood, but cat ears poke up through holes at the
 top of the fabric, and a skeletal cat tail extends from the back of the figure's robes.
 
@@ -1360,7 +1406,7 @@ def nurseNext(userInput):
 
 
 # Displays appropriate story text according to player's input.
-def nurseOptions(userInput):
+def nurseOptions(userInput, dream, milk, level, hasWpn, weapon):
 	sceneOptions = {"TALK":
 """You attempt to strike up a conversation with the Nurse about the baby for whom
 she's providing. Maybe complimenting her baby will endear you to her.
@@ -1391,13 +1437,17 @@ way out of this nursery of horrors.""",
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 
 
 # Boss fight scene.
 def nurseFight(milk, level, won, waitTime):
 	bossReward = 18
-	currentMilk = milk
 	print("""
 ------------------------------
 
@@ -1422,7 +1472,7 @@ can stomp off to the sidelines to sulk. Why is everything so awful all the time?
 """)
 	time.sleep(waitTime)
 	if level >= 9:
-		currentMilk = currentMilk + bossReward
+		milk = milk + bossReward
 		won = True
 		print("""Little do those Nurses realize you've been training for this all night.
 
@@ -1451,7 +1501,7 @@ you goes completely white. You feel yourself being transported back to the famil
 comfort of the Catnap Dream.
 """)
 	else:
-		currentMilk = 0
+		milk = 0
 		won = False
 		print("""Your frustration with the situation quickly takes its toll.
 
@@ -1467,7 +1517,7 @@ Who cares, it's a nice last fantasy for you to entertain.
 ----------YOU DIED----------
 """)
 	time.sleep(waitTime)
-	return currentMilk, won
+	return milk, won
 
 
 ################--DREAM RETURN--####################
@@ -1501,7 +1551,7 @@ def dreamReturnNext(userInput):
 
 
 # Displays appropriate story text according to player's input.
-def dreamReturnOptions(userInput, cord):
+def dreamReturnOptions(userInput, dream, milk, level, hasWpn, weapon, cord):
 	sceneOptions = {"TALK":
 """You approach the plushie and ask her what happened. She tilts her head.
 
@@ -1539,8 +1589,12 @@ not her! Your only friend! Besides the kittens, of course; they're also cool wit
 	print("""
 ------------------------------
 """)
-	print(sceneOptions.get(str.upper(userInput)))
-
+	if str.upper(userInput) == "CHECK":
+		statusCheck(milk, level, hasWpn, weapon)
+	elif str.upper(userInput) == "HELP":
+		commandList(dream)
+	else:
+		print(sceneOptions.get(str.upper(userInput)))
 	if str.upper(userInput) == "LOOK":
 		cord = True
 	return cord
@@ -1597,8 +1651,7 @@ you, and you slip away in the terrifying grip of wisdom you never wanted. Too
 insane to make sense of what you've gained.
 """)
 	time.sleep(waitTime)
-	print("""Just as you likely never will in the real world.
-""")
+	print("""Just as you likely never will in the real world.""")
 	time.sleep(waitTime)
 	print("""You will simply cease to be, with no respawn, and no chance to put the terrible
 truth to any tangible use.
@@ -1679,13 +1732,8 @@ entry = tryAgain(entry)
 # Loops command prompts until player selects one that progresses the story.
 while nextScene == False:
 	nextScene = sceneOneNext(entry)
-	if str.upper(entry) == "CHECK":
-		statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-	elif str.upper(entry) == "HELP":
-		commandList(hasDream)
-	else:
-		sceneOne(entry)
-		print("")
+	sceneOne(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+	print("")
 	if nextScene == False:
 		time.sleep(entryTime)
 		entry = input("Enter your choice: ")
@@ -1710,13 +1758,8 @@ entry = tryAgain(entry)
 if hasWeapon:
 	while nextScene == False:
 		nextScene = sceneTwoNext(entry)
-		if str.upper(entry) == "CHECK":
-			statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-		elif str.upper(entry) == "HELP":
-			commandList(hasDream)
-		else:
-			sceneTwoTalk(entry)
-			print("")
+		sceneTwoTalk(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+		print("")
 		if nextScene == False:
 			time.sleep(entryTime)
 			entry = input("Enter your choice: ")
@@ -1726,13 +1769,8 @@ if hasWeapon:
 else:
 	while nextScene == False:
 		nextScene = sceneTwoNext(entry)
-		if str.upper(entry) == "CHECK":
-			statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-		elif str.upper(entry) == "HELP":
-			commandList(hasDream)
-		else:
-			sceneTwoStare(entry)
-			print("")
+		sceneTwoStare(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+		print("")
 		if nextScene == False:
 			time.sleep(entryTime)
 			entry = input("Enter your choice: ")
@@ -1749,13 +1787,8 @@ entry = tryAgain(entry)
 if hasWeapon:
 	while nextScene == False:
 		nextScene = sceneThreeTalkNext(entry)
-		if str.upper(entry) == "CHECK":
-			statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-		elif str.upper(entry) == "HELP":
-			commandList(hasDream)
-		else:
-			collectedMilk = sceneThreeTalk(entry, collectedMilk)
-			print("")
+		collectedMilk = sceneThreeTalk(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+		print("")
 		if nextScene == False:
 			time.sleep(entryTime)
 			entry = input("Enter your choice: ")
@@ -1765,13 +1798,8 @@ if hasWeapon:
 else:
 	while nextScene == False:
 		nextScene = sceneThreeStareNext(entry)
-		if str.upper(entry) == "CHECK":
-			statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-		elif str.upper(entry) == "HELP":
-			commandList(hasDream)
-		else:
-			sceneThreeStare(entry)
-			print("")
+		sceneThreeStare(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+		print("")
 		if nextScene == False:
 			time.sleep(entryTime)
 			entry = input("Enter your choice: ")
@@ -1789,13 +1817,8 @@ if hasWeapon:
 
 	while nextScene == False:
 		nextScene = sceneFourNext(entry)
-		if str.upper(entry) == "CHECK":
-			statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-		elif str.upper(entry) == "HELP":
-			commandList(hasDream)
-		else:
-			sceneFour(entry)
-			print("")
+		sceneFour(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+		print("")
 		if nextScene == False:
 			time.sleep(entryTime)
 			entry = input("Enter your choice: ")
@@ -1816,13 +1839,8 @@ entry = tryAgain(entry)
 
 while nextScene == False:
 	nextScene = sceneFiveNext(entry)
-	if str.upper(entry) == "CHECK":
-		statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-	elif str.upper(entry) == "HELP":
-		commandList(hasDream)
-	else:
-		sceneFive(entry)
-		print("")
+	sceneFive(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+	print("")
 	if nextScene == False:
 		time.sleep(entryTime)
 		entry = input("Enter your choice: ")
@@ -1850,13 +1868,8 @@ else:
 
 		while nextScene == False:
 			nextScene = sceneThreeTalkNext(entry)
-			if str.upper(entry) == "CHECK":
-				statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-			elif str.upper(entry) == "HELP":
-				commandList(hasDream)
-			else:
-				collectedMilk = sceneThreeTalk(entry, collectedMilk)
-				print("")
+			collectedMilk = sceneThreeTalk(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			print("")
 			if nextScene == False:
 				time.sleep(entryTime)
 				entry = input("Enter your choice: ")
@@ -1871,13 +1884,8 @@ else:
 
 		while nextScene == False:
 			nextScene = sceneFourNext(entry)
-			if str.upper(entry) == "CHECK":
-				statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-			elif str.upper(entry) == "HELP":
-				commandList(hasDream)
-			else:
-				sceneFour(entry)
-				print("")
+			sceneFour(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
+			print("")
 			if nextScene == False:
 				time.sleep(entryTime)
 				entry = input("Enter your choice: ")
@@ -1904,19 +1912,15 @@ while bossDead == False:
 			print("")
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
-		elif str.upper(entry) == "CHECK":
-			statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-		elif str.upper(entry) == "HELP":
-			commandList(hasDream)
 		else:
-			collectedMilk = gilpurrtOptions(entry, collectedMilk)
+			collectedMilk = gilpurrtOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 			print("")
-		if nextScene == False:
-			time.sleep(entryTime)
-			entry = input("Enter your choice: ")
-			entry = tryAgain(entry)
-		else:
-			time.sleep(cinematicTime)
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
 
 	nextScene = False
 	gasclawOpen(cinematicTime, entryTime)
@@ -1927,19 +1931,15 @@ while bossDead == False:
 		nextScene = gasclawNext(entry)
 		if str.upper(entry) == "FIGHT":
 			collectedMilk, bossDead = gasclawFight(collectedMilk, milkLevel, bossDead, cinematicTime)
-		elif str.upper(entry) == "CHECK":
-			statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-		elif str.upper(entry) == "HELP":
-			commandList(hasDream)
 		else:
-			gasclawOptions(entry)
+			gasclawOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 			print("")
-		if nextScene == False:
-			time.sleep(entryTime)
-			entry = input("Enter your choice: ")
-			entry = tryAgain(entry)
-		else:
-			time.sleep(cinematicTime)
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
 
 # Changes weapon type held by player after Gasclaw defeat.
 oldSword = False
@@ -1966,19 +1966,15 @@ while bossDead == False:
 			print("")
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
-		elif str.upper(entry) == "CHECK":
-			statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-		elif str.upper(entry) == "HELP":
-			commandList(hasDream)
 		else:
-			collectedMilk = chapelOptions(entry, collectedMilk)
+			collectedMilk = chapelOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 			print("")
-		if nextScene == False:
-			time.sleep(entryTime)
-			entry = input("Enter your choice: ")
-			entry = tryAgain(entry)
-		else:
-			time.sleep(cinematicTime)
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
 
 	nextScene = False
 	milkBeastOpen(cinematicTime, entryTime)
@@ -1989,19 +1985,15 @@ while bossDead == False:
 		nextScene = milkBeastNext(entry)
 		if str.upper(entry) == "FIGHT":
 			collectedMilk, bossDead = milkBeastFight(collectedMilk, milkLevel, bossDead, cinematicTime)
-		elif str.upper(entry) == "CHECK":
-			statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-		elif str.upper(entry) == "HELP":
-			commandList(hasDream)
 		else:
-			milkBeastOptions(entry)
+			milkBeastOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 			print("")
-		if nextScene == False:
-			time.sleep(entryTime)
-			entry = input("Enter your choice: ")
-			entry = tryAgain(entry)
-		else:
-			time.sleep(cinematicTime)
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
 
 # Resets the check to see if the boss is dead for the next area.
 bossDead = False
@@ -2028,19 +2020,15 @@ while bossDead == False:
 			print("")
 			entry = input("Enter your choice: ")
 			entry = tryAgain(entry)
-		elif str.upper(entry) == "CHECK":
-			statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-		elif str.upper(entry) == "HELP":
-			commandList(hasDream)
 		else:
-			collectedMilk = loftOptions(entry, collectedMilk)
+			collectedMilk = loftOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 			print("")
-		if nextScene == False:
-			time.sleep(entryTime)
-			entry = input("Enter your choice: ")
-			entry = tryAgain(entry)
-		else:
-			time.sleep(cinematicTime)
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
 
 	nextScene = False
 	nurseOpen(cinematicTime, entryTime)
@@ -2051,19 +2039,15 @@ while bossDead == False:
 		nextScene = nurseNext(entry)
 		if str.upper(entry) == "FIGHT":
 			collectedMilk, bossDead = nurseFight(collectedMilk, milkLevel, bossDead, cinematicTime)
-		elif str.upper(entry) == "CHECK":
-			statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-		elif str.upper(entry) == "HELP":
-			commandList(hasDream)
 		else:
-			nurseOptions(entry)
+			nurseOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon)
 			print("")
-		if nextScene == False:
-			time.sleep(entryTime)
-			entry = input("Enter your choice: ")
-			entry = tryAgain(entry)
-		else:
-			time.sleep(cinematicTime)
+			if nextScene == False:
+				time.sleep(entryTime)
+				entry = input("Enter your choice: ")
+				entry = tryAgain(entry)
+			else:
+				time.sleep(cinematicTime)
 
 # Resets the check to see if the boss is dead for the next area.
 bossDead = False
@@ -2077,13 +2061,8 @@ entry = tryAgain(entry)
 
 while nextScene == False:
 	nextScene = dreamReturnNext(entry)
-	if str.upper(entry) == "CHECK":
-		statusCheck(collectedMilk, milkLevel, hasWeapon, heldWeapon)
-	elif str.upper(entry) == "HELP":
-		commandList(hasDream)
-	else:
-		umbilicalCord = dreamReturnOptions(entry, umbilicalCord)
-		print("")
+	umbilicalCord = dreamReturnOptions(entry, hasDream, collectedMilk, milkLevel, hasWeapon, heldWeapon, umbilicalCord)
+	print("")
 	if nextScene == False:
 		time.sleep(entryTime)
 		entry = input("Enter your choice: ")
